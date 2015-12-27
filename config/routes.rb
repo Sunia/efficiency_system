@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root to: "home#index"
 
+  resources :passage_plans
+
   devise_for :users
   resources :sea_reports
   resources :sea_ports
@@ -10,6 +12,7 @@ Rails.application.routes.draw do
   post 'close_report/:id' => 'sea_reports#close_report', as: :close_report
 
   post 'close_sea_passage/:id' => 'sea_ports#close_sea_passage', as: :close_sea_passage
+  post 'passage_plan/:sea_report_id' => 'passage_plans#create_passage_plan', as: :create_passage_plan
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

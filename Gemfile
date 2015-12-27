@@ -57,3 +57,4 @@ gem 'rails_admin'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+  gem 'protected_attributes'

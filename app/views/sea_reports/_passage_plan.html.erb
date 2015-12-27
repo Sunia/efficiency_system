@@ -1,4 +1,6 @@
-<%= form_tag passage_plan_path(@sea_report.id), :method => :post do %>
+<br>
+
+<%= form_tag create_passage_plan_path(@sea_report.id), :method => :post do %>
 
   <table id="passage_table" border="1" style="">
     <tr>
@@ -35,17 +37,28 @@
 
 
     <tr>
-      <td class="font_size-10"><%= number_field_tag "passage[][long_degree]", nil, :step => 'any' %></td>
-      <td class="font_size-10"> <%= text_field_tag "passage[][long_min]" %> </td>
+      <td class="font_size-10"><%= number_field_tag "passage[][long_degree]",nil, :required => true, :min => 0, :max => 90, :style => 'width: 80px;' %></td>
 
-      <td class="font_size-10"> <%= text_field_tag "passage[][long_dir]" %> </td>
+      <td class="font_size-10"> <%= number_field_tag "passage[][long_min]",  nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '59.99', :style => 'width: 100px;'  %> </td>
 
-      <td class="font_size-10"> <%= text_field_tag "passage[][lat_degree]" %> </td>
-      <td class="font_size-10"> <%= text_field_tag "passage[][lat_min]" %> </td>
+      <td class="font_size-10">
+       <select name="passage[][long_dir]" style ='width: 80px;' >
+            <option value="N">North</option>
+            <option value="S">South</option>
+       </select>
+      </td>
 
-      <td class="font_size-10"> <%= text_field_tag "passage[][lat_dir]" %> </td>
+      <td class="font_size-10"> <%= number_field_tag "passage[][lat_degree]", nil, :required => true, :min => 0, :max => 180, :style => 'width: 80px;'  %> </td>
+
+      <td class="font_size-10"> <%= number_field_tag "passage[][lat_min]",  nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '59.99', :style => 'width: 100px;'  %> </td>
+
+      <td class="font_size-10">
+       <select name="passage[][lat_dir]" style='width: 80px;' >
+            <option value="E">East</option>
+            <option value="W">West</option>
+       </select>
+      </td>        
     </tr>
-
 
   </table>
 
@@ -53,9 +66,11 @@
   <%= submit_tag 'Save' %>
   <button type="button" id="new_row">Add new Row</button>
   <br>
-
-
-
-
-
 <% end %>
+
+<script>
+	function deleteRow(btn) {
+	  var row = btn.parentNode.parentNode;
+	  row.parentNode.removeChild(row);
+	}
+</script
