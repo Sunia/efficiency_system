@@ -14,26 +14,24 @@
 
 $(document).ready(function(){
 
-    $( "#new_row" ).on( "click", function( event ) {
-      data = '<tr>'
-      data +=  '<td class="font_size-10"><input type="number" name="passage[][long_degree]" id="passage__long_degree" step="any"></td>'
-      data += '<td class="font_size-10"> <input type="text" name="passage[][long_min]" id="passage__long_min"> </td>'
+  $( "#new_row" ).on( "click", function( event ) {
+    data = '<tr>'
+    data +=  '<td class="font_size-10"><input type="number" name="passage[][lat_degree]" id="passage_lat_degree" required="required" min="0" max="90" style="width: 140px;"></td>'
+    data += '<td class="font_size-10"> <input type="number" name="passage[][lat_min]" id="passage_lat_min" required="required" step="0.01" min="0.00" max="59.99" style="width: 140px;"> </td>'
 
-      data += '<td class="font_size-10"><select name="passage[][long_dir]">'
-      data += '<option value="N">North</option><option value="S">South</option></select></td>'
+    data += '<td class="font_size-10"><select name="passage[][lat_dir]" style ="width: 80px;">'
 
-      data += '<td class="font_size-10"> <input type="text" name="passage[][lat_degree]" id="passage__lat_degree"> </td>'
-      data += '<td class="font_size-10"> <input type="text" name="passage[][lat_min]" id="passage__lat_min"> </td>'
+    data += '<option value="N">North</option><option value="S">South</option></select></td>'
 
-      data += '<td class="font_size-10"><select name="passage[][lat_dir]">'
-      data += '<option value="E">East</option><option value="W">West</option></select></td>'
+    data += '<td class="font_size-10"><input type="number" name="passage[][long_degree]" id="passage_long_degree" required="required" min="0" max="90" style="width: 140px;"></td>'
+    data += '<td class="font_size-10"> <input type="number" name="passage[][long_min]" id="passage_long_min" required="required" step="0.01" min="0.00" max="59.99" style="width: 140px;"> </td>'
 
-      data += "<td><img src='/assets/delete.png' style='height: 10%;' onClick='deleteRow(this)'> </td>"
-      data += '</tr>'
-      $('#passage_table tr:last').after(data);
+    data += '<td class="font_size-10"><select name="passage[][long_dir]"  style ="width: 80px;">'
+    data += '<option value="E">East</option><option value="W">West</option></select></td>'
 
-    });
+    data += "<td><img src='/assets/delete.png' style='height: 10%;' onClick='deleteRow(this)'> </td>"
+    data += '</tr>'
+    $('#passage_table tr:last').after(data);
 
-
-
+  });
 });

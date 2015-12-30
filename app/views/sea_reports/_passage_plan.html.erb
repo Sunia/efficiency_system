@@ -8,10 +8,9 @@
     </tr>
 
     <tr>
-      <td colspan="3" class="font_size-10">Longitude </td>
       <td colspan="3" class="font_size-10">Latitude</td>
+      <td colspan="3" class="font_size-10">Longitude</td>
     </tr>
-
 
     <tr>
       <td class="font_size-10"> 0-90 </td>
@@ -27,7 +26,7 @@
 
     <tr>
       <td class="font_size-10"> DEGREES </td>
-      <td class="font_size-10"> MINUTES (IN DECIMAL) </td>
+      <td class="font_size-10"> MINUTES(IN DECIMAL) </td>
       <td class="font_size-10"> (N OR S) </td>
 
       <td class="font_size-10"> DEGREES </td>
@@ -35,25 +34,24 @@
       <td class="font_size-10"> (E OR W) </td>
     </tr>
 
-
     <tr>
-      <td class="font_size-10"><%= number_field_tag "passage[][long_degree]",nil, :required => true, :min => 0, :max => 90, :style => 'width: 80px;' %></td>
+      <td class="font_size-10"><%= number_field_tag "passage[][lat_degree]",nil, :required => true, :min => 0, :max => 90, :style => 'width: 140px;' %></td>
 
-      <td class="font_size-10"> <%= number_field_tag "passage[][long_min]",  nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '59.99', :style => 'width: 100px;'  %> </td>
+      <td class="font_size-10"> <%= number_field_tag "passage[][lat_min]",  nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '59.99', :style => 'width: 140px;'  %> </td>
 
       <td class="font_size-10">
-       <select name="passage[][long_dir]" style ='width: 80px;' >
+       <select name="passage[][lat_dir]" style ='width: 80px;' >
             <option value="N">North</option>
             <option value="S">South</option>
        </select>
       </td>
 
-      <td class="font_size-10"> <%= number_field_tag "passage[][lat_degree]", nil, :required => true, :min => 0, :max => 180, :style => 'width: 80px;'  %> </td>
+      <td class="font_size-10"> <%= number_field_tag "passage[][long_degree]", nil, :required => true, :min => 0, :max => 180, :style => 'width: 140px;'  %> </td>
 
-      <td class="font_size-10"> <%= number_field_tag "passage[][lat_min]",  nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '59.99', :style => 'width: 100px;'  %> </td>
+      <td class="font_size-10"> <%= number_field_tag "passage[][long_min]",  nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '59.99', :style => 'width: 140px;'  %> </td>
 
       <td class="font_size-10">
-       <select name="passage[][lat_dir]" style='width: 80px;' >
+       <select name="passage[][long_dir]" style='width: 80px;' >
             <option value="E">East</option>
             <option value="W">West</option>
        </select>
