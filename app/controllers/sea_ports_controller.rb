@@ -11,15 +11,29 @@ class SeaPortsController < ApplicationController
 
     @sea_port = SeaPort.new(sea_port_params)
 
+    zone_time = params[:sea_port][:zone_time]
     respond_to do |format|
       if @sea_port.save
 
         # Update the 'smt_time' and 'created_at'.
-        @sea_port.update_attributes(:smt_time => smt_time_string, :created_at => utc_time)
-       
-        format.html { redirect_to new_sea_report_path, notice: 'Your journey between two ports has successfully started.' }
+        @sea_port.update_attributes(:smt_time => smt_time_string, :created_at => utc_time, :total_reports => 0)
+  
+        # Create the new sea report
+        @sea_report = @sea_port.sea_reports.create(:opened_time_in_smt => smt_time_string, :created_at => utc_time,  :zone_time => zone_time)
+          
+        # update the report_number, sea_port_id of sea_report
+        @sea_report.report_number = @sea_port.total_reports + 1
+        @sea_report.is_closed = false
+        @sea_report.save
+
+        # Update the total_reports in sea_port
+        @sea_port.total_reports += 1
+        @sea_port.save
+
+        format.html { redirect_to edit_sea_report_path(@sea_report.id), notice: 'Sea report is successfully created.' }
+        format.json { render :show, status: :created, location: @sea_report }
       else
-        format.html { redirect_to sea_reports_path, notice: 'Please try again' }
+        format.html { redirect_to sea_reports_path, notice: 'Some Exception occured. Please try again' }
       end
     end
   end

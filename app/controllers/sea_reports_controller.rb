@@ -98,29 +98,62 @@ class SeaReportsController < ApplicationController
   end
 
   def close_report
-    @sea_report = SeaReport.find(params[:id])
+    @old_sea_report = SeaReport.find(params[:id])
 
     # Calculate smt and utc time of sea report
     # Update the 'smt_time' and 'created_at'.
+    zone_time = params[:sea_report][:zone_time]
+
     smt_time_string = "#{params[:date]} #{params[:hours]}:#{params[:minutes]}:#{params[:seconds]} #{params[:sea_report][:zone_time]}"
     utc_time = Time.parse(smt_time_string).getutc
-    @sea_report.update_attributes(:closed_time_in_smt => smt_time_string, :closed_time_in_utc => utc_time)
+    @old_sea_report.update_attributes(:closed_time_in_smt => smt_time_string, :closed_time_in_utc => utc_time)
 
     time_difference_in_seconds  = @sea_report.updated_at - @sea_report.created_at
     report_interval = (time_difference_in_seconds/60/60)
     #report_interval = helper.distance_of_time_in_words(time_difference_in_seconds)
 
-    updated = @sea_report.update_attributes(:is_closed => true, :closed_time_in_utc => DateTime.now, :report_interval => report_interval)
+    updated = @old_sea_report.update_attributes(:is_closed => true, :report_interval => report_interval)
+  #================================================================
+
+    # Create new sea report .
+    status = create_sea_report(smt_time_string, utc_time, zone_time)
 
     respond_to do |format|
-      if updated
-        format.html { redirect_to sea_reports_path, notice: 'Sea report is successfully closed. Start a new one.....!' }
-        format.json { render :show, status: :ok, location: @sea_report }
+      if updated && status
+        format.html { redirect_to edit_sea_report_path(@sea_report.id), notice: 'Report is successfully closed.. and a new one is generated for you!' }
+        
       else
         format.html { render :edit }
-        format.json { render json: @sea_report.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+
+  def create_sea_report(smt_time_string, utc_time, zone_time)
+
+    # Create new report - starting time same as closing time of previous.
+    @sea_report = SeaReport.new(:opened_time_in_smt => smt_time_string, :created_at => utc_time, :zone_time => zone_time )
+
+    if @sea_report.save
+      
+      # update the report_number, sea_port_id of sea_report
+      @sea_port = SeaPort.last
+
+      if @sea_port
+        @sea_report.report_number = @sea_port.total_reports + 1
+        @sea_report.sea_port_id = @sea_port.id
+        @sea_report.is_closed = false
+        @sea_report.save
+
+        # Update the total_reports in sea_port
+        @sea_port.total_reports += 1
+        @sea_port.save
+        return true
+
+      else
+        return false
+      end   
+
   end
 
 
