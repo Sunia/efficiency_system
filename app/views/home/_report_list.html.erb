@@ -17,6 +17,7 @@
       <thead>
         <tr style="background-color: #F1EEEE;">
 
+          <th> Sea Port ID</th>
           <th>Vessel Name</th>
           <th> Starting Port </th>
           <th> Destination Port </th>
@@ -32,6 +33,7 @@
           <% @sea_reports.each do |sea_report| %>
             <tr>
               <% sea_port = SeaPort.find(sea_report.sea_port_id) %>
+              <td> <%= sea_port.id %></td>
               <td> <%= sea_port.vessel_name %></td>
               <td> <%= sea_port.starting_port_name %></td>
               <td> <%= sea_port.reached_port_name %></td>
