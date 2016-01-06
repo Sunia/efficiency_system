@@ -69,6 +69,10 @@ class PassagePlansController < ApplicationController
       plan.update_attributes(:sea_report_id => params[:sea_report_id])
       plan.save
     end
+    respond_to do |format|
+
+     format.html { redirect_to edit_sea_report_path(params[:sea_report_id]), notice: 'Information updated successfully' }
+    end
   end
 
   private

@@ -16,7 +16,6 @@ class SeaReportsController < ApplicationController
     # Fetching open report 
     @open_report = SeaReport.last
     @sea_reports = SeaReport.all
-
   end
 
   # GET /sea_reports/new
@@ -28,6 +27,7 @@ class SeaReportsController < ApplicationController
   def edit
     @sea_report = SeaReport.find(params[:id])
     @sea_port = SeaPort.find(@sea_report.sea_port_id)
+    @passage_plan_count = @sea_report.passage_plans.count
   end
 
   # POST /sea_reports
@@ -109,6 +109,7 @@ class SeaReportsController < ApplicationController
     @old_sea_report.update_attributes(:closed_time_in_smt => smt_time_string, :closed_time_in_utc => utc_time)
 
     time_difference_in_seconds  = @sea_report.updated_at - @sea_report.created_at
+
     report_interval = (time_difference_in_seconds/60/60)
     #report_interval = helper.distance_of_time_in_words(time_difference_in_seconds)
 
@@ -153,8 +154,10 @@ class SeaReportsController < ApplicationController
       else
         return false
       end   
+    end
 
   end
+
 
 
   private

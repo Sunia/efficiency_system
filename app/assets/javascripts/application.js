@@ -15,6 +15,12 @@
 $(document).ready(function(){
 
   $( "#new_row" ).on( "click", function( event ) {
+
+    waypoints = $(".way_point_no")
+    passage_value = waypoints.last()[0].value.split(" ")[1]
+    
+
+
     data = '<tr>'
     data +=  '<td class="font_size-10"><input type="number" name="passage[][lat_degree]" id="passage_lat_degree" required="required" min="0" max="90" style="width: 140px;"></td>'
     data += '<td class="font_size-10"> <input type="number" name="passage[][lat_min]" id="passage_lat_min" required="required" step="0.01" min="0.00" max="59.99" style="width: 140px;"> </td>'
@@ -28,6 +34,8 @@ $(document).ready(function(){
 
     data += '<td class="font_size-10"><select name="passage[][long_dir]"  style ="width: 80px;">'
     data += '<option value="E">East</option><option value="W">West</option></select></td>'
+
+    data += '<td class="font_size-10"> <input type="text" name="way_point_no" class="way_point_no" value="Waypoint 5" disabled="disabled"> </td>'
 
     data += "<td><img src='/assets/delete.png' style='height: 10%;' onClick='deleteRow(this)'> </td>"
     data += '</tr>'

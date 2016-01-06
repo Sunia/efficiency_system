@@ -20,7 +20,7 @@
       <td class="font_size-10"> 0-180 </td>
       <td class="font_size-10"> 0.00-59.99 </td>
       <td class="font_size-10"> Direction </td>
-
+      <td class="font_size-10"> Waypoint number</td>
     </tr>
 
 
@@ -55,7 +55,10 @@
             <option value="E">East</option>
             <option value="W">West</option>
        </select>
-      </td>        
+      </td>
+
+      <td class="font_size-10"> <%= text_field_tag 'way_point_no', "Waypoint #{@passage_plan_count + 1}" , disabled: true %> </td>
+
     </tr>
 
   </table>
