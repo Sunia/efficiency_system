@@ -4,7 +4,7 @@
 
   <table id="passage_table" border="1" style="">
     <tr>
-      <td colspan="9" class="font_size-10">PLEASE ENTER THE BERTH TO BERTH CO-ORDINATES IN THE BELOW ROWS ONLY </td>
+      <td colspan="8" class="font_size-10">PLEASE ENTER THE BERTH TO BERTH CO-ORDINATES IN THE BELOW ROWS ONLY </td>
     </tr>
 
     <tr>
@@ -22,22 +22,35 @@
       <td class="font_size-10"> Direction </td>
     </tr>
 
-
     <tr>
       <td class="font_size-10"> DEGREES </td>
-      <td class="font_size-10"> MINUTES(IN DECIMAL) </td>
+      <td class="font_size-10">
+       MINUTES
+       <br>(DECIMAL)
+      </td>
       <td class="font_size-10"> (N OR S) </td>
 
       <td class="font_size-10"> DEGREES </td>
-      <td class="font_size-10"> MINUTES (IN DECIMAL) </td>
+      <td class="font_size-10">
+       MINUTES
+       <br> (DECIMAL) 
+      </td>
       <td class="font_size-10"> (E OR W) </td>
       <td class="font_size-10"> (RL/GC) </td>
+      <td class="font_size-10"> Waypoint </td>
+      <td class="font_size-10">
+       Start of<br> sea passage
+      </td>
+      <td class="font_size-10">
+       End of<br> sea passage
+      </td>
+
     </tr>
 
     <tr>
-      <td class="font_size-10"><%= number_field_tag "passage[][lat_degree]",nil, :required => true, :min => 0, :max => 90, :style => 'width: 50px;' %></td>
+      <td class="font_size-10"><%= number_field_tag "passage[][lat_degree]",nil, :required => true, :min => 0, :max => 90, :style => 'width: 60px;' %></td>
 
-      <td class="font_size-10"> <%= number_field_tag "passage[][lat_min]",  nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '59.99', :style => 'width: 50px;'  %> </td>
+      <td class="font_size-10"> <%= number_field_tag "passage[][lat_min]",  nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '59.99', :style => 'width: 60px;'  %> </td>
 
       <td class="font_size-10">
        <select name="passage[][lat_dir]" style ='width: 50px;' >
@@ -46,9 +59,9 @@
        </select>
       </td>
 
-      <td class="font_size-10"> <%= number_field_tag "passage[][long_degree]", nil, :required => true, :min => 0, :max => 180, :style => 'width: 50px;'  %> </td>
+      <td class="font_size-10"> <%= number_field_tag "passage[][long_degree]", nil, :required => true, :min => 0, :max => 180, :style => 'width: 60px;'  %> </td>
 
-      <td class="font_size-10"> <%= number_field_tag "passage[][long_min]",  nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '59.99', :style => 'width: 50px;'  %> </td>
+      <td class="font_size-10"> <%= number_field_tag "passage[][long_min]",  nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '59.99', :style => 'width: 60px;'  %> </td>
 
       <td class="font_size-10">
        <select name="passage[][long_dir]" style='width: 50px;' >
@@ -64,7 +77,17 @@
        </select>
       </td>
 
-      <td class="font_size-10"> <%= text_field_tag 'way_point_no', "Waypoint#{@passage_plan_count + 1}" , disabled: true, class: "way_point_no" %> </td>
+      <td class="font_size-10"> 
+        <%= text_field_tag "passage[][waypoint_no]", "Waypoint#{@passage_plan_count + 1}", :class => "way_point_no",:style=>'width: 70px;'%>
+      </td>
+
+      <td class="font_size-10"> 
+        <%= radio_button_tag 'passage[][start_point]', 'true', checked = false %>
+      </td>
+
+      <td class="font_size-10"> 
+        <%= radio_button_tag 'passage[][end_point]', 'true', checked = false %>
+      </td>
 
     </tr>
   </table>
