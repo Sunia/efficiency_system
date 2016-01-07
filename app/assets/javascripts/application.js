@@ -52,4 +52,27 @@ $(document).ready(function(){
     $('#passage_table tr:last').after(data);
 
   });
+
+  // Click Start point of passage plan
+  $( "#start_point" ).on( "click", function( event ) {
+    debugger;
+    end_point_checked = $(this).parent().parent().find("#end_point")[0].checked
+
+     alert("I am in");
+    
+    if (end_point_checked == true){
+      alert("Start point and end point cannot be same") ;
+      $(this)[0].checked = "false";
+      return;
+    }
+
+  });
+
+
+
+
+
+
+
 });
+

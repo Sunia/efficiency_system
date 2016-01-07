@@ -1,5 +1,7 @@
 <br>
 
+<b>Add new Waypoint</b>
+
 <%= form_tag create_passage_plan_path(@sea_report.id), :method => :post do %>
 
   <table id="passage_table" border="1" style="">
@@ -82,11 +84,11 @@
       </td>
 
       <td class="font_size-10"> 
-        <%= radio_button_tag 'passage[][start_point]', 'true', checked = false %>
+        <%= radio_button_tag 'passage[][start_point]', 'true', checked = false, :id => 'start_point'  %>
       </td>
 
       <td class="font_size-10"> 
-        <%= radio_button_tag 'passage[][end_point]', 'true', checked = false %>
+        <%= radio_button_tag 'passage[][end_point]', 'true', checked = false, :id => 'end_point' %>
       </td>
 
     </tr>
@@ -97,6 +99,64 @@
   <button type="button" id="new_row">Add new Row</button>
   <br>
 <% end %>
+
+
+<!-- Index page of the waypoints -->
+
+<br> <br>
+
+<b>Entered Passage Plan is: </b>
+
+  <table id="passage_table" border="1" style="">
+
+    <tr>
+      <td colspan="3" class="font_size-10">Latitude</td>
+      <td colspan="3" class="font_size-10">Longitude</td>
+    </tr>
+
+    <tr>
+      <td class="font_size-10"> DEGREES </td>
+      <td class="font_size-10">MINUTES</td>
+      <td class="font_size-10"> (N OR S) </td>
+
+      <td class="font_size-10"> DEGREES </td>
+      <td class="font_size-10">MINUTES<br> (DECIMAL) </td>
+      <td class="font_size-10"> (E OR W) </td>
+      <td class="font_size-10"> (RL/GC) </td>
+      <td class="font_size-10"> Waypoint </td>
+      <td class="font_size-10">
+       Start of<br> sea passage
+      </td>
+      <td class="font_size-10">
+       End of<br> sea passage
+      </td>
+
+    </tr>
+
+<% @passage_plans.each do |passage_plan| %>
+    <tr>
+      <td class="font_size-10"><%= passage_plan.lat_degree %></td>
+
+      <td class="font_size-10"> <%= passage_plan.lat_min %> </td>
+
+      <td class="font_size-10"> <%= passage_plan.lat_dir %> </td>
+
+      <td class="font_size-10"><%= passage_plan.long_degree %></td>
+
+      <td class="font_size-10"> <%= passage_plan.long_min %> </td>
+
+      <td class="font_size-10"> <%= passage_plan.long_dir %> </td>
+
+      <td class="font_size-10"> <%= passage_plan.rl_gc %> </td>
+
+      <td class="font_size-10"> <%= passage_plan.waypoint_no %> </td>
+
+    </tr>
+<% end %>
+</table>
+
+
+
 
 <script>
 	function deleteRow(btn) {

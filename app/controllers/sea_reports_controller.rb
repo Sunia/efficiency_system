@@ -27,7 +27,9 @@ class SeaReportsController < ApplicationController
   def edit
     @sea_report = SeaReport.find(params[:id])
     @sea_port = SeaPort.find(@sea_report.sea_port_id)
-    @passage_plan_count = @sea_report.passage_plans.count
+
+    @passage_plans = @sea_report.passage_plans
+    @passage_plan_count = @passage_plans.count
   end
 
   # POST /sea_reports
