@@ -5,10 +5,15 @@ class PassagePlansController < ApplicationController
   # GET /passage_plans.json
   def index
 
-    if params[:sea_report_id]
-      @sea_report_id = params[:sea_report_id]
 
-      @passage_plans = SeaReport.find(@sea_report_id).passage_plans
+    if params[:sea_report_id]
+
+      @sea_report_id = params[:sea_report_id]
+      @sea_report = SeaReport.find(@sea_report_id)
+
+      @closed_sea_report = @sea_report.is_closed
+
+      @passage_plans = @sea_report.passage_plans
 
       @passage_plans = @passage_plans.order('waypoint_no asc')
     else

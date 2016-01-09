@@ -57,6 +57,8 @@ class SeaPortsController < ApplicationController
     @sea_port = SeaPort.find(params[:id])
 
     respond_to do |format|
+      last_sea_report = @sea_port.sea_reports.last
+      last_sea_report.update_attributes(:is_closed => true)
       if @sea_port.update_attributes(:is_reached => true)
 
         format.html { redirect_to root_path, notice: 'Congrats For successfully completion of Journey'}

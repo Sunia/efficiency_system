@@ -54,23 +54,25 @@
 
       <td class="font_size-10"> <%= passage_plan.end_point %> </td>
 
-      <td>
-        <%= link_to new_passage_plan_path(:previous_passage_id => passage_plan.id) do %>
-            <%= image_tag 'show.jpg', style: 'height: 10%;'%>
-        <% end %>
-      </td>
+      <% unless @closed_sea_report %>
+        <td>
+          <%= link_to new_passage_plan_path(:previous_passage_id => passage_plan.id) do %>
+              <%= image_tag 'show.jpg', style: 'height: 10%;'%>
+          <% end %>
+        </td>
 
-      <td>
-        <%= link_to edit_passage_plan_path(passage_plan) do %>
-            <%= image_tag 'edit-notes.png', style: 'height: 6%;'%>
-        <% end %>
-      </td>
+        <td>
+          <%= link_to edit_passage_plan_path(passage_plan) do %>
+              <%= image_tag 'edit-notes.png', style: 'height: 6%;'%>
+          <% end %>
+        </td>
 
-      <td>
-        <%= link_to passage_plan, method: :delete, data: { confirm: 'Are you sure?' } do %>
-            <%= image_tag 'delete.png', style: 'height: 10%;'%>
-        <% end %>
-      </td>
+        <td>
+          <%= link_to passage_plan, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <%= image_tag 'delete.png', style: 'height: 10%;'%>
+          <% end %>
+        </td>
+      <% end %>
 
 
 
