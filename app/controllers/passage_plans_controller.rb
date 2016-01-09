@@ -4,7 +4,14 @@ class PassagePlansController < ApplicationController
   # GET /passage_plans
   # GET /passage_plans.json
   def index
-    @passage_plans = PassagePlan.all
+
+    if params[:sea_report_id]
+      @sea_report_id = params[:sea_report_id]
+      @passage_plans = SeaReport.find(@sea_report_id).passage_plans
+    else
+      @passage_plans = PassagePlan.all
+    end
+
   end
 
   # GET /passage_plans/1

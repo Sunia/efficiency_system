@@ -1,17 +1,60 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Passage Plans</h1>
+<% unless @sea_report_id.blank? %>
+  <h4> Passage Plan of Report <%=@sea_report_id%> </h4>
+<%else %>
+  <h4>Listing Passage Plans</h4>
+<% end %>
 
-<table>
+<table id="passage_table" border="1" style="">
   <thead>
+
     <tr>
-      <th colspan="3"></th>
+      <td colspan="3" class="font_size-10">Latitude</td>
+      <td colspan="3" class="font_size-10">Longitude</td>
     </tr>
+
+    <tr>
+      <td class="font_size-10"> DEGREES </td>
+      <td class="font_size-10">MINUTES</td>
+      <td class="font_size-10"> (N OR S) </td>
+
+      <td class="font_size-10"> DEGREES </td>
+      <td class="font_size-10">MINUTES<br> (DECIMAL) </td>
+      <td class="font_size-10"> (E OR W) </td>
+      <td class="font_size-10"> (RL/GC) </td>
+      <td class="font_size-10"> Waypoint </td>
+      <td class="font_size-10">Start of<br> sea passage</td>
+      <td class="font_size-10">End of<br> sea passage</td>
+    </tr>
+
   </thead>
 
   <tbody>
     <% @passage_plans.each do |passage_plan| %>
       <tr>
+
+    <tr>
+      <td class="font_size-10"><%= passage_plan.lat_degree %></td>
+
+      <td class="font_size-10"> <%= passage_plan.lat_min %> </td>
+
+      <td class="font_size-10"> <%= passage_plan.lat_dir %> </td>
+
+      <td class="font_size-10"><%= passage_plan.long_degree %></td>
+
+      <td class="font_size-10"> <%= passage_plan.long_min %> </td>
+
+      <td class="font_size-10"> <%= passage_plan.long_dir %> </td>
+
+      <td class="font_size-10"> <%= passage_plan.rl_gc %> </td>
+
+      <td class="font_size-10"> <%= passage_plan.waypoint_no %> </td>
+
+      <td class="font_size-10"> <%= passage_plan.start_point %> </td>
+
+      <td class="font_size-10"> <%= passage_plan.end_point %> </td>
+
         <td><%= link_to 'Show', passage_plan %></td>
         <td><%= link_to 'Edit', edit_passage_plan_path(passage_plan) %></td>
         <td><%= link_to 'Destroy', passage_plan, method: :delete, data: { confirm: 'Are you sure?' } %></td>
