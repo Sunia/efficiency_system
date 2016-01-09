@@ -27,11 +27,11 @@ class PassagePlansController < ApplicationController
     if params[:previous_passage_id]
      @previous_passage = PassagePlan.find(params[:previous_passage_id])
      previous_waypoint = @previous_passage.waypoint_no
-     sea_report_id = @previous_passage.sea_report_id
+     @sea_report_id = @previous_passage.sea_report_id
 
 
      @passage_plan = PassagePlan.new
-     @passage_plan.update_attributes(waypoint_no: previous_waypoint + 1, sea_report_id: sea_report_id)
+     @passage_plan.update_attributes(waypoint_no: previous_waypoint + 1, sea_report_id: @sea_report_id)
     else
       @passage_plan = PassagePlan.new
     end
@@ -39,6 +39,12 @@ class PassagePlansController < ApplicationController
 
   # GET /passage_plans/1/edit
   def edit
+
+    @passage_plan = PassagePlan.find(params[:id])
+
+    @sea_report_id = @passage_plan.sea_report_id
+    @sea_report = SeaReport.find(@sea_report_id)
+
   end
 
   # POST /passage_plans
@@ -92,10 +98,9 @@ class PassagePlansController < ApplicationController
 
     respond_to do |format|
       if @passage_plan.update(params[:passage_plan])
-
         @passage_plan.update_attribute(:status, "old")
 
-        format.html { redirect_to @passage_plan, notice: 'Passage plan was successfully updated.' }
+        format.html { redirect_to passage_plans_path(:sea_report_id => @sea_report_id), notice: 'Passage plan was successfully updated.' }
         format.json { render :show, status: :ok, location: @passage_plan }
       else
         format.html { render :edit }
@@ -120,7 +125,7 @@ class PassagePlansController < ApplicationController
     end
 
     respond_to do |format|
-      format.html { redirect_to passage_plans_url, notice: 'Passage plan was successfully destroyed.' }
+      format.html { redirect_to passage_plans_path(:sea_report_id => @sea_report_id), notice: 'Passage plan was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
