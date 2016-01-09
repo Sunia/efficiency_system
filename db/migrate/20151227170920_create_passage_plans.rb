@@ -10,7 +10,7 @@ class CreatePassagePlans < ActiveRecord::Migration
       t.float :long_min
       t.string :long_dir
 
-      t.string :output_col
+      t.string :status, :default => 'new'
       t.integer :sea_report_id
 
       t.timestamps null: false

@@ -55,7 +55,7 @@
       <td class="font_size-10"> <%= passage_plan.end_point %> </td>
 
       <td>
-        <%= link_to passage_plan do %>
+        <%= link_to new_passage_plan_path(:previous_passage_id => passage_plan.id) do %>
             <%= image_tag 'show.jpg', style: 'height: 10%;'%>
         <% end %>
       </td>

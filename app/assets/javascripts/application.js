@@ -17,7 +17,7 @@ $(document).ready(function(){
   $( "#new_row" ).on( "click", function( event ) {
 
     waypoints = $(".way_point_no")
-    waypoint_string = waypoints.last()[0].value.split("t")[1]
+    waypoint_string = waypoints.last()[0].value
     waypoint_count = parseInt(waypoint_string) + 1
 
     data = '<tr>'
@@ -39,7 +39,7 @@ $(document).ready(function(){
     data += '<option value="RL">RL</option><option value="GC">GC</option></select></td>'
 
     // Waypoint number
-    data += '<td class="font_size-10"> <input type="text" name="passage[][way_point_no]" class="way_point_no" value=Waypoint'+ waypoint_count +' style="width: 70px;"> </td>'
+    data += '<td class="font_size-10"> <input type="text" name="passage[][waypoint_no]" class="way_point_no" value='+ waypoint_count +' style="width: 70px;"> </td>'
 
     // Start/End of Sea Passage
     data += '<td class="font_size-10"> <input type="radio" name="passage[][start_point]" id="passage__start_point_true" value="true" class="start_point" onClick="match_endpoints(this)"></td>'
