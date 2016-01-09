@@ -42,8 +42,8 @@ $(document).ready(function(){
     data += '<td class="font_size-10"> <input type="text" name="passage[][way_point_no]" class="way_point_no" value=Waypoint'+ waypoint_count +' style="width: 70px;"> </td>'
 
     // Start/End of Sea Passage
-    data += '<td class="font_size-10"> <input type="radio" name="passage[][start_point]" id="passage__start_point_true" value="true"></td>'
-    data += '<td class="font_size-10"> <input type="radio" name="passage[][end_point]" id="passage__end_point" value="true"></td>'
+    data += '<td class="font_size-10"> <input type="radio" name="passage[][start_point]" id="passage__start_point_true" value="true" class="start_point" onClick="match_endpoints(this)"></td>'
+    data += '<td class="font_size-10"> <input type="radio" name="passage[][end_point]" id="passage__end_point_true" value="true" class="end_point" onClick="match_startpoints(this)"></td>'
 
     // Delete image
     data += "<td><img src='/assets/delete.png' style='height: 10%;' onClick='deleteRow(this)'> </td>"
@@ -52,26 +52,6 @@ $(document).ready(function(){
     $('#passage_table tr:last').after(data);
 
   });
-
-  // Click Start point of passage plan
-  $( "#start_point" ).on( "click", function( event ) {
-    debugger;
-    end_point_checked = $(this).parent().parent().find("#end_point")[0].checked
-
-     alert("I am in");
-    
-    if (end_point_checked == true){
-      alert("Start point and end point cannot be same") ;
-      $(this)[0].checked = "false";
-      return;
-    }
-
-  });
-
-
-
-
-
 
 
 });
