@@ -110,7 +110,7 @@ class SeaReportsController < ApplicationController
     utc_time = Time.parse(smt_time_string).getutc
     @old_sea_report.update_attributes(:closed_time_in_smt => smt_time_string, :closed_time_in_utc => utc_time)
 
-    time_difference_in_seconds  = @sea_report.updated_at - @sea_report.created_at
+    time_difference_in_seconds  = @old_sea_report.updated_at - @old_sea_report.created_at
 
     report_interval = (time_difference_in_seconds/60/60)
     #report_interval = helper.distance_of_time_in_words(time_difference_in_seconds)

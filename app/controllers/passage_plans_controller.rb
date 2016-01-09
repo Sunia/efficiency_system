@@ -8,8 +8,8 @@ class PassagePlansController < ApplicationController
 
     if params[:sea_report_id]
 
-      @sea_report_id = params[:sea_report_id]
-      @sea_report = SeaReport.find(@sea_report_id)
+      @sea_report = SeaReport.find(params[:sea_report_id])
+      @report_number = @sea_report.report_number
 
       @closed_sea_report = @sea_report.is_closed
 
