@@ -48,7 +48,7 @@ class PassagePlansController < ApplicationController
   # PATCH/PUT /passage_plans/1.json
   def update
     respond_to do |format|
-      if @passage_plan.update(passage_plan_params)
+      if @passage_plan.update(params[:passage_plan])
         format.html { redirect_to @passage_plan, notice: 'Passage plan was successfully updated.' }
         format.json { render :show, status: :ok, location: @passage_plan }
       else
