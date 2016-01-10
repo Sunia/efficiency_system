@@ -25,11 +25,19 @@ class SeaReportsController < ApplicationController
 
   # GET /sea_reports/1/edit
   def edit
-    @sea_report = SeaReport.find(params[:id])
-    @sea_port = SeaPort.find(@sea_report.sea_port_id)
 
-    @passage_plans = @sea_report.passage_plans
-    @passage_plan_count = @passage_plans.count
+    @sea_report = SeaReport.find(params[:id])
+
+    if @sea_report.is_closed
+      redirect_to sea_reports_path, notice: 'Report is closed. You cannot edit the report now !'
+
+    else
+      @sea_port = SeaPort.find(@sea_report.sea_port_id)
+
+      @passage_plans = @sea_report.passage_plans
+      @passage_plan_count = @passage_plans.count
+    end
+
   end
 
   # POST /sea_reports
