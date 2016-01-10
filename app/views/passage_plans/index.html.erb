@@ -50,24 +50,33 @@
 
       <td class="font_size-10"> <%= passage_plan.waypoint_no %> </td>
 
-      <td class="font_size-10"> <%= passage_plan.start_point %> </td>
+      <td class="font_size-10">
+        <% if passage_plan.start_point == true %>
+          <%= image_tag 'check-icon.png', style: 'height: 10%;'%>
+        <% end %>
+      </td>
 
-      <td class="font_size-10"> <%= passage_plan.end_point %> </td>
+
+      <td class="font_size-10">
+        <% if passage_plan.end_point == true %>
+          <%= image_tag 'check-icon.png', style: 'height: 10%;'%>
+        <% end %>
+      </td>
 
       <% unless @closed_sea_report %>
-        <td>
+        <td title='Insert waypoint after this waypoint'>
           <%= link_to new_passage_plan_path(:previous_passage_id => passage_plan.id) do %>
               <%= image_tag 'show.jpg', style: 'height: 10%;'%>
           <% end %>
         </td>
 
-        <td>
+        <td title='Edit this waypoint.'%>
           <%= link_to edit_passage_plan_path(passage_plan) do %>
               <%= image_tag 'edit-notes.png', style: 'height: 6%;'%>
           <% end %>
         </td>
 
-        <td>
+        <td title='Delete this waypoint.'>
           <%= link_to passage_plan, method: :delete, data: { confirm: 'Are you sure?' } do %>
               <%= image_tag 'delete.png', style: 'height: 10%;'%>
           <% end %>
