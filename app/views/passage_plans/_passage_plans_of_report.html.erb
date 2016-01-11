@@ -1,4 +1,7 @@
 <!-- Partial to display list of passage plans on edit of sea report-->
+
+<%= form_tag create_passage_plan_path(@sea_report.id), :method => :post do %>
+
 <table id="passage_table" border="1" style="">
 
   <%= render 'passage_plans/table_headings' %>
@@ -61,6 +64,7 @@
 </table>
 
 <br>
+<%= submit_tag 'Save' %>
 <button type="button" id="new_waypoint">Add new Waypoint</button>
-
 <br>
+<% end %>

@@ -7,7 +7,7 @@ class PassagePlansController < ApplicationController
 
     if params[:sea_report_id]
       @sea_report = SeaReport.find(params[:sea_report_id])
-      @report_number = @sea_report.report_number
+
       @closed_sea_report = @sea_report.is_closed
       @passage_plans = @sea_report.passage_plans
       @passage_plans = @passage_plans.order('waypoint_no asc')
@@ -132,16 +132,21 @@ class PassagePlansController < ApplicationController
 
   # Create multiple Passage Plans
   def create_passage_plan
+
     passage_plans = params[:passage]
 
-    passage_plans.each do |passage_plan|
-      plan = PassagePlan.new(passage_plan)
-      plan.update_attributes(:sea_report_id => params[:sea_report_id], :status => "old")
-      plan.save
+    unless passage_plans.blank?
 
-      # Check for start and end point true for this plan
-      # then update start/end to false of all other records
-      update_start_end_point(plan.start_point, plan.end_point, plan.id ,params[:sea_report_id] )
+      passage_plans.each do |passage_plan|
+        debugger
+        plan = PassagePlan.new(passage_plan)
+        plan.update_attributes(:sea_report_id => params[:sea_report_id], :status => "old")
+        plan.save
+
+        # Check for start and end point true for this plan
+        # then update start/end to false of all other records
+        update_start_end_point(plan.start_point, plan.end_point, plan.id ,params[:sea_report_id] )
+      end
     end
     respond_to do |format|
 
