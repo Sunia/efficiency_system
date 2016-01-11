@@ -14,12 +14,34 @@
 
 $(document).ready(function(){
 
+  //Add new waypoint on the passage plan
   $( "#new_row" ).on( "click", function( event ) {
 
     waypoints = $(".way_point_no")
     waypoint_string = waypoints.last()[0].value
     waypoint_count = parseInt(waypoint_string) + 1
 
+    data = make_waypoint_row(waypoint_count);
+    $('#passage_table tr:last').after(data);
+
+  });
+
+
+  // Add new waypoint on the list of passage plan
+  $( "#new_waypoint" ).on( "click", function( event ) {
+
+    waypoints = $(".way_point_no")
+    waypoint_string = waypoints.last()[0].innerHTML.trim()
+    waypoint_count = parseInt(waypoint_string) + 1
+    
+    data = make_waypoint_row(waypoint_count);
+
+    $('#passage_table tr:last').after(data);
+
+  });
+
+  // Insert fields of passage plan in a row
+  function make_waypoint_row(waypoint_count){
     data = '<tr>'
 
     // Latitude
@@ -39,7 +61,7 @@ $(document).ready(function(){
     data += '<option value="RL">RL</option><option value="GC">GC</option></select></td>'
 
     // Waypoint number
-    data += '<td class="font_size-10"> <input type="text" name="passage[][waypoint_no]" class="way_point_no" value='+ waypoint_count +' style="width: 70px;"> </td>'
+    data += '<td class="font_size-10 way_point_no">' +waypoint_count + '</td>'
 
     // Start/End of Sea Passage
     data += '<td class="font_size-10"> <input type="radio" name="passage[][start_point]" id="passage__start_point_true" value="true" class="start_point" onClick="match_endpoints(this)"></td>'
@@ -49,10 +71,8 @@ $(document).ready(function(){
     data += "<td><img src='/assets/delete.png' style='height: 10%;' onClick='deleteRow(this)'> </td>"
 
     data += '</tr>'
-    $('#passage_table tr:last').after(data);
-
-  });
-
+    return data;
+  }
 
 });
 
