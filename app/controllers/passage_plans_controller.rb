@@ -34,6 +34,10 @@ class PassagePlansController < ApplicationController
     else
       @passage_plan = PassagePlan.new
     end
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   # GET /passage_plans/1/edit

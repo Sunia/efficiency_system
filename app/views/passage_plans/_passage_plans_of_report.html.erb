@@ -39,7 +39,7 @@
 
       <% unless @closed_sea_report %>
         <td title='Insert waypoint after this waypoint'>
-          <%= link_to new_passage_plan_path(:previous_passage_id => passage_plan.id) do %>
+          <%= link_to new_passage_plan_path(:previous_passage_id => passage_plan.id), :remote => true do %>
               <%= image_tag 'show.jpg', style: 'height: 10%;'%>
           <% end %>
         </td>
