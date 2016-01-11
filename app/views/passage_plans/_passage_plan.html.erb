@@ -1,48 +1,111 @@
 <%= form_for(@passage_plan) do |f| %>
+  <% if @passage_plan.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@passage_plan.errors.count, "error") %> prohibited this passage_plan from being saved:</h2>
 
-  <td class="font_size-10"><%= f.number_field :lat_degree, :required => true, :min => 0, :max => 90, :style => 'width: 60px;' %></td>
+      <ul>
+      <% @passage_plan.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-  <td class="font_size-10"><%= f.number_field :lat_min, :required => true, :step =>'0.01', :min=> '0.00', :max => '59.99', :style => 'width: 60px;' %></td>
+  <br>
+
+  <table id="passage_table" border="1" style="">
+    <tr>
+      <td colspan="8" class="font_size-10">PLEASE ENTER THE BERTH TO BERTH CO-ORDINATES IN THE BELOW ROWS ONLY </td>
+    </tr>
+
+    <tr>
+      <td colspan="3" class="font_size-10">Latitude</td>
+      <td colspan="3" class="font_size-10">Longitude</td>
+    </tr>
+
+    <tr>
+      <td class="font_size-10"> 0-90 </td>
+      <td class="font_size-10"> 0.00-59.99 </td>
+      <td class="font_size-10"> Direction </td>
+
+      <td class="font_size-10"> 0-180 </td>
+      <td class="font_size-10"> 0.00-59.99 </td>
+      <td class="font_size-10"> Direction </td>
+    </tr>
+
+    <tr>
+      <td class="font_size-10"> DEGREES </td>
+      <td class="font_size-10">
+       MINUTES
+       <br>(DECIMAL)
+      </td>
+      <td class="font_size-10"> (N OR S) </td>
+
+      <td class="font_size-10"> DEGREES </td>
+      <td class="font_size-10">
+       MINUTES
+       <br> (DECIMAL) 
+      </td>
+      <td class="font_size-10"> (E OR W) </td>
+      <td class="font_size-10"> (RL/GC) </td>
+      <td class="font_size-10"> Waypoint </td>
+      <td class="font_size-10">
+       Start of<br> sea passage
+      </td>
+      <td class="font_size-10">
+       End of<br> sea passage
+      </td>
+
+    </tr>
+
+    <tr>
+      <td class="font_size-10"><%= f.number_field :lat_degree, :required => true, :min => 0, :max => 90, :style => 'width: 60px;' %></td>
+
+      <td class="font_size-10"><%= f.number_field :lat_min, :required => true, :step =>'0.01', :min=> '0.00', :max => '59.99', :style => 'width: 60px;' %></td>
 
 
-  <td class="font_size-10">
-    <%= f.select(:lat_dir, [['North', 'N'], ['South', "S"]]) %>
-  </td>
+      <td class="font_size-10">
+        <%= f.select(:lat_dir, [['North', 'N'], ['South', "S"]]) %>
+      </td>
 
-  <td class="font_size-10"><%= f.number_field :long_degree, :required => true, :min => 0, :max => 90, :style => 'width: 60px;' %></td>
+      <td class="font_size-10"><%= f.number_field :long_degree, :required => true, :min => 0, :max => 90, :style => 'width: 60px;' %></td>
 
-  <td class="font_size-10">
-    <%= f.number_field :long_min, :required => true, :step =>'0.01', :min=> '0.00', :max => '59.99', :style => 'width: 60px;' %>
-  </td>
+      <td class="font_size-10">
+        <%= f.number_field :long_min, :required => true, :step =>'0.01', :min=> '0.00', :max => '59.99', :style => 'width: 60px;' %>
+      </td>
 
-  <td class="font_size-10">
-    <%= f.select(:long_dir, [['East', 'E'], ['West', "W"]]) %>
-  </td>
+      <td class="font_size-10">
+        <%= f.select(:long_dir, [['East', 'E'], ['West', "W"]]) %>
+      </td>
 
+      <td class="font_size-10">
+        <%= f.select(:rl_gc, [['RL', 'RL'], ['GC', "GC"]]) %>
+      </td>
 
-  <td class="font_size-10">
-    <%= f.select(:rl_gc, [['RL', 'RL'], ['GC', "GC"]]) %>
-  </td>
+      <td class="font_size-10"> 
+        <%= @passage_plan.waypoint_no %>
+      </td>
 
-  <td class="font_size-10"> 
-    <%= f.text_field :waypoint_no, :class => "way_point_no",:style=>'width: 70px;'%>
-  </td>
+      <td class="font_size-10"> 
+        <%= f.check_box :start_point, {:class => "start_point" , :onclick=>"match_endpoints(this)" }, "true", "false" %>
+      </td>
 
-  <td class="font_size-10"> 
-    <%= f.check_box :start_point, {:class => "start_point" , :onclick=>"match_endpoints(this)" }, "true", "false" %>
-  </td>
+      <td class="font_size-10"> 
+        <%= f.check_box :end_point, {:class => "end_point", :onclick=>"match_startpoints(this)"}, "true", "false" %>
+      </td>
 
-  <td class="font_size-10"> 
-    <%= f.check_box :end_point, {:class => "end_point", :onclick=>"match_startpoints(this)"}, "true", "false" %>
-  </td>
-  <td class="font_size-10"> 
-    <%= f.submit%>
-  </td>
+    </tr>
+  </table>
 
+  <br>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 <% end %>
 
 
 <script>
+
   function deleteRow(btn) {
     var row = btn.parentNode.parentNode;
     row.parentNode.removeChild(row);
