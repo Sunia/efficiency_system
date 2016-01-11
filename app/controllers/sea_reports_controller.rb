@@ -127,8 +127,9 @@ class SeaReportsController < ApplicationController
     updated = @old_sea_report.update_attributes(:is_closed => true, :report_interval => report_interval)
   #================================================================
 
-    # Create new sea report .
-    status = create_sea_report(smt_time_string, utc_time, zone_time)
+    # Create new sea report and copy all the passage plans.
+    @passage_plans = @old_sea_report.passage_plans
+    status = create_sea_report(smt_time_string, utc_time, zone_time, @passage_plans)
 
     respond_to do |format|
       if updated && status
@@ -141,16 +142,22 @@ class SeaReportsController < ApplicationController
   end
 
 
-  def create_sea_report(smt_time_string, utc_time, zone_time)
+  def create_sea_report(smt_time_string, utc_time, zone_time, passage_plans)
 
     # Create new report - starting time same as closing time of previous.
     @sea_report = SeaReport.new(:opened_time_in_smt => smt_time_string, :created_at => utc_time, :zone_time => zone_time )
 
     if @sea_report.save
-      
+
+      # Copy all the passage plans of the previous report
+      # to new report and Sea Port (sea_passage)
+      passage_plans.each do |passage_plan|
+        @sea_report.passage_plans << passage_plan
+      end
+
       # update the report_number, sea_port_id of sea_report
       @sea_port = SeaPort.last
-
+ 
       if @sea_port
         @sea_report.report_number = @sea_port.total_reports + 1
         @sea_report.sea_port_id = @sea_port.id
@@ -160,6 +167,15 @@ class SeaReportsController < ApplicationController
         # Update the total_reports in sea_port
         @sea_port.total_reports += 1
         @sea_port.save
+
+        # Update the passage plan of the sea port
+        # by deleting the old plan and create a new one.
+        @sea_port.passage_plans.delete_all
+
+        passage_plans.each do |passage_plan|
+          @sea_port.passage_plans << passage_plan
+        end
+
         return true
 
       else
