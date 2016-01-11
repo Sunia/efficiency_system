@@ -1,0 +1,84 @@
+<!-- Partial to display list of passage plans on edit of sea report-->
+<table id="passage_table" border="1" style="">
+  <thead>
+
+    <tr>
+      <td colspan="3" class="font_size-10">Latitude</td>
+      <td colspan="3" class="font_size-10">Longitude</td>
+    </tr>
+
+    <tr>
+      <td class="font_size-10"> DEGREES </td>
+      <td class="font_size-10">MINUTES</td>
+      <td class="font_size-10"> (N OR S) </td>
+
+      <td class="font_size-10"> DEGREES </td>
+      <td class="font_size-10">MINUTES<br> (DECIMAL) </td>
+      <td class="font_size-10"> (E OR W) </td>
+      <td class="font_size-10"> (RL/GC) </td>
+      <td class="font_size-10"> Waypoint </td>
+      <td class="font_size-10">Start of<br> sea passage</td>
+      <td class="font_size-10">End of<br> sea passage</td>
+    </tr>
+
+  </thead>
+
+  <tbody>
+    <% @passage_plans.each do |passage_plan| %>
+      <tr>
+
+    <tr>
+      <td class="font_size-10"><%= passage_plan.lat_degree %></td>
+
+      <td class="font_size-10"> <%= passage_plan.lat_min %> </td>
+
+      <td class="font_size-10"> <%= passage_plan.lat_dir %> </td>
+
+      <td class="font_size-10"><%= passage_plan.long_degree %></td>
+
+      <td class="font_size-10"> <%= passage_plan.long_min %> </td>
+
+      <td class="font_size-10"> <%= passage_plan.long_dir %> </td>
+
+      <td class="font_size-10"> <%= passage_plan.rl_gc %> </td>
+
+      <td class="font_size-10"> <%= passage_plan.waypoint_no %> </td>
+
+      <td class="font_size-10">
+        <% if passage_plan.start_point == true %>
+          <%= image_tag 'check-icon.png', style: 'height: 10%;'%>
+        <% end %>
+      </td>
+
+      <td class="font_size-10">
+        <% if passage_plan.end_point == true %>
+          <%= image_tag 'check-icon.png', style: 'height: 10%;'%>
+        <% end %>
+      </td>
+
+      <% unless @closed_sea_report %>
+        <td title='Insert waypoint after this waypoint'>
+          <%= link_to new_passage_plan_path(:previous_passage_id => passage_plan.id) do %>
+              <%= image_tag 'show.jpg', style: 'height: 10%;'%>
+          <% end %>
+        </td>
+
+        <td title='Edit this waypoint.'%>
+          <%= link_to edit_passage_plan_path(passage_plan) do %>
+              <%= image_tag 'edit-notes.png', style: 'height: 6%;'%>
+          <% end %>
+        </td>
+
+        <td title='Delete this waypoint.'>
+          <%= link_to passage_plan, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <%= image_tag 'delete.png', style: 'height: 10%;'%>
+          <% end %>
+        </td>
+      <% end %>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
