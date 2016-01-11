@@ -83,8 +83,12 @@
       </td>
 
       <td class="font_size-10"> 
-        <%= @passage_plan.waypoint_no %>
+        <%= @current_waypoint_no %>
       </td>
+
+      <%= f.hidden_field :waypoint_no, :value => @current_waypoint_no %>
+
+      <%= f.hidden_field :sea_report_id, :value => @sea_report_id %>
 
       <td class="font_size-10"> 
         <%= f.check_box :start_point, {:class => "start_point" , :onclick=>"match_endpoints(this)" }, "true", "false" %>

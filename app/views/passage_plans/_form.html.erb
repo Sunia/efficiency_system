@@ -82,10 +82,17 @@
       <td class="font_size-10">
         <%= f.select(:rl_gc, [['RL', 'RL'], ['GC', "GC"]]) %>
       </td>
-
+<!-- 
       <td class="font_size-10"> 
         <%= f.text_field :waypoint_no, :class => "way_point_no",:style=>'width: 70px;'%>
+      </td> -->
+
+      <td class="font_size-10"> 
+        <%= @waypoint_no %>
       </td>
+
+      <%= f.hidden_field :waypoint_no, :value => @waypoint_no %>
+
 
       <td class="font_size-10"> 
         <%= f.check_box :start_point, {:class => "start_point" , :onclick=>"match_endpoints(this)" }, "true", "false" %>

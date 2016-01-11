@@ -29,15 +29,15 @@ class SeaReportsController < ApplicationController
     @sea_report = SeaReport.find(params[:id])
     @report_number = @sea_report.report_number
 
-    if @sea_report.is_closed
-      redirect_to sea_reports_path, notice: 'Report is closed. You cannot edit the report now !'
+    # if @sea_report.is_closed
+    #   redirect_to sea_reports_path, notice: 'Report is closed. You cannot edit the report now !'
 
-    else
+    # else
       @sea_port = SeaPort.find(@sea_report.sea_port_id)
 
       @passage_plans = @sea_report.passage_plans.order('waypoint_no asc')
       @passage_plan_count = @passage_plans.count
-    end
+#    end
 
   end
 

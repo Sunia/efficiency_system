@@ -27,10 +27,13 @@ class PassagePlansController < ApplicationController
     if params[:previous_passage_id]
      @previous_passage = PassagePlan.find(params[:previous_passage_id])
      previous_waypoint = @previous_passage.waypoint_no
+
      @sea_report_id = @previous_passage.sea_report_id
+     @current_waypoint_no = previous_waypoint + 1 
 
      @passage_plan = PassagePlan.new
-     @passage_plan.update_attributes(waypoint_no: previous_waypoint + 1, sea_report_id: @sea_report_id)
+
+     #@passage_plan.update_attributes(waypoint_no: previous_waypoint + 1, sea_report_id: @sea_report_id)
     else
       @passage_plan = PassagePlan.new
     end
@@ -43,23 +46,46 @@ class PassagePlansController < ApplicationController
   # GET /passage_plans/1/edit
   def edit
     @passage_plan = PassagePlan.find(params[:id])
+    @waypoint_no = @current_waypoint_no = @passage_plan.waypoint_no
     @sea_report_id = @passage_plan.sea_report_id
     @sea_report = SeaReport.find(@sea_report_id)    
 
-    respond_to do |format|
-      format.js
-    end
+    # respond_to do |format|
+    #   format.js
+    # end
   end
 
   # POST /passage_plans
   # POST /passage_plans.json
   def create
     @passage_plan = PassagePlan.new(params[:passage_plan])
+    @sea_report = SeaReport.find(@passage_plan.sea_report_id)
+
+    # Same waypoint passage plan update
+    @passage_wid_same_waypoints = @sea_report.passage_plans.where(:waypoint_no => @passage_plan.waypoint_no)
+
+    if @passage_wid_same_waypoints.count  1
+      # Back passage plans update
+      @bkward_passages = @sea_report.passage_plans.where("waypoint_no > ?", @passage_plan.waypoint_no)
+      @bkward_passages.each do |bkward_passage|
+        bkward_passage.update_attribute(:waypoint_no, bkward_passage.waypoint_no + 1)
+      end
+
+      @passage_wid_same_waypoints.each do |passage|
+        passage.update_attribute(:waypoint_no, passage.waypoint_no + 1) 
+      end
+    end
 
     respond_to do |format|
 
       if @passage_plan.save
-        format.html { redirect_to @passage_plan, notice: 'Passage plan was successfully created.' }
+        # Check for start and end point true
+        # then update the records of all other records
+        start_point = @passage_plan.start_point
+        end_point = @passage_plan.end_point
+        update_start_end_point(start_point,end_point,@passage_plan.id, @sea_report.id )
+
+        format.html { redirect_to edit_sea_report_path(@sea_report.id), notice: 'Waypoint is successfully inserted.' }
         format.json { render :show, status: :created, location: @passage_plan }
       else
         format.html { render :new }
@@ -75,26 +101,6 @@ class PassagePlansController < ApplicationController
     @sea_report_id = @passage_plan.sea_report_id
     @sea_report = SeaReport.find(@sea_report_id)
 
-    if params[:new_sea_report]
-
-      # Same waypoint passage plan update
-      @passage_wid_same_waypoints = @sea_report.passage_plans.where(:waypoint_no => @passage_plan.waypoint_no)
-
-      if @passage_wid_same_waypoints.count > 1
-        # Back passage plans update
-        @bkward_passages = @sea_report.passage_plans.where("waypoint_no > ?", @passage_plan.waypoint_no)
-        @bkward_passages.each do |bkward_passage|
-          bkward_passage.update_attribute(:waypoint_no, bkward_passage.waypoint_no + 1)
-        end
-
-        @passage_wid_same_waypoints.each do |passage|
-          unless passage.status == "new"
-            passage.update_attribute(:waypoint_no, passage.waypoint_no + 1)
-          end  
-        end
-      end
-    end
-
     respond_to do |format|
 
       if @passage_plan.update(params[:passage_plan])
@@ -107,7 +113,7 @@ class PassagePlansController < ApplicationController
         # Status is maintained to difference between new and old passage plan.
         @passage_plan.update_attribute(:status, "old")
 
-        format.html { redirect_to edit_sea_report_path(@sea_report_id), notice: 'Passage plan was successfully updated.' }
+        format.html { redirect_to edit_sea_report_path(@sea_report_id), notice: 'Waypoint is successfully updated.' }
         format.json { render :show, status: :ok, location: @passage_plan }
       else
         format.html { render :edit }
@@ -144,7 +150,6 @@ class PassagePlansController < ApplicationController
     unless passage_plans.blank?
 
       passage_plans.each do |passage_plan|
-        debugger
         plan = PassagePlan.new(passage_plan)
         plan.update_attributes(:sea_report_id => params[:sea_report_id], :status => "old")
         plan.save
