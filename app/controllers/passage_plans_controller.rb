@@ -111,21 +111,21 @@ class PassagePlansController < ApplicationController
   end
 
   # DELETE /passage_plans/1
-  # DELETE /passage_plans/1.json
   def destroy
+
     @passage_plan = PassagePlan.find(params[:id])
     @passage_plan.destroy
-    @sea_report_id = @passage_plan.sea_report_id
-    @sea_report = SeaReport.find(@sea_report_id)
+    sea_report_id = @passage_plan.sea_report_id
+    sea_report = SeaReport.find(sea_report_id)
 
-    @bkward_passages = @sea_report.passage_plans.where("waypoint_no > ?", @passage_plan.waypoint_no)
+    @bkward_passages = sea_report.passage_plans.where("waypoint_no > ?", @passage_plan.waypoint_no)
+
     @bkward_passages.each do |bkwrd_passage|
-
       bkwrd_passage.update_attribute(:waypoint_no, bkwrd_passage.waypoint_no - 1)
     end
 
     respond_to do |format|
-      format.html { redirect_to passage_plans_path(:sea_report_id => @sea_report_id), notice: 'Waypoint is successfully deleted.' }
+      format.html { redirect_to edit_sea_report_path(sea_report_id), notice: 'Waypoint is successfully deleted.' }
       format.json { head :no_content }
     end
   end

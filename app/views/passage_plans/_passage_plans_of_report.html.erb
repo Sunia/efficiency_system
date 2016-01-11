@@ -1,28 +1,7 @@
 <!-- Partial to display list of passage plans on edit of sea report-->
 <table id="passage_table" border="1" style="">
-  <thead>
 
-    <tr>
-      <td colspan="3" class="font_size-10">Latitude</td>
-      <td colspan="3" class="font_size-10">Longitude</td>
-    </tr>
-
-    <tr>
-      <td class="font_size-10"> DEGREES </td>
-      <td class="font_size-10">MINUTES</td>
-      <td class="font_size-10"> (N OR S) </td>
-
-      <td class="font_size-10"> DEGREES </td>
-      <td class="font_size-10">MINUTES<br> (DECIMAL) </td>
-      <td class="font_size-10"> (E OR W) </td>
-      <td class="font_size-10"> (RL/GC) </td>
-      <td class="font_size-10"> Waypoint </td>
-      <td class="font_size-10">Start of<br> sea passage</td>
-      <td class="font_size-10">End of<br> sea passage</td>
-    </tr>
-
-  </thead>
-
+  <%= render 'passage_plans/table_headings' %>
   <tbody>
     <% @passage_plans.each do |passage_plan| %>
       <tr>
