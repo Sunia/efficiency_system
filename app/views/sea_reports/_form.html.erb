@@ -3,7 +3,7 @@
 <fieldset class="fieldset bg-change">
 
 <h4><b>
-Report <%= @count %> from <%= @sea_port.starting_port_name %> to <%= @sea_port.reached_port_name %>
+Report <%= @report_number %> from <%= @sea_port.starting_port_name %> to <%= @sea_port.reached_port_name %>
 </b> </h4>
 <br>
 
@@ -32,11 +32,9 @@ Report <%= @count %> from <%= @sea_port.starting_port_name %> to <%= @sea_port.r
         <b><h3>Port Details</h3></b>
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
-
             <%= render 'sea_ports/edit_sea_port' %>
           </div>
         </div>
-
       </div>
 
       <div id="passage_plan" class="tab-pane fade in active">
@@ -45,7 +43,6 @@ Report <%= @count %> from <%= @sea_port.starting_port_name %> to <%= @sea_port.r
 
         <div class="row">
           <div class="col-md-12">
-
             <%= render 'passage_plan' %>
           </div>
         </div>

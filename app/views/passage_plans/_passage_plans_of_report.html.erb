@@ -7,9 +7,8 @@
   <%= render 'passage_plans/table_headings' %>
   <tbody>
     <% @passage_plans.each do |passage_plan| %>
-      <tr>
 
-    <tr>
+    <tr id="passage-plan<%= passage_plan.id %>">
       <td class="font_size-10"><%= passage_plan.lat_degree %></td>
 
       <td class="font_size-10"> <%= passage_plan.lat_min %> </td>
@@ -46,7 +45,7 @@
         </td>
 
         <td title='Edit this waypoint.'%>
-          <%= link_to edit_passage_plan_path(passage_plan) do %>
+          <%= link_to edit_passage_plan_path(passage_plan.id), :remote => true do %>
               <%= image_tag 'edit-notes.png', style: 'height: 6%;'%>
           <% end %>
         </td>

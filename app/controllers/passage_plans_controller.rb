@@ -38,10 +38,13 @@ class PassagePlansController < ApplicationController
 
   # GET /passage_plans/1/edit
   def edit
-
     @passage_plan = PassagePlan.find(params[:id])
     @sea_report_id = @passage_plan.sea_report_id
     @sea_report = SeaReport.find(@sea_report_id)    
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   # POST /passage_plans
@@ -64,7 +67,6 @@ class PassagePlansController < ApplicationController
   # PATCH/PUT /passage_plans/1
   # PATCH/PUT /passage_plans/1.json
   def update
-
     @passage_plan = PassagePlan.find(params[:id])
     @sea_report_id = @passage_plan.sea_report_id
     @sea_report = SeaReport.find(@sea_report_id)
@@ -101,7 +103,7 @@ class PassagePlansController < ApplicationController
         # Status is maintained to difference between new and old passage plan.
         @passage_plan.update_attribute(:status, "old")
 
-        format.html { redirect_to passage_plans_path(:sea_report_id => @sea_report_id), notice: 'Passage plan was successfully updated.' }
+        format.html { redirect_to edit_sea_report_path(@sea_report_id), notice: 'Passage plan was successfully updated.' }
         format.json { render :show, status: :ok, location: @passage_plan }
       else
         format.html { render :edit }
