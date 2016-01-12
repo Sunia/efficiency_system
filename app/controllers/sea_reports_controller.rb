@@ -34,6 +34,7 @@ class SeaReportsController < ApplicationController
 
     # else
       @sea_port = SeaPort.find(@sea_report.sea_port_id)
+      @sea_port.update_attributes(:total_reports => @sea_port.sea_reports.count)
 
       @passage_plans = @sea_report.passage_plans.order('waypoint_no asc')
       @passage_plan_count = @passage_plans.count
@@ -59,7 +60,8 @@ class SeaReportsController < ApplicationController
           @sea_port = SeaPort.last
 
           if @sea_port
-            @sea_report.report_number = @sea_port.total_reports + 1
+
+            @sea_report.report_number = @sea_port.sea_reports.count + 1
             @sea_report.sea_port_id = @sea_port.id
             @sea_report.is_closed = false
             @sea_report.save
@@ -149,12 +151,6 @@ class SeaReportsController < ApplicationController
 
     if @sea_report.save
 
-      # Copy all the passage plans of the previous report
-      # to new report and Sea Port (sea_passage)
-      passage_plans.each do |passage_plan|
-        @sea_report.passage_plans << passage_plan
-      end
-
       # update the report_number, sea_port_id of sea_report
       @sea_port = SeaPort.last
  
@@ -172,10 +168,14 @@ class SeaReportsController < ApplicationController
         # by deleting the old plan and create a new one.
         @sea_port.passage_plans.delete_all
 
-        passage_plans.each do |passage_plan|
-          @sea_port.passage_plans << passage_plan
-        end
+        # Copy all the passage plans of the previous report
+        # to new report and Sea Port (sea_passage)
+        passage_plans.each do |plan|
+          # Passage plan for the new sea_report.
+          new_passage_plan = @sea_report.passage_plans.new(plan.attributes.slice(*PassagePlan.accessible_attributes))
 
+          new_passage_plan.save
+        end
         return true
 
       else
@@ -184,8 +184,6 @@ class SeaReportsController < ApplicationController
     end
 
   end
-
-
 
   private
     # Use callbacks to share common setup or constraints between actions.
