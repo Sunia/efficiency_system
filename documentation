@@ -1,0 +1,22 @@
+cd apps
+cd demo
+source /home/sunia/.rvm/scripts/rvm
+rvm use 1.9.3-p547@demo
+rails s
+
+
+
+
+
+
+SeaPort:  Done + ship particulars
+
+=>  SeaPort  - taking user input for the smt time.
+
+SeaReport -> Closing date and time 
+
+Now work on index after closing.
+
+1. PassagePlan save, having relation with Sea Report.
+then show the index of Passage Plan.
+

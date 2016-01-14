@@ -16,7 +16,6 @@ class SeaReportsController < ApplicationController
     # Fetching open report
     @open_report = SeaReport.last
     @sea_reports = SeaReport.all
-
   end
 
   # GET /sea_reports/new
@@ -26,8 +25,21 @@ class SeaReportsController < ApplicationController
 
   # GET /sea_reports/1/edit
   def edit
+
     @sea_report = SeaReport.find(params[:id])
-    @sea_port = SeaPort.find(@sea_report.sea_port_id)
+    @report_number = @sea_report.report_number
+
+    # if @sea_report.is_closed
+    #   redirect_to sea_reports_path, notice: 'Report is closed. You cannot edit the report now !'
+
+    # else
+      @sea_port = SeaPort.find(@sea_report.sea_port_id)
+      @sea_port.update_attributes(:total_reports => @sea_port.sea_reports.count)
+
+      @passage_plans = @sea_report.passage_plans.order('waypoint_no asc')
+      @passage_plan_count = @passage_plans.count
+#    end
+
   end
 
   # POST /sea_reports
@@ -48,7 +60,8 @@ class SeaReportsController < ApplicationController
           @sea_port = SeaPort.last
 
           if @sea_port
-            @sea_report.report_number = @sea_port.total_reports + 1
+
+            @sea_report.report_number = @sea_port.sea_reports.count + 1
             @sea_report.sea_port_id = @sea_port.id
             @sea_report.is_closed = false
             @sea_report.save
@@ -97,9 +110,7 @@ class SeaReportsController < ApplicationController
     end
   end
 
-
   def close_report
-
     @old_sea_report = SeaReport.find(params[:id])
 
     # Calculate smt and utc time of sea report
@@ -111,26 +122,33 @@ class SeaReportsController < ApplicationController
     @old_sea_report.update_attributes(:closed_time_in_smt => smt_time_string, :closed_time_in_utc => utc_time)
 
     time_difference_in_seconds  = @old_sea_report.updated_at - @old_sea_report.created_at
+
     report_interval = (time_difference_in_seconds/60/60)
     #report_interval = helper.distance_of_time_in_words(time_difference_in_seconds)
 
     updated = @old_sea_report.update_attributes(:is_closed => true, :report_interval => report_interval)
   #================================================================
 
-    # Create new sea report.
-    status = create_sea_report(smt_time_string, utc_time, zone_time)
+    # Create new sea report and copy all the passage plans.
+    @passage_plans = @old_sea_report.passage_plans
+    status = create_sea_report(smt_time_string, utc_time, zone_time, @passage_plans)
 
     respond_to do |format|
       if updated && status
         format.html { redirect_to edit_sea_report_path(@sea_report.id), notice: 'Report is successfully closed.. and a new one is generated for you!' }
+        
       else
-        format.html { redirect_to sea_reports_path, notice: 'Try again..' }
+        format.html { render :edit }
+
       end
+    else
+      return false
     end
   end
 
 
-  def create_sea_report(smt_time_string, utc_time, zone_time)
+  def create_sea_report(smt_time_string, utc_time, zone_time, passage_plans)
+
     # Create new report - starting time same as closing time of previous.
     @sea_report = SeaReport.new(:opened_time_in_smt => smt_time_string, :created_at => utc_time, :zone_time => zone_time )
 
@@ -138,7 +156,7 @@ class SeaReportsController < ApplicationController
 
       # update the report_number, sea_port_id of sea_report
       @sea_port = SeaPort.last
-
+ 
       if @sea_port
         @sea_report.report_number = @sea_port.total_reports + 1
         @sea_report.sea_port_id = @sea_port.id
@@ -148,11 +166,26 @@ class SeaReportsController < ApplicationController
         # Update the total_reports in sea_port
         @sea_port.total_reports += 1
         @sea_port.save
+
+        # Update the passage plan of the sea port
+        # by deleting the old plan and create a new one.
+        @sea_port.passage_plans.delete_all
+
+        # Copy all the passage plans of the previous report
+        # to new report and Sea Port (sea_passage)
+        passage_plans.each do |plan|
+          # Passage plan for the new sea_report.
+          new_passage_plan = @sea_report.passage_plans.new(plan.attributes.slice(*PassagePlan.accessible_attributes))
+
+          new_passage_plan.save
+        end
         return true
-      end
-    else
-      return false
+
+      else
+        return false
+      end   
     end
+
   end
 
   private

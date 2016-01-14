@@ -1,0 +1,8 @@
+$modal = $('.modal'),
+$modalBody = $('.modal .modal-body'),
+$modalHeading = $('.modal .modal-heading');
+$modalHeading.html("<%= @passage_plan.id %>");
+
+$('.modal-header b').html("Insert new waypoint");
+$modalBody.html("<%= escape_javascript(render @passage_plan) %>");
+$modal.modal();

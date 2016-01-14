@@ -1,0 +1,11 @@
+
+// alert("Hello");
+// $("#passage-plan<%= @passage_plan.id %>").html("<%= escape_javascript(render @passage_plan) %>");
+
+$modal = $('.modal'),
+$modalBody = $('.modal .modal-body'),
+$modalHeading = $('.modal .modal-heading');
+$modalHeading.html("<%= @passage_plan.id %>");
+$('.modal-header b').html("Edit this waypoint");
+$modalBody.html("<%= escape_javascript(render @passage_plan) %>");
+$modal.modal();

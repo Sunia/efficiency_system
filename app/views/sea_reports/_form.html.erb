@@ -3,7 +3,7 @@
 <fieldset class="fieldset bg-change">
 
 <h4><b>
-Report <%= @count %> from <%= @sea_port.starting_port_name %> to <%= @sea_port.reached_port_name %>
+Report <%= @report_number %> from <%= @sea_port.starting_port_name %> to <%= @sea_port.reached_port_name %>
 </b> </h4>
 <br>
 
@@ -13,6 +13,8 @@ Report <%= @count %> from <%= @sea_port.starting_port_name %> to <%= @sea_port.r
     <!-- Menu bar-->
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#port_details">Port Details</a></li>
+        <li><a data-toggle="tab" href="#passage_plan">Passage Plan</a></li>
+
         <li><a data-toggle="tab" href="#help">Operating condition</a></li>
         <li><a data-toggle="tab" href="#help">Weather and Distance</a></li>
         <li><a data-toggle="tab" href="#close_report">Close the Report</a></li>
@@ -30,8 +32,18 @@ Report <%= @count %> from <%= @sea_port.starting_port_name %> to <%= @sea_port.r
         <b><h3>Port Details</h3></b>
         <div class="row">
           <div class="col-md-8 col-md-offset-2">
-
             <%= render 'sea_ports/edit_sea_port' %>
+          </div>
+        </div>
+      </div>
+
+      <div id="passage_plan" class="tab-pane fade in active">
+        <b><h4>Passage Plan of Report <%= @report_number %></h4></b>
+        <!-- <%= link_to 'View Entered Passage Plan of report', passage_plans_path(:sea_report_id => @sea_report.id), :style=>"float: right;", :target => '_blank' %>-->
+
+        <div class="row">
+          <div class="col-md-12">
+            <%= render 'passage_plan' %>
           </div>
         </div>
 

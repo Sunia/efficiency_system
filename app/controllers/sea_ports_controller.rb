@@ -56,6 +56,22 @@ class SeaPortsController < ApplicationController
   def close_sea_passage
     @sea_port = SeaPort.find(params[:id])
 
+    last_sea_report = @sea_port.sea_reports.last
+    passage_plans = last_sea_report.passage_plans 
+    last_sea_report.update_attributes(:is_closed => true)
+
+    # Pending 
+    # Update closing date time in sea report
+
+    # Update the passage plan of the sea port
+    # by deleting the old plan and create a new one.
+    @sea_port.passage_plans.delete_all
+
+    passage_plans.each do |passage_plan|
+      @sea_port.passage_plans << passage_plan
+    end
+
+
     respond_to do |format|
       if @sea_port.update_attributes(:is_reached => true)
 
