@@ -121,13 +121,13 @@ class SeaReportsController < ApplicationController
     utc_time = Time.parse(smt_time_string).getutc
     @old_sea_report.update_attributes(:closed_time_in_smt => smt_time_string, :closed_time_in_utc => utc_time)
 
-    time_difference_in_seconds  = @old_sea_report.updated_at - @old_sea_report.created_at
-
+    # Report interval in hours.
+    time_difference_in_seconds  = @old_sea_report.closed_time_in_utc - @old_sea_report.created_at
     report_interval = (time_difference_in_seconds/60/60)
     #report_interval = helper.distance_of_time_in_words(time_difference_in_seconds)
 
-    updated = @old_sea_report.update_attributes(:is_closed => true, :report_interval => report_interval)
-  #================================================================
+    updated = @old_sea_report.update_attributes(:is_closed => true, :report_period_in_hrs => report_interval)
+    #================================================================
 
     # Create new sea report and copy all the passage plans.
     @passage_plans = @old_sea_report.passage_plans
@@ -137,12 +137,10 @@ class SeaReportsController < ApplicationController
       if updated && status
         format.html { redirect_to edit_sea_report_path(@sea_report.id), notice: 'Report is successfully closed.. and a new one is generated for you!' }
         
-      else
+      else-
         format.html { render :edit }
 
       end
-    else
-      return false
     end
   end
 
