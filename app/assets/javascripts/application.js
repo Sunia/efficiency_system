@@ -62,5 +62,51 @@ $(document).ready(function(){
     return data;
   }
 
+  // $( "#sea_report_zone_time" ).on( "click", function( event ) {
+  //   alert("hello");
+  //   e = document.getElementById("sea_report_zone_time");
+  //   zone_time = e.options[e.selectedIndex].value;
+
+  //   alert(zone_time);
+  // });
+
+    $("#sea_report_zone_time").bind("change", function(e){ 
+
+      last_zone_time = $("#hidden_zone_time")[0].value;
+      last_zone_time = parseInt(last_zone_time);
+      changed_time = parseInt(this.value);
+
+      if (last_zone_time < changed_time){
+        hrs = changed_time - last_zone_time;
+        msg = "Ship clocks advanced by " + hrs + " hours";
+        alert(msg);
+        $("#sea_report_description")[0].value = msg;
+
+      }
+      else if (last_zone_time > changed_time){
+        hrs = last_zone_time - changed_time;
+        msg = "Ship clocks retarded by " + hrs + " hours";
+        alert(msg);
+        $("#sea_report_description")[0].value = msg;
+      }
+      else {
+        msg = "Ship clock has the same time";
+        $("#sea_report_description")[0].value = msg;
+      }
+
+      changeConfirmation = confirm("Are You Sure?");
+      if (changeConfirmation) {
+
+      } else {
+       $(this).val(last_zone_time);
+      }
+    });
+
+  // $(".close_report").on( "click", function( event ) {
+  //   e = document.getElementById("sea_report_zone_time");
+  //   zone_time = e.options[e.selectedIndex].value;
+  //   alert(zone_time);
+  // });
+
 });
 

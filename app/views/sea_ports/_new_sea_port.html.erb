@@ -4,16 +4,16 @@
 
 		<div class="col-sm-12">
 			<div class="col-sm-6">
-				<label class="" for="input01">Starting Port Name</label>  
+				<label class="" for="input01">Departure Port</label>  
 			
-               <%= f.text_field :starting_port_name, autofocus: true, required: true, class: "form-control", placeholder: "Starting Port Name", style: "margin-bottom:10px"%>
+               <%= f.text_field :starting_port_name, autofocus: true, required: true, class: "form-control", placeholder: "Departure Port", style: "margin-bottom:10px"%>
 			
 			</div>
 
 			<div class="col-sm-6">
-				<label class="" for="input01">Destination Port Name</label>  
+				<label class="" for="input01">Arrival Port</label>  
 				<div class="s">  
-	               <%= f.text_field :reached_port_name, autofocus: true,required: true, class: "form-control", placeholder: "Destination Port Name", style: "margin-bottom:10px" %>
+	               <%= f.text_field :reached_port_name, autofocus: true,required: true, class: "form-control", placeholder: "Arrival Port", style: "margin-bottom:10px" %>
 				</div> 
 			</div>
 
@@ -29,7 +29,9 @@
 			</div>
 
 			<div class="col-sm-6">
-				<label class="" for="input01">Select Time in hh-mm-ss format</label>  
+				<label class="" for="input01">
+					Start of Sea Passage (SMT)
+				</label>  
 				<div class="s">
 		          <input type="number" name="hours" required placeholder="hours" min="0" max="23" class="form-control time-width"  %>
 		          

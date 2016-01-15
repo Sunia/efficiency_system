@@ -4,7 +4,7 @@
 
 	<div class="col-sm-12">
 		<div class="col-sm-12">
-			<label class="" for="input01">Starting Port Name</label>  
+			<label class="" for="input01">Departure Port</label>  
 
 			<div class="s">  
                <%= f.text_field :starting_port_name, autofocus: true, class: "form-control", placeholder: "Starting Port Name", required: true,style: "margin-bottom:10px",:readonly => true %>
@@ -14,7 +14,7 @@
 	</div>
 	<div class="col-sm-12" style="margin-top: 10px;"> 
 		<div class="col-sm-12">
-			<label class="" for="input01">Destination Port Name</label>  
+			<label class="" for="input01">Arrival Port</label>  
 			<div class="s">  
                <%= f.text_field :reached_port_name, autofocus: true, class: "form-control", placeholder: "Destination Port Name",required: true,style: "margin-bottom:10px" %>
 			</div> 
@@ -80,7 +80,7 @@
 
 	<div class="col-sm-12" style="margin-top: 10px;"> 
 		<div class="col-sm-12">
-			<label class="" for="input01">Starting date and time in SMT</label>  
+			<label class="" for="input01">Start of Sea Passage (SMT)</label>  
 			<div class="s">  
 	           <%= f.text_field :smt_time, class: "form-control", required: true, placeholder: "Total Reports", style: "margin-bottom:10px",:readonly => true %>
 			</div> 
@@ -90,7 +90,7 @@
 
 	<div class="col-sm-12" style="margin-top: 10px;"> 
 		<div class="col-sm-12">
-			<label class="" for="input01">Starting date and time in UTC</label>  
+			<label class="" for="input01">Start of Sea Passage (UTC)</label>  
 			<div class="s">  
 	           <%= f.text_field :created_at, class: "form-control", required: true, placeholder: "Total Reports", style: "margin-bottom:10px",:readonly => true %>
 			</div> 
