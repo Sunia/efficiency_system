@@ -78,25 +78,21 @@ $(document).ready(function(){
 
       if (last_zone_time < changed_time){
         hrs = changed_time - last_zone_time;
-        msg = "Ship clocks advanced by " + hrs + " hours";
-        alert(msg);
-        $("#sea_report_description")[0].value = msg;
-
+        var msg = "Ship clocks advanced by " + hrs + " hours";
       }
+
       else if (last_zone_time > changed_time){
         hrs = last_zone_time - changed_time;
-        msg = "Ship clocks retarded by " + hrs + " hours";
-        alert(msg);
-        $("#sea_report_description")[0].value = msg;
+        var msg = "Ship clocks retarded by " + hrs + " hours";
       }
       else {
-        msg = "Ship clock has the same time";
-        $("#sea_report_description")[0].value = msg;
+        var msg = "Ship clock has the same time";
       }
 
       changeConfirmation = confirm("Are You Sure?");
       if (changeConfirmation) {
-
+        alert(msg);
+        $("#sea_report_description")[0].value = msg;
       } else {
        $(this).val(last_zone_time);
       }
