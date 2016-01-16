@@ -62,7 +62,11 @@
 
   <br>
   <div class="actions">
-    <%= f.submit "Update Passage Plan" %>
+    <% if @passage_plan.persisted? %>
+      <%= f.submit "Update Passage Plan" %>
+    <%else %>
+      <%= f.submit "Create Passage Plan" %>
+    <% end %>
   </div>
 <% end %>
 

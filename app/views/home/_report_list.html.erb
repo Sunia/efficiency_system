@@ -25,6 +25,7 @@
           <th>Starting Date(SMT)</th>
           <th>Closing Date(SMT)</th>
           <th>Closed Status</th>
+          <th>Edit</th>
         </tr>
 
       </thead>
@@ -41,6 +42,14 @@
               <td> <%= sea_report.opened_time_in_smt %></td>
               <td> <%= sea_report.closed_time_in_smt %></td>
               <td> <%= sea_report.is_closed %></td>
+
+              <td title='Edit the sea report.'%>
+                <%= link_to edit_sea_report_path(sea_report) do %>
+                    <%= image_tag 'edit-notes.png', style: 'height: 6%;'%>
+                <% end %>
+              </td>
+
+
             </tr>
           <% end %>
         <% end %>
