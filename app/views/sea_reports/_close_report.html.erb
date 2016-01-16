@@ -43,21 +43,7 @@
 		</div>
 	</div>
 
-   <!-- Zone time as a hidden field -->
-   <%= f.hidden_field :zone_time, value: @sea_report.zone_time, id: "hidden_zone_time" %>
-
-    <!-- Zone time--> 
-	<div class="col-sm-12" style="margin-top: 10px;"> 
-		<div class="col-sm-6">
-			<label class="" for="input01">Select Zone time</label>  
-			<div class="s">  
-	          <!--  <%= f.time_zone_select :zone_time, nil, class: "form-control", required: true, placeholder: "Zonetime", style: "margin-bottom:10px" %> -->
-
-		       <%= f.select :zone_time, options_for_select([["-11:00","-1100"], ["-10:00","-1000"],["-09:00","-0900"], ["-08:00","-0800"], ["-07:00","-0700"],["-06:00","-0600"],["-05:00","-0500"], ["-04:30","-0430"], ["-04:00","-0400"], ["-03:30","-0330"], ["-03:00","-03:00"], ["-02:00","-0200"], ["-01:00","-0100"], ["+00:00","+0000"], ["+01:00","+0100"], ["+02:00","+0200"], ["+03:00","+0300"], ["+03:30","+0330"],["+04:00","+0400"], ["+04:30","+0430"],["+05:00","+0500"], ["+05:30","+0530"],["+05:45","+0545"],["+06:00","+0600"],["+06:30","+0630"],["+07:00","+0700"],["+08:00","+0800"],["+09:00","+0900"], ["+09:30","+0930"],["+10:00","+1000"],["+11:00","+1100"], ["+12:00","+1200"], ["+12:45","+1245"],["+13:00","+1300"]]), class: "form-control", required: true, width: "100%",  placeholder: "Zonetime", style: "margin-bottom:10px" %>
-			</div> 
-		</div>
-	</div>
-
+    <!--Description -->
 	<div class="col-sm-12">
 		<div class="col-sm-12">
 			<label class="" for="input01"> Description</label>  
@@ -68,10 +54,33 @@
 		</div>
 	</div>
 
+    <div>
+   	   <!-- Zone time as a hidden field -->
+	   <%= f.hidden_field :zone_time, value: @sea_report.zone_time, id: "hidden_zone_time" %>
+   </div>
+
+    <!-- Zone time--> 
+	<div class="col-sm-12"> 
+		<div class="col-sm-4">
+			<label class="" for="input01">Select Zone time</label>  
+			<div class="s">  
+
+		       <%= f.select :zone_time, options_for_select([["-11:00","-1100"], ["-10:00","-1000"],["-09:00","-0900"], ["-08:00","-0800"], ["-07:00","-0700"],["-06:00","-0600"],["-05:00","-0500"], ["-04:30","-0430"], ["-04:00","-0400"], ["-03:30","-0330"], ["-03:00","-03:00"], ["-02:00","-0200"], ["-01:00","-0100"], ["+00:00","+0000"], ["+01:00","+0100"], ["+02:00","+0200"], ["+03:00","+0300"], ["+03:30","+0330"],["+04:00","+0400"], ["+04:30","+0430"],["+05:00","+0500"], ["+05:30","+0530"],["+05:45","+0545"],["+06:00","+0600"],["+06:30","+0630"],["+07:00","+0700"],["+08:00","+0800"],["+09:00","+0900"], ["+09:30","+0930"],["+10:00","+1000"],["+11:00","+1100"], ["+12:00","+1200"], ["+12:45","+1245"],["+13:00","+1300"]]), class: "form-control", required: true, width: "100%",  placeholder: "Zonetime", style: "margin-bottom:10px" %>
+			</div> 
+		</div>
+
+	    <div class="col-sm-8">
+			<label class="" for="input01">Is this the last sea report for the voyage</label>
+
+			<div class="s">  
+		       <%= f.check_box :is_last_report, {:class => "last_report_checkbox" }, "true", "false" %>
+			</div> 
+	    </div>
+	</div>
 
 	<div class="col-sm-12">
 		<div class="col-sm-12">
-			<button type="submit" class="btn btn-primary" , class ="close_report" style="margin-top: 23px;" > Close the Report </button>
+    		<%= f.submit "Close the Sea Report", :style=>"margin-top: 23px;" %>
 		</div>
 	</div>
 

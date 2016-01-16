@@ -98,11 +98,24 @@ $(document).ready(function(){
       }
     });
 
-  // $(".close_report").on( "click", function( event ) {
-  //   e = document.getElementById("sea_report_zone_time");
-  //   zone_time = e.options[e.selectedIndex].value;
-  //   alert(zone_time);
-  // });
+    //Last report checked of closing repor
+    $(".last_report_checkbox").on( "click", function( event ) {
+
+      // If value is true
+      checkbox_clicked = $(this)[0].value;
+      debugger;
+      if (checkbox_clicked){
+        message = "Is the closing time of this sea report same as the end of the sea passage time"
+        changeConfirmation = confirm(message);
+
+        if (changeConfirmation) {
+          $(this)[0].value = "true";
+        } else {
+         $(this)[0].value = "false";
+        }
+      }
+    });
+    
 
 });
 
