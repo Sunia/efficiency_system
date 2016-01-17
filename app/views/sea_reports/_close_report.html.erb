@@ -28,14 +28,14 @@
 			<label class="" for="input01">End of Sea Report(SMT)</label>  
 
 			<div class="s">  
-	           <%= f.text_field :closed_time_in_smt, class: "form-control", required: true, placeholder: "DateTime", style: "margin-bottom:10px",:readonly => true %>
+	           <%= f.text_field :closed_time_in_smt, class: "form-control", style: "margin-bottom:10px",:readonly => true %>
 			</div> 
 		</div>
 		<div class="col-sm-6">
 			<label class="" for="input01">End of Sea Report(UTC)</label>  
 
 			<div class="s">  
-	           <%= f.text_field :closed_time_in_utc, class: "form-control", required: true, placeholder: "DateTime", style: "margin-bottom:10px",:readonly => true %>
+	           <%= f.text_field :closed_time_in_utc, class: "form-control", style: "margin-bottom:10px",:readonly => true %>
 			</div> 
 		</div>
 	</div>
@@ -46,10 +46,22 @@
 			<label class="" for="input01"> Description</label>  
 
 			<div class="s">  
-	           <%= f.text_field :description, class: "form-control", required: true, placeholder: "Description", style: "margin-bottom:10px",:readonly => true %>
+	           <%= f.text_field :description, class: "form-control", style: "margin-bottom:10px",:readonly => true %>
+			</div>
+		</div>
+	</div>
+
+    <!-- Report period in hours -->
+	<div class="col-sm-12">
+		<div class="col-sm-12">
+			<label class="" for="input01"> Report Period in hh-mm-ss</label>  
+
+			<div class="s">  
+	           <%= f.text_field :report_period_in_hrs, class: "form-control", style: "margin-bottom:10px",:readonly => true %>
 			</div> 
 		</div>
 	</div>
+
 
     <% else %>
 	    <!-- date-->
@@ -110,11 +122,12 @@
 				</div> 
 		    </div>
 		</div>
-    <% end %>
-	<div class="col-sm-12">
+    
 		<div class="col-sm-12">
-			<button type="submit" class="btn btn-primary" , id ="create_issue" style="margin-top: 23px;" > Close the Report </button>
+			<div class="col-sm-12">
+				<button type="submit" class="btn btn-primary" , id ="create_issue" style="margin-top: 23px;" > Close the Report </button>
+			</div>
 		</div>
-	</div>
+	<% end %>
 
 <%end%>

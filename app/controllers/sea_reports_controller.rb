@@ -110,7 +110,9 @@ class SeaReportsController < ApplicationController
     end
   end
 
+  # Close the sea report
   def close_report
+
     @old_sea_report = SeaReport.find(params[:id])
 
     # Calculate smt and utc time of sea report
@@ -122,29 +124,42 @@ class SeaReportsController < ApplicationController
     @old_sea_report.update_attributes(:closed_time_in_smt => smt_time_string, :closed_time_in_utc => utc_time)
 
     # Report interval in hours.
-    time_difference_in_seconds  = @old_sea_report.closed_time_in_utc - @old_sea_report.created_at
-    report_interval = (time_difference_in_seconds/60/60)
-    #report_interval = helper.distance_of_time_in_words(time_difference_in_seconds)
+    time_in_seconds  = @old_sea_report.closed_time_in_utc - @old_sea_report.created_at
+    report_interval = Time.at(time_in_seconds).utc.strftime("%H:%M:%S")
+
+    # Sea report is the last report ?
+    @old_sea_report.is_last_report = params[:sea_report][:is_last_report]
+    @old_sea_report.save
 
     updated = @old_sea_report.update_attributes(:is_closed => true, :report_period_in_hrs => report_interval)
+
     #================================================================
 
-    # Create new sea report and copy all the passage plans.
-    @passage_plans = @old_sea_report.passage_plans
-    status = create_sea_report(smt_time_string, utc_time, zone_time, @passage_plans)
+    unless @old_sea_report.is_last_report
+      # Create new sea report and copy all the passage plans.
+      @passage_plans = @old_sea_report.passage_plans
+      status = create_sea_report(smt_time_string, utc_time, zone_time, @passage_plans)
 
-    respond_to do |format|
-      if updated && status
-        format.html { redirect_to edit_sea_report_path(@sea_report.id), notice: 'Report is successfully closed.. and a new one is generated for you!' }
-        
-      else-
-        format.html { render :edit }
+      respond_to do |format|
+        if updated && status
+          format.html { redirect_to edit_sea_report_path(@sea_report.id), notice: 'Report is successfully closed.. and a new one is generated for you!' }
+        end
+      end
 
+    else
+      # Close the sea passage
+      @sea_port = SeaPort.find(@old_sea_report.sea_port_id)
+      closed_status = @sea_port.sea_passage_close
+
+      respond_to do |format|
+        if updated && closed_status
+          format.html { redirect_to sea_reports_path, notice: 'Report is successfully closed.. and Congrats For successfully completion of Journey' }
+        end
       end
     end
   end
 
-
+  # Create new sea report after completion of the old sea report.
   def create_sea_report(smt_time_string, utc_time, zone_time, passage_plans)
 
     # Create new report - starting time same as closing time of previous.
