@@ -142,7 +142,7 @@ class SeaReportsController < ApplicationController
 
       respond_to do |format|
         if updated && status
-          format.html { redirect_to edit_sea_report_path(@sea_report.id), notice: 'Report is successfully closed.. and a new one is generated for you!' }
+          format.html { redirect_to edit_sea_report_path(@sea_report.id), notice: 'New sea report opened!' }
         end
       end
 
@@ -153,7 +153,7 @@ class SeaReportsController < ApplicationController
 
       respond_to do |format|
         if updated && closed_status
-          format.html { redirect_to sea_reports_path, notice: 'Report is successfully closed.. and Congrats For successfully completion of Journey' }
+          format.html { redirect_to sea_reports_path, notice: 'Voyage completed !' }
         end
       end
     end

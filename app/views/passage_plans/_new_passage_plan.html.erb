@@ -4,6 +4,10 @@
 
   <table id="passage_table" border="1" style="">
 
+    <tr>
+      <td colspan="8" class="font_size-10">PLEASE ENTER THE BERTH TO BERTH CO-ORDINATES IN THE BELOW ROWS</td>
+    </tr>
+
     <%= render 'passage_plans/table_headings' %>
     <tr>
       <td class="font_size-10"><%= number_field_tag "passage[][lat_degree]",nil, :required => true, :min => 0, :max => 90, :style => 'width: 60px;' %></td>
