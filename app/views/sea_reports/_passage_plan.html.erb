@@ -1,11 +1,15 @@
-<br>
-
 
 <% if @passage_plan_count == 0 %>
+  <br>
   <b>Add new waypoint </b>
   <%= render 'passage_plans/new_passage_plan' %>
 
 <% else %>
+
+  <% updated_time = @sea_report.update_passage_plan_date %>
+  Last Updated at - <%= updated_time.strftime("%B #{updated_time.day.ordinalize}, %Y") %>
+
+  <br><br>
   <b> List all waypoints </b>
   <%= render 'passage_plans/passage_plans_of_report' %>
 <% end %>

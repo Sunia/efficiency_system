@@ -85,6 +85,9 @@ class PassagePlansController < ApplicationController
         end_point = @passage_plan.end_point
         update_start_end_point(start_point,end_point,@passage_plan.id, @sea_report.id )
 
+        # Update time for updated_passage_plan_date of sea report
+        @sea_report.update_attributes(:update_passage_plan_date => Time.now)
+
         format.html { redirect_to edit_sea_report_path(@sea_report.id), notice: 'Waypoint is successfully inserted.' }
         format.json { render :show, status: :created, location: @passage_plan }
       else
@@ -104,6 +107,10 @@ class PassagePlansController < ApplicationController
     respond_to do |format|
 
       if @passage_plan.update(params[:passage_plan])
+
+        # Update time for updated_passage_plan_date of sea report
+        @sea_report.update_attributes(:update_passage_plan_date => Time.now)
+
         # Check for start and end point true
         # then update the records of all other records
         start_point = @passage_plan.start_point
@@ -136,6 +143,9 @@ class PassagePlansController < ApplicationController
       bkwrd_passage.update_attribute(:waypoint_no, bkwrd_passage.waypoint_no - 1)
     end
 
+    # Update time for updated_passage_plan_date of sea report
+    @sea_report.update_attributes(:update_passage_plan_date => Time.now)
+
     respond_to do |format|
       format.html { redirect_to edit_sea_report_path(sea_report_id), notice: 'Waypoint is successfully deleted.' }
       format.json { head :no_content }
@@ -160,6 +170,9 @@ class PassagePlansController < ApplicationController
       end
     end
     respond_to do |format|
+
+     # Update time for updated_passage_plan_date of sea report
+     @sea_report.update_attributes(:update_passage_plan_date => Time.now)
 
      format.html { redirect_to edit_sea_report_path(params[:sea_report_id]), notice: 'Information updated successfully' }
     end
