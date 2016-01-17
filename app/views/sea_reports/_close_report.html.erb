@@ -105,3 +105,65 @@
 	</div>
 
 <%end%>
+
+<script>
+
+    //Last report checked of closing report
+    $(".last_report_checkbox").on( "click", function( event ) {
+
+      // If value is true
+      checkbox_clicked = $(this)[0].checked;
+
+      if (checkbox_clicked){
+        message = "Is the closing time of this sea report same as the end of the sea passage time"
+        changeConfirmation = confirm(message);
+
+        if (changeConfirmation) {
+          $(this)[0].value = "true";
+        } else {
+         $(this)[0].value = "false";
+        }
+      }
+    });
+
+//===========================================================
+//== Zone time changes in the sea report.
+
+    $("#sea_report_zone_time").bind("change", function(e){ 
+
+      last_z = $("#hidden_zone_time")[0].value;
+      last_zone_time = [last_z.slice(0, 3), ".", last_z.slice(3)].join('');
+      last_zone_time = parseInt(last_zone_time);
+
+      changed_zone = this.value;
+      changed_zone_time = [changed_zone.slice(0, 3), ".", changed_zone.slice(3)].join('');
+      changed_time = parseInt(changed_zone_time);
+
+      if (last_zone_time < changed_time){
+        // Colon behind 2 digits
+        hrs = changed_time - last_zone_time;
+        var msg = "Ship clocks advanced by " + hrs + " hours";
+      }
+
+      else if (last_zone_time > changed_time){
+        hrs = last_zone_time - changed_time;
+        var msg = "Ship clocks retarded by " + hrs + " hours";
+      }
+      else {
+        var msg = "Zone time remains the same";
+      }
+
+      changeConfirmation = confirm("Are You Sure?");
+      if (changeConfirmation) {
+        alert(msg);
+        $("#sea_report_description")[0].value = msg;
+      } else {
+       $(this).val(last_z);
+      }
+    });
+//===========================================================
+
+
+</script>
+
+
