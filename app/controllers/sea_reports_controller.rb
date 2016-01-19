@@ -37,6 +37,7 @@ class SeaReportsController < ApplicationController
       @sea_port.update_attributes(:total_reports => @sea_port.sea_reports.count)
 
       @passage_plans = @sea_report.passage_plans.order('waypoint_no asc')
+      @operating_condition = @sea_report.operating_conditions.new
       @passage_plan_count = @passage_plans.count
 #    end
 

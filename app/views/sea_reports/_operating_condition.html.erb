@@ -1,0 +1,148 @@
+<br>
+
+</br>
+
+<!-- To display new passage plan on edit of sea report-->
+
+<%= form_for(@operating_condition, url: operating_conditions_path ,html: {method: "post"}) do |f| %>
+
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-6">
+	<table border="1" style="">
+
+	    <tr>
+	    	<td> </td>
+	    	<td> Visual (Departure <br> Draft - in meters) </td>
+	    	<td> Loadicator(<br> Departure <br> - in meters) </td>
+	    	<td> Loadicator <br> (Daily updated <br> - in meters) </td>
+	    </tr>
+	    <tr>
+
+	       <td> Fwd </td>
+	       <td class="font_size-10">
+		    <%= f.number_field :visual_fwd, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
+	       </td>
+
+	       <td class="font_size-10">
+		    <%= f.number_field :load_dep_fwd, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
+	       </td>
+
+	       <td class="font_size-10">
+		    <%= f.number_field :load_daily_fwd, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
+	       </td>
+	    </tr>
+
+	    <tr>
+	       <td> Mid Ships </td>
+	       <td class="font_size-10">
+		    <%= f.number_field :visual_mid_ship, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
+	       </td>
+
+	       <td class="font_size-10">
+		    <%= f.number_field :load_dep_mid_ship, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
+	       </td>
+
+	       <td class="font_size-10">
+		    <%= f.number_field :load_daily_mid_ship, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
+	       </td>
+	    </tr>
+
+	    <tr>
+	       <td> Aft </td>
+	       <td class="font_size-10">
+		    <%= f.number_field :visual_aft, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
+	       </td>
+
+	       <td class="font_size-10">
+		    <%= f.number_field :load_dep_aft, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
+	       </td>
+
+	       <td class="font_size-10">
+		    <%= f.number_field :load_daily_aft, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
+	       </td>
+	    </tr>
+
+
+	    <tr>
+	       <td>  Trim(aft-fwd) </td>
+	       <td class="font_size-10">
+		    <%= f.number_field :visual_trim, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;', :readonly => true %>
+	       </td>
+
+	       <td class="font_size-10">
+		    <%= f.number_field :load_dep_trim, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
+	       </td>
+
+	       <td class="font_size-10">
+		    <%= f.number_field :load_daily_trim, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
+	       </td>
+
+
+	    </tr>
+	  </table>
+  	<br>
+  	
+	<br><br>
+	<table border="1" style="">
+	    <tr>
+	    	<td> </td>
+	    	<td> Loadicator (Departure) </td>
+	    	<td> Loadicator(Daily updated) </td>
+	    </tr>
+	    <tr>
+
+	       <td> Max Shearing forces (SF)<br> Sea condition </td>
+	       <td class="font_size-10">
+		    <%= f.number_field :loading_dep_sf, :required => true, :step =>'0.01', :min=> '0.00', :max => '999.99', :style => 'width: 100px;' %>
+	       </td>
+
+	       <td class="font_size-10">
+		    <%= f.number_field :loading_daily_sf, :required => true, :step =>'0.01', :min=> '0.00', :max => '999.99', :style => 'width: 120px;' %>
+	       </td>
+
+	    </tr>
+
+	    <tr>
+	       <td> Max Bending Moments ( BM) <br>Sea Condition  </td>
+	       <td class="font_size-10">
+		    <%= f.number_field :loading_dep_bm, :required => true, :step =>'0.01', :min=> '0.00', :max => '999.99', :style => 'width: 100px;' %>
+	       </td>
+
+	       <td class="font_size-10">
+		    <%= f.number_field :loading_daily_bm, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 120px;' %>
+	       </td>
+
+	    </tr>
+    </table>
+
+    <br>
+    <!-- Ballast water quantity -->
+	
+	<div class="col-sm-12">
+		<label class="" for="input01"> Ballast water quantity</label>  
+		<div class="s">  
+           <%= f.text_field :ballast_water_quantity, class: "form-control", required: true, placeholder: "Ballast water quantity", style: "margin-bottom:10px" %>
+		</div> 
+	</div>
+	
+
+    <!-- Metacentric Height -->
+	<div class="col-sm-12">
+		<label class="" for="input01"> Metacentric Height</label>  
+
+		<div class="s">  
+           	<%= f.text_field :metacentric_height, class: "form-control", required: true, placeholder: "Metacentric Height", style: "margin-bottom:10px" %>
+		</div> 
+	</div>
+
+  	<%= submit_tag 'Save' %>
+
+  <br>
+<% end %>
+
+  </div>
+</div>
+
+
+

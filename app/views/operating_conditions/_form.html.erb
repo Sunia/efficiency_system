@@ -1,0 +1,17 @@
+<%= form_for(@operating_condition) do |f| %>
+  <% if @operating_condition.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@operating_condition.errors.count, "error") %> prohibited this operating_condition from being saved:</h2>
+
+      <ul>
+      <% @operating_condition.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -14,13 +14,14 @@
   <%= render 'passage_plans/passage_plans_of_report' %>
 <% end %>
 
+
+<!-- Script  -->
 <script>
 
   function deleteRow(btn) {
     var row = btn.parentNode.parentNode;
     row.parentNode.removeChild(row);
   }
-
 
   function match_endpoints(start_point) {
     parent_element  = start_point.parentElement.parentElement;

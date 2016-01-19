@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Operating Conditions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @operating_conditions.each do |operating_condition| %>
+      <tr>
+        <td><%= link_to 'Show', operating_condition %></td>
+        <td><%= link_to 'Edit', edit_operating_condition_path(operating_condition) %></td>
+        <td><%= link_to 'Destroy', operating_condition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Operating condition', new_operating_condition_path %>
