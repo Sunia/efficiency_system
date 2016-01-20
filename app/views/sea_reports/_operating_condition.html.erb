@@ -68,15 +68,15 @@
 	    <tr>
 	       <td>  Trim(aft-fwd) </td>
 	       <td class="font_size-10">
-		    <%= f.number_field :visual_trim, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
+		    <%= f.number_field :visual_trim, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;', :readonly => true %>
 	       </td>
 
 	       <td class="font_size-10">
-		    <%= f.number_field :load_dep_trim, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
+		    <%= f.number_field :load_dep_trim, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;', :readonly => true %>
 	       </td>
 
 	       <td class="font_size-10">
-		    <%= f.number_field :load_daily_trim, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
+		    <%= f.number_field :load_daily_trim, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;', :readonly => true %>
 	       </td>
 
 
@@ -134,16 +134,75 @@
            <%= f.number_field :ballast_water_quantity, class: "form-control", required: true, placeholder: "Ballast water quantity", style: "margin-bottom:10px", :step =>'0.01', :min=> '0.00', :max => '999999999.99' %>
 		</div> 
 	</div>
-	
-
-
+    <br>
   	<%= submit_tag 'Save' %>
 
-  <br>
 <% end %>
 
   </div>
 </div>
+
+<!-- Javascript -->
+<script>
+
+    //$("#operating_condition_visual_aft").bind("change", function(e){
+    $("#operating_condition_visual_aft").on( "click", function( event ) {
+
+      visual_aft = $(this)[0].value;
+      visual_fwd = $("#operating_condition_visual_fwd")[0].value;
+
+      if (visual_fwd == ""){
+      	alert("Please fill the visual fwd first");
+      }
+      else if (visual_fwd > visual_aft){
+      	alert("Visual aft should be greater than visual fwd");
+      	$(this)[0].value = "";
+      }
+      else {
+      	visual_trim = visual_aft - visual_fwd;
+      	$("#operating_condition_visual_trim")[0].value = visual_trim.toFixed(2);
+      	alert("Visual trim is updated");
+      }
+    });
+
+    $("#operating_condition_load_dep_aft").on( "click", function( event ) {
+      aft = $(this)[0].value;
+      fwd = $("#operating_condition_load_dep_fwd")[0].value;
+
+      if (fwd == ""){
+      	alert("Please fill the 'Load Departure fwd' first");
+      }
+      else if (fwd > aft){
+      	alert("'Load Departure aft' should be greater than 'Load Departure fwd'");
+      	$(this)[0].value = "";
+      }
+      else {
+      	trim = aft - fwd;
+      	$("#operating_condition_load_dep_trim")[0].value = trim.toFixed(2);
+      	alert("'Load Departure trim' is updated");
+      }
+    });
+
+
+    $("#operating_condition_load_daily_aft").on( "click", function( event ) {
+      aft = $(this)[0].value;
+      fwd = $("#operating_condition_load_daily_fwd")[0].value;
+
+      if (fwd == ""){
+      	alert("Please fill the 'Load Daily fwd' first");
+      }
+      else if (fwd > aft){
+      	alert("'Load Daily aft' should be greater than 'Load Daily fwd'");
+      	$(this)[0].value = "";
+      }
+      else {
+      	trim = aft - fwd;
+      	$("#operating_condition_load_daily_trim")[0].value = trim.toFixed(2);
+      	alert("'Load Daily trim' is updated");
+      }
+    });
+
+</script
 
 
 
