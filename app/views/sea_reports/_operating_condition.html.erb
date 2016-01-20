@@ -11,6 +11,7 @@
   <div class="col-md-6">
 	<table border="1" style="">
 
+		<%= f.hidden_field :sea_report_id, :value => @sea_report.id %>
 	    <tr>
 	    	<td> </td>
 	    	<td> Visual (Departure <br> Draft - in meters) </td>
@@ -67,7 +68,7 @@
 	    <tr>
 	       <td>  Trim(aft-fwd) </td>
 	       <td class="font_size-10">
-		    <%= f.number_field :visual_trim, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;', :readonly => true %>
+		    <%= f.number_field :visual_trim, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
 	       </td>
 
 	       <td class="font_size-10">
@@ -117,24 +118,24 @@
     </table>
 
     <br>
-    <!-- Ballast water quantity -->
-	
-	<div class="col-sm-12">
-		<label class="" for="input01"> Ballast water quantity</label>  
-		<div class="s">  
-           <%= f.text_field :ballast_water_quantity, class: "form-control", required: true, placeholder: "Ballast water quantity", style: "margin-bottom:10px" %>
-		</div> 
-	</div>
-	
-
     <!-- Metacentric Height -->
 	<div class="col-sm-12">
 		<label class="" for="input01"> Metacentric Height</label>  
 
 		<div class="s">  
-           	<%= f.text_field :metacentric_height, class: "form-control", required: true, placeholder: "Metacentric Height", style: "margin-bottom:10px" %>
+           	<%= f.number_field :metacentric_height, class: "form-control", required: true, placeholder: "Metacentric Height", style: "margin-bottom:10px", :step =>'0.01', :min=> '0.00', :max => '99.99' %>
 		</div> 
 	</div>
+    
+    <!-- Ballast water quantity -->
+	<div class="col-sm-12">
+		<label class="" for="input01"> Ballast water quantity</label>  
+		<div class="s">  
+           <%= f.number_field :ballast_water_quantity, class: "form-control", required: true, placeholder: "Ballast water quantity", style: "margin-bottom:10px", :step =>'0.01', :min=> '0.00', :max => '999999999.99' %>
+		</div> 
+	</div>
+	
+
 
   	<%= submit_tag 'Save' %>
 
