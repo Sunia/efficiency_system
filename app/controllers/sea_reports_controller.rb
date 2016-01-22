@@ -138,7 +138,8 @@ class SeaReportsController < ApplicationController
     unless @old_sea_report.is_last_report
       # Create new sea report and copy all the passage plans.
       @passage_plans = @old_sea_report.passage_plans
-      status = create_sea_report(smt_time_string, utc_time, zone_time, @passage_plans)
+      @operating_conditions = @old_sea_report.operating_conditions
+      status = create_sea_report(smt_time_string, utc_time, zone_time, @passage_plans, @operating_conditions)
 
       respond_to do |format|
         if updated && status
@@ -160,10 +161,10 @@ class SeaReportsController < ApplicationController
   end
 
   # Create new sea report after completion of the old sea report.
-  def create_sea_report(smt_time_string, utc_time, zone_time, passage_plans)
+  def create_sea_report(smt_time_string, utc_time, zone_time, passage_plans, operating_conditions)
 
     # Create new report - starting time same as closing time of previous.
-    @sea_report = SeaReport.new(:opened_time_in_smt => smt_time_string, :created_at => utc_time, :zone_time => zone_time )
+    @sea_report = SeaReport.new(:opened_time_in_smt => smt_time_string, :created_at => utc_time, :zone_time => zone_time, :update_passage_plan_date => Time.now )
 
     if @sea_report.save
 
@@ -192,8 +193,14 @@ class SeaReportsController < ApplicationController
 
           new_passage_plan.save
         end
-        return true
 
+        operating_conditions.each do |condition|
+          # Operating for the new sea_report.
+          new_operating_condition = @sea_report.operating_conditions.new(condition.attributes.slice("sea_report_id", "visual_fwd", "visual_mid_ship", "visual_aft", "visual_trim", "load_dep_fwd","load_dep_mid_ship", "load_dep_aft", "load_dep_trim",  "metacentric_height", "ballast_water_quantity", "loading_dep_sf", "loading_dep_bm", "loading_daily_sf", "loading_daily_bm"))
+          new_operating_condition.save
+        end
+
+        return true
       else
         return false
       end   

@@ -26,10 +26,10 @@ class OperatingConditionsController < ApplicationController
   def create
 
     sea_report_id = params[:operating_condition][:sea_report_id]
-    @operating_condition = OperatingCondition.where(:sea_report_id => sea_report_id).first
+    @operating_condition = OperatingCondition.where(:sea_report_id => sea_report_id.to_i).first
 
     if @operating_condition.blank?
-      @operating_condition = OperatingCondition.create(params[:operating_conditions])
+      @operating_condition = OperatingCondition.create(params[:operating_condition])
     end
 
     respond_to do |format|

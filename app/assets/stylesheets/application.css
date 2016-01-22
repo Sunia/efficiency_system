@@ -209,3 +209,11 @@ body{
     text-align:center; 
     width: inherit !important;
 }
+
+.font_size-14{
+    font-size: 12px !important;
+    text-align: left;
+    /*background-color: orchid;*/
+ 
+    /*width: inherit !important;*/
+}

@@ -52,9 +52,7 @@ Report <%= @report_number %> from <%= @sea_port.starting_port_name %> to <%= @se
 
       <!-- Operating COndition-->
       <div id="operating_condition" class="tab-pane fade in active">
-        <b><h4>Operating Condition</h4></b>
-        <!-- <%= link_to 'View Entered Passage Plan of report', passage_plans_path(:sea_report_id => @sea_report.id), :style=>"float: right;", :target => '_blank' %>-->
-
+        <h4><b>Operating Conditions</b></h4>
         <div class="row">
           <div class="col-md-12">
             <%= render 'operating_condition' %>

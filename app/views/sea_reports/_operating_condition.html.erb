@@ -1,146 +1,6 @@
-<br>
-
-</br>
-
 <!-- To display new passage plan on edit of sea report-->
 
-<%= form_for(@operating_condition, url: operating_conditions_path ,html: {method: "post"}) do |f| %>
-
-<div class="row">
-  <div class="col-md-2"></div>
-  <div class="col-md-6">
-	<table border="1" style="">
-
-		<%= f.hidden_field :sea_report_id, :value => @sea_report.id %>
-	    <tr>
-	    	<td> </td>
-	    	<td> Visual (Departure <br> Draft - in meters) </td>
-	    	<td> Loadicator(<br> Departure <br> - in meters) </td>
-	    	<td> Loadicator <br> (Daily updated <br> - in meters) </td>
-	    </tr>
-	    <tr>
-
-	       <td> Fwd </td>
-	       <td class="font_size-10">
-		    <%= f.number_field :visual_fwd, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
-	       </td>
-
-	       <td class="font_size-10">
-		    <%= f.number_field :load_dep_fwd, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
-	       </td>
-
-	       <td class="font_size-10">
-		    <%= f.number_field :load_daily_fwd, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
-	       </td>
-	    </tr>
-
-	    <tr>
-	       <td> Mid Ships </td>
-	       <td class="font_size-10">
-		    <%= f.number_field :visual_mid_ship, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
-	       </td>
-
-	       <td class="font_size-10">
-		    <%= f.number_field :load_dep_mid_ship, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
-	       </td>
-
-	       <td class="font_size-10">
-		    <%= f.number_field :load_daily_mid_ship, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
-	       </td>
-	    </tr>
-
-	    <tr>
-	       <td> Aft </td>
-	       <td class="font_size-10">
-		    <%= f.number_field :visual_aft, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
-	       </td>
-
-	       <td class="font_size-10">
-		    <%= f.number_field :load_dep_aft, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
-	       </td>
-
-	       <td class="font_size-10">
-		    <%= f.number_field :load_daily_aft, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;' %>
-	       </td>
-	    </tr>
-
-
-	    <tr>
-	       <td>  Trim(aft-fwd) </td>
-	       <td class="font_size-10">
-		    <%= f.number_field :visual_trim, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;', :readonly => true %>
-	       </td>
-
-	       <td class="font_size-10">
-		    <%= f.number_field :load_dep_trim, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;', :readonly => true %>
-	       </td>
-
-	       <td class="font_size-10">
-		    <%= f.number_field :load_daily_trim, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 100px;', :readonly => true %>
-	       </td>
-
-
-	    </tr>
-	  </table>
-  	<br>
-  	
-	<br><br>
-	<table border="1" style="">
-	    <tr>
-	    	<td> </td>
-	    	<td> Loadicator (Departure) </td>
-	    	<td> Loadicator(Daily updated) </td>
-	    </tr>
-	    <tr>
-
-	       <td> Max Shearing forces (SF)<br> Sea condition </td>
-	       <td class="font_size-10">
-		    <%= f.number_field :loading_dep_sf, :required => true, :step =>'0.01', :min=> '0.00', :max => '999.99', :style => 'width: 100px;' %>
-	       </td>
-
-	       <td class="font_size-10">
-		    <%= f.number_field :loading_daily_sf, :required => true, :step =>'0.01', :min=> '0.00', :max => '999.99', :style => 'width: 120px;' %>
-	       </td>
-
-	    </tr>
-
-	    <tr>
-	       <td> Max Bending Moments ( BM) <br>Sea Condition  </td>
-	       <td class="font_size-10">
-		    <%= f.number_field :loading_dep_bm, :required => true, :step =>'0.01', :min=> '0.00', :max => '999.99', :style => 'width: 100px;' %>
-	       </td>
-
-	       <td class="font_size-10">
-		    <%= f.number_field :loading_daily_bm, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 120px;' %>
-	       </td>
-
-	    </tr>
-    </table>
-
-    <br>
-    <!-- Metacentric Height -->
-	<div class="col-sm-12">
-		<label class="" for="input01"> Metacentric Height</label>  
-
-		<div class="s">  
-           	<%= f.number_field :metacentric_height, class: "form-control", required: true, placeholder: "Metacentric Height", style: "margin-bottom:10px", :step =>'0.01', :min=> '0.00', :max => '99.99' %>
-		</div> 
-	</div>
-    
-    <!-- Ballast water quantity -->
-	<div class="col-sm-12">
-		<label class="" for="input01"> Ballast water quantity</label>  
-		<div class="s">  
-           <%= f.number_field :ballast_water_quantity, class: "form-control", required: true, placeholder: "Ballast water quantity", style: "margin-bottom:10px", :step =>'0.01', :min=> '0.00', :max => '999999999.99' %>
-		</div> 
-	</div>
-    <br>
-  	<%= submit_tag 'Save' %>
-
-<% end %>
-
-  </div>
-</div>
+<%= render 'operating_conditions/operating_conditions' %>
 
 <!-- Javascript -->
 <script>
@@ -154,14 +14,9 @@
       if (visual_fwd == ""){
       	alert("Please fill the visual fwd first");
       }
-      else if (visual_fwd > visual_aft){
-      	alert("Visual aft should be greater than visual fwd");
-      	$(this)[0].value = "";
-      }
       else {
       	visual_trim = visual_aft - visual_fwd;
       	$("#operating_condition_visual_trim")[0].value = visual_trim.toFixed(2);
-      	alert("Visual trim is updated");
       }
     });
 
@@ -172,14 +27,9 @@
       if (fwd == ""){
       	alert("Please fill the 'Load Departure fwd' first");
       }
-      else if (fwd > aft){
-      	alert("'Load Departure aft' should be greater than 'Load Departure fwd'");
-      	$(this)[0].value = "";
-      }
       else {
       	trim = aft - fwd;
       	$("#operating_condition_load_dep_trim")[0].value = trim.toFixed(2);
-      	alert("'Load Departure trim' is updated");
       }
     });
 
@@ -191,18 +41,13 @@
       if (fwd == ""){
       	alert("Please fill the 'Load Daily fwd' first");
       }
-      else if (fwd > aft){
-      	alert("'Load Daily aft' should be greater than 'Load Daily fwd'");
-      	$(this)[0].value = "";
-      }
       else {
       	trim = aft - fwd;
       	$("#operating_condition_load_daily_trim")[0].value = trim.toFixed(2);
-      	alert("'Load Daily trim' is updated");
       }
     });
 
-</script
+</script>
 
 
 
