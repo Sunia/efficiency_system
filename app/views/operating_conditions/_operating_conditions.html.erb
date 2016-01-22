@@ -7,7 +7,7 @@
 <%= form_for(@operating_condition, url: operating_conditions_path ,html: {method: "post"}) do |f| %>
 
 <style> 
-	th{ background-color: #D2C0C0; text-align: center;}
+	th{ background-color: #ADB2DA; text-align: center;}
 
  </style>
 
@@ -127,21 +127,120 @@
 
     <br>
     <!-- Metacentric Height -->
-	<div class="col-sm-12">
-		<label class="" for="input01"> Metacentric Height(GM in meters)</label>  
+	<div class="col-sm-12" style="padding-left: 1px;">
 
-		<div class="s">  
-           	<%= f.number_field :metacentric_height, class: "form-control", required: true, placeholder: "Metacentric Height", style: "margin-bottom:10px", :step =>'0.01', :min=> '0.00', :max => '99.99' %>
+        <div class="col-sm-5" style="padding-left: 1px;">
+			<b>Metacentric Height(GM in meters) </b>
+		</div>
+
+        <div class="col-sm-4 s">
+           	<%= f.number_field :metacentric_height, class: "form-control", required: true, placeholder: "Metacentric Height", style: "margin-bottom:10px", :step =>'0.01', :min=> '0.00', :max => '99.99'%>
 		</div> 
+		<div class="col-sm-1">
+			<b>meters</b>
+		</div>
 	</div>
-    
+
     <!-- Ballast water quantity -->
-	<div class="col-sm-12">
-		<label class="" for="input01"> Ballast water quantity: Unit in Metric Tonnes</label>  
-		<div class="s">  
+	<div class="col-sm-12" style="padding-left: 1px;">
+
+        <div class="col-sm-5" style="padding-left: 1px;">
+			<b>Ballast water quantity(Metric Tonnes): </b>
+		</div>
+
+        <div class="col-sm-4 s">
            <%= f.number_field :ballast_water_quantity, class: "form-control", required: true, placeholder: "Ballast water quantity", style: "margin-bottom:10px", :step =>'0.01', :min=> '0.00', :max => '999999999.99' %>
+        </div>
+		<div class="col-sm-1">
+			<b>tonnes</b>
 		</div> 
 	</div>
+
+    <!-- Working Status of Speed log -->
+	<div class="col-sm-12" style="padding-left: 1px;">
+
+        <div class="col-sm-5" style="padding-left: 1px;">
+			<b>Working Status of Speed log: </b>
+		</div>
+
+        <div class="col-sm-5 s">
+		       <%= f.select :speed_log_status, options_for_select(["Working", "Not Working"]), class: "form-control", required: true, width: "100%",  placeholder: "Working Status", style: "margin-bottom:10px" %>
+        </div>
+	</div>
+
+    <!-- Speed log Calibration Date: -->
+	<div class="col-sm-12" style="padding-left: 1px;">
+        <div class="col-sm-5" style="padding-left: 1px;">
+			<br>
+			<b>Speed log Calibration Date: </b>
+		</div>
+
+        <div class="col-sm-5 s">
+           <br>
+           <%= f.text_field :speed_log_date, class: "startDate form-control", required: true, placeholder: "Calibration Date", style: "margin-bottom:10px", id:"dateStartReport" %>
+
+        </div>
+	</div>
+
+    <!-- Is the Vessel fitted with the torsion meter -->
+	<div class="col-sm-12" style="padding-left: 1px;">
+
+        <div class="col-sm-5" style="padding-left: 1px;">
+			<b>Is the Vessel fitted with the torsion meter: </b>
+		</div>
+
+        <div class="col-sm-5 s">
+		       <%= f.select :vessel_fitted_with_torsion, options_for_select(["Yes", "No"]), class: "form-control", required: true, width: "100%", style: "margin-bottom:10px" %>
+        </div>
+	</div>
+
+    <!--  Working Status of Torsion meter: -->
+	<div class="col-sm-12" style="padding-left: 1px;">
+
+        <div class="col-sm-5" style="padding-left: 1px;">
+			<br>
+			<b> Working Status of Torsion meter:: </b>
+		</div>
+
+        <div class="col-sm-5 s">
+		       <br>
+		       <%= f.select :torsion_meter_status, options_for_select(["Working", "Not Working"]), class: "form-control", required: true, width: "100%",  placeholder: "Working Status", style: "margin-bottom:10px" %>
+        </div>
+	</div>
+
+    <!-- Torsion meter Calibration Date: -->
+	<div class="col-sm-12" style="padding-left: 1px;">
+        <div class="col-sm-5" style="padding-left: 1px;">
+			<br>
+			<b>Torsion meter Calibration Date: </b>
+		</div>
+
+        <div class="col-sm-5 s">
+           <br>
+           <%= f.text_field :torsion_meter_date, class: "startDate form-control", required: true, placeholder: "Torsion meter Date", style: "margin-bottom:10px", id:"dateStartReport" %>
+
+        </div>
+	</div>
+
+    <!-- Maximum Roll angle -->
+	<div class="col-sm-12" style="padding-left: 1px;">
+        <div class="col-sm-5" style="padding-left: 1px;">
+			
+			<b>Maximum Roll angle: </b>
+		</div>
+
+        <div class="col-sm-4 s">
+           
+		    <%= f.number_field :roll_angle, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;', :placeholder => "Roll angle" %>
+        </div>
+		<div class="col-sm-1">
+		   
+			<b>degrees</b>
+		</div> 
+	</div>
+
+
+
     <br>
   	<%= submit_tag 'Save' %>
   <!-- </div> -->
