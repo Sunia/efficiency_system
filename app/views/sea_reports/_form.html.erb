@@ -7,68 +7,74 @@ Report <%= @report_number %> from <%= @sea_port.starting_port_name %> to <%= @se
 </b> </h4>
 <br>
 
-
 <div class="col-md-offset-1 container">
 
-    <!-- Menu bar-->
-    <ul class="nav nav-tabs">
-        <li class="active"><a data-toggle="tab" href="#port_details">Port Details</a></li>
-        <li><a data-toggle="tab" href="#passage_plan">Passage Plan</a></li>
+  <!-- Menu bar-->
+  <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#port_details">Port Details</a></li>
+      <li><a data-toggle="tab" href="#passage_plan">Passage Plan</a></li>
 
-        <li><a data-toggle="tab" href="#operating_condition">Operating condition</a></li>
-        <li><a data-toggle="tab" href="#help">Weather and Distance</a></li>
-        <li><a data-toggle="tab" href="#close_report">Close the Report</a></li>
-        <li><a data-toggle="tab" href="#help">Help</a></li>
-    </ul>
-    <br>
-    <br>
+      <li><a data-toggle="tab" href="#operating_condition">Operating condition</a></li>
+      <li><a data-toggle="tab" href="#weather_distance">Weather and Distance</a></li>
+      <li><a data-toggle="tab" href="#close_report">Close the Report</a></li>
+      <li><a data-toggle="tab" href="#help">Help</a></li>
+  </ul>
+  <br>
+  <br>
 
-    <!-- Tab content -->
-    <div class="tab-content fieldset col-md-10 bg-change1">
+  <!-- Tab content -->
+  <div class="tab-content fieldset col-md-10 bg-change1">
 
-        <!-- First Section -->
+      <!-- First Section -->
 
-      <div id="port_details" class="tab-pane fade in active">
-        <b><h3>Port Details</h3></b>
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-            <%= render 'sea_ports/edit_sea_port' %>
-          </div>
+    <div id="port_details" class="tab-pane fade in active">
+      <h4><b>Port Details</b></h4>
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <%= render 'sea_ports/edit_sea_port' %>
+        </div>
+      </div>
+    </div>
+
+    <div id="passage_plan" class="tab-pane fade">
+      <h4><b>Passage Plan of Report <%= @report_number %></b></h4>
+      <div class="row">
+        <div class="col-md-12">
+          <%= render 'passage_plan' %>
         </div>
       </div>
 
-      <div id="passage_plan" class="tab-pane fade in active">
-        <b><h4>Passage Plan of Report <%= @report_number %></h4></b>
-        <!-- <%= link_to 'View Entered Passage Plan of report', passage_plans_path(:sea_report_id => @sea_report.id), :style=>"float: right;", :target => '_blank' %>-->
+    </div>
 
-        <div class="row">
-          <div class="col-md-12">
-            <%= render 'passage_plan' %>
-          </div>
-        </div>
-
-      </div>
-
-
-      <!-- Operating COndition-->
-      <div id="operating_condition" class="tab-pane fade in active">
-        <h4><b>Operating Conditions</b></h4>
-        <div class="row">
-          <div class="col-md-12">
-            <%= render 'operating_condition' %>
-          </div>
+    <!-- Operating COndition-->
+    <div id="operating_condition" class="tab-pane fade">
+      <h4><b>Operating Conditions</b></h4>
+      <div class="row">
+        <div class="col-md-12">
+          <%= render 'operating_condition' %>
         </div>
       </div>
+    </div>
 
-      <div id="close_report" class="tab-pane fade">
-        <b><h3>Close Report</h3> </b>
-        <div class="row">
-          <div class="col-md-8 col-md-offset-2">
-
-            <%= render 'close_report' %>
-          </div>
+    <!-- Weather and Distance -->
+    <div id="weather_distance" class="tab-pane fade">
+      <h4><b>Weather and Distance</b></h4>
+      <div class="row">
+        <div class="col-md-12">
+          <%= render 'operating_condition' %>
         </div>
       </div>
+    </div>
+
+    <div id="close_report" class="tab-pane fade">
+      <h4><b>Close Report</b></h4> 
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <%= render 'close_report' %>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </div>
 </fieldset>
