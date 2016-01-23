@@ -5,8 +5,7 @@
 <!-- Javascript -->
 <script>
 
-    //$("#operating_condition_visual_aft").bind("change", function(e){
-    $("#operating_condition_visual_aft").on( "click", function( event ) {
+    $("#operating_condition_visual_aft").bind("change", function(e){
 
       visual_aft = $(this)[0].value;
       visual_fwd = $("#operating_condition_visual_fwd")[0].value;
@@ -20,7 +19,7 @@
       }
     });
 
-    $("#operating_condition_load_dep_aft").on( "click", function( event ) {
+    $("#operating_condition_load_dep_aft").bind("change", function(e){
       aft = $(this)[0].value;
       fwd = $("#operating_condition_load_dep_fwd")[0].value;
 
@@ -34,7 +33,7 @@
     });
 
 
-    $("#operating_condition_load_daily_aft").on( "click", function( event ) {
+    $("#operating_condition_load_daily_aft").bind("change", function(e){
       aft = $(this)[0].value;
       fwd = $("#operating_condition_load_daily_fwd")[0].value;
 
@@ -48,6 +47,3 @@
     });
 
 </script>
-
-
-

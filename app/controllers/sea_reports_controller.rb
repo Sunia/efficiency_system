@@ -120,8 +120,15 @@ class SeaReportsController < ApplicationController
     zone_time = params[:sea_report][:zone_time]
 
     smt_time_string = "#{params[:date]} #{params[:hours]}:#{params[:minutes]}:#{params[:seconds]} #{params[:sea_report][:zone_time]}"
-    utc_time = Time.parse(smt_time_string).getutc
-    @old_sea_report.update_attributes(:closed_time_in_smt => smt_time_string, :closed_time_in_utc => utc_time)
+    closed_utc_time = Time.parse(smt_time_string).getutc
+
+    debugger
+    if @old_sea_report.created_at > closed_utc_time
+      redirect_to edit_sea_report_path(@old_sea_report.id), notice: 'Report cannot be closed because Closing time should be greater than starting time!' and return
+    end
+
+
+    @old_sea_report.update_attributes(:closed_time_in_smt => smt_time_string, :closed_time_in_utc => closed_utc_time)
 
     # Report interval in hours.
     time_in_seconds  = @old_sea_report.closed_time_in_utc - @old_sea_report.created_at
@@ -139,7 +146,7 @@ class SeaReportsController < ApplicationController
       # Create new sea report and copy all the passage plans.
       @passage_plans = @old_sea_report.passage_plans
       @operating_conditions = @old_sea_report.operating_conditions
-      status = create_sea_report(smt_time_string, utc_time, zone_time, @passage_plans, @operating_conditions)
+      status = create_sea_report(smt_time_string, closed_utc_time, zone_time, @passage_plans, @operating_conditions)
 
       respond_to do |format|
         if updated && status
@@ -196,7 +203,7 @@ class SeaReportsController < ApplicationController
 
         operating_conditions.each do |condition|
           # Operating for the new sea_report.
-          new_operating_condition = @sea_report.operating_conditions.new(condition.attributes.slice("sea_report_id", "visual_fwd", "visual_mid_ship", "visual_aft", "visual_trim", "load_dep_fwd","load_dep_mid_ship", "load_dep_aft", "load_dep_trim",  "metacentric_height", "ballast_water_quantity", "loading_dep_sf", "loading_dep_bm", "loading_daily_sf", "loading_daily_bm"))
+          new_operating_condition = @sea_report.operating_conditions.new(condition.attributes.slice("sea_report_id", "visual_fwd", "visual_mid_ship", "visual_aft", "visual_trim", "load_dep_fwd","load_dep_mid_ship", "load_dep_aft", "load_dep_trim", "loading_dep_sf", "loading_dep_bm", "loading_daily_sf", "loading_daily_bm"))
           new_operating_condition.save
         end
 

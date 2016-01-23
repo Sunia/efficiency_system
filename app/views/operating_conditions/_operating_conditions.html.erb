@@ -130,6 +130,7 @@
 	<div class="col-sm-12" style="padding-left: 1px;">
 
         <div class="col-sm-5" style="padding-left: 1px;">
+            <br>
 			<b>Metacentric Height(GM in meters) </b>
 		</div>
 
@@ -137,6 +138,7 @@
            	<%= f.number_field :metacentric_height, class: "form-control", required: true, placeholder: "Metacentric Height", style: "margin-bottom:10px", :step =>'0.01', :min=> '0.00', :max => '99.99'%>
 		</div> 
 		<div class="col-sm-1">
+		    <br>
 			<b>meters</b>
 		</div>
 	</div>
@@ -145,6 +147,7 @@
 	<div class="col-sm-12" style="padding-left: 1px;">
 
         <div class="col-sm-5" style="padding-left: 1px;">
+            <br>
 			<b>Ballast water quantity(Metric Tonnes): </b>
 		</div>
 
@@ -152,6 +155,7 @@
            <%= f.number_field :ballast_water_quantity, class: "form-control", required: true, placeholder: "Ballast water quantity", style: "margin-bottom:10px", :step =>'0.01', :min=> '0.00', :max => '999999999.99' %>
         </div>
 		<div class="col-sm-1">
+		    <br>
 			<b>tonnes</b>
 		</div> 
 	</div>
@@ -160,10 +164,12 @@
 	<div class="col-sm-12" style="padding-left: 1px;">
 
         <div class="col-sm-5" style="padding-left: 1px;">
+			<br>
 			<b>Working Status of Speed log: </b>
 		</div>
 
         <div class="col-sm-5 s">
+               <br>
 		       <%= f.select :speed_log_status, options_for_select(["Working", "Not Working"]), class: "form-control", required: true, width: "100%",  placeholder: "Working Status", style: "margin-bottom:10px" %>
         </div>
 	</div>
@@ -175,7 +181,7 @@
 			<b>Speed log Calibration Date: </b>
 		</div>
 
-        <div class="col-sm-5 s">
+        <div class="col-sm-6 s">
            <br>
            <%= f.text_field :speed_log_date, class: "startDate form-control", required: true, placeholder: "Calibration Date", style: "margin-bottom:10px", id:"dateStartReport" %>
 
@@ -215,7 +221,7 @@
 			<b>Torsion meter Calibration Date: </b>
 		</div>
 
-        <div class="col-sm-5 s">
+        <div class="col-sm-6 s">
            <br>
            <%= f.text_field :torsion_meter_date, class: "startDate form-control", required: true, placeholder: "Torsion meter Date", style: "margin-bottom:10px", id:"dateStartReport" %>
 
@@ -225,24 +231,21 @@
     <!-- Maximum Roll angle -->
 	<div class="col-sm-12" style="padding-left: 1px;">
         <div class="col-sm-5" style="padding-left: 1px;">
-			
 			<b>Maximum Roll angle: </b>
 		</div>
 
         <div class="col-sm-4 s">
-           
-		    <%= f.number_field :roll_angle, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;', :placeholder => "Roll angle" %>
+		    <%= f.number_field :roll_angle, :required => true, :step =>'0.01', :min=> '0.00', :class => "form-control", :max => '99.99', :placeholder => "Roll angle" %>
         </div>
+
 		<div class="col-sm-1">
-		   
-			<b>degrees</b>
+		    <br>
+		   	<b>degrees</b>
 		</div> 
 	</div>
 
-
-
-    <br>
-  	<%= submit_tag 'Save' %>
-  <!-- </div> -->
+    <br><br>
+  	<%= submit_tag 'Update the Operating Condition' %>
+  </div>
 </div>
 <% end %>
