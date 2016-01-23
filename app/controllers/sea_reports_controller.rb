@@ -122,11 +122,10 @@ class SeaReportsController < ApplicationController
     smt_time_string = "#{params[:date]} #{params[:hours]}:#{params[:minutes]}:#{params[:seconds]} #{params[:sea_report][:zone_time]}"
     closed_utc_time = Time.parse(smt_time_string).getutc
 
-    debugger
+    # Condition to check closing time > start_time.
     if @old_sea_report.created_at > closed_utc_time
-      redirect_to edit_sea_report_path(@old_sea_report.id), notice: 'Report cannot be closed because Closing time should be greater than starting time!' and return
+      redirect_to edit_sea_report_path(@old_sea_report.id), notice: 'Report cannot be closed as closing time is less than starting time!' and return
     end
-
 
     @old_sea_report.update_attributes(:closed_time_in_smt => smt_time_string, :closed_time_in_utc => closed_utc_time)
 
