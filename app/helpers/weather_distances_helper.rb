@@ -1,0 +1,2 @@
+module WeatherDistancesHelper
+end
