@@ -202,7 +202,7 @@ class SeaReportsController < ApplicationController
 
         operating_conditions.each do |condition|
           # Operating for the new sea_report.
-          new_operating_condition = @sea_report.operating_conditions.new(condition.attributes.slice("sea_report_id", "visual_fwd", "visual_mid_ship", "visual_aft", "visual_trim", "load_dep_fwd","load_dep_mid_ship", "load_dep_aft", "load_dep_trim", "loading_dep_sf", "loading_dep_bm", "loading_daily_sf", "loading_daily_bm"))
+          new_operating_condition = @sea_report.operating_conditions.new(condition.attributes.slice(*OperatingCondition.accessible_attributes))
           new_operating_condition.save
         end
 

@@ -103,19 +103,18 @@
 
 	       <th> Max Shearing forces (SF)<br> Sea condition </th>
 	       <td class="font_size-10">
-		    <%= f.number_field :loading_dep_sf, :required => true, :step =>'0.01', :min=> '0.00', :max => '999.99', :style => 'width: 177px; height: 35px;' %>
+		    <%= f.number_field :loading_dep_sf, :required => true, :step =>'0.01', :min=> '0.00', :max => '999.99', :style => 'width: 177px; height: 35px;', :readonly => @fixed %>
 	       </td>
 
 	       <td class="font_size-10">
 		    <%= f.number_field :loading_daily_sf, :required => true, :step =>'0.01', :min=> '0.00', :max => '999.99', :style => 'width: 177px; height: 35px;' %>
 	       </td>
-
 	    </tr>
 
 	    <tr>
 	       <th> Max Bending Moments ( BM) <br>Sea Condition  </th>
 	       <td class="font_size-10">
-		    <%= f.number_field :loading_dep_bm, :required => true, :step =>'0.01', :min=> '0.00', :max => '999.99', :style => 'width: 177px; height: 35px;' %>
+		    <%= f.number_field :loading_dep_bm, :required => true, :step =>'0.01', :min=> '0.00', :max => '999.99', :style => 'width: 177px; height: 35px;', :readonly => @fixed %>
 	       </td>
 
 	       <td class="font_size-10">
@@ -183,7 +182,7 @@
 
         <div class="col-sm-6 s">
            <br>
-           <%= f.text_field :speed_log_date, class: "startDate form-control", required: true, placeholder: "Calibration Date", style: "margin-bottom:10px", id:"dateStartReport" %>
+           <%= f.text_field :speed_log_date, class: "startDate form-control", required: true, placeholder: "Calibration Date", style: "margin-bottom:10px", id:"speed_log_date" %>
 
         </div>
 	</div>

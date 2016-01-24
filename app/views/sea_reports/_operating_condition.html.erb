@@ -5,45 +5,89 @@
 <!-- Javascript -->
 <script>
 
+    // Calculate load visual trim
     $("#operating_condition_visual_aft").bind("change", function(e){
+      calculate_visual_trim();
+    });
 
-      visual_aft = $(this)[0].value;
+    $("#operating_condition_visual_fwd").bind("change", function(e){
+      calculate_visual_trim();
+    });
+
+    function calculate_visual_trim(){
+      visual_aft = $("#operating_condition_visual_aft")[0].value;
       visual_fwd = $("#operating_condition_visual_fwd")[0].value;
 
       if (visual_fwd == ""){
-      	alert("Please fill the visual fwd first");
+        alert("Please fill the visual fwd first");
       }
       else {
-      	visual_trim = visual_aft - visual_fwd;
-      	$("#operating_condition_visual_trim")[0].value = visual_trim.toFixed(2);
+        visual_trim = visual_aft - visual_fwd;
+        $("#operating_condition_visual_trim")[0].value = visual_trim.toFixed(2);
       }
+     }
+
+    // Calculate load departure trim
+    $("#operating_condition_load_dep_aft").bind("change", function(e){
+      calculate_load_dep_trim();
     });
 
-    $("#operating_condition_load_dep_aft").bind("change", function(e){
-      aft = $(this)[0].value;
+    $("#operating_condition_load_dep_fwd").bind("change", function(e){
+      calculate_load_dep_trim();
+    });
+
+    function calculate_load_dep_trim(){
+      aft = $("#operating_condition_load_dep_aft")[0].value;
       fwd = $("#operating_condition_load_dep_fwd")[0].value;
 
       if (fwd == ""){
-      	alert("Please fill the 'Load Departure fwd' first");
+        alert("Please fill the 'Load Departure fwd' first");
       }
       else {
-      	trim = aft - fwd;
-      	$("#operating_condition_load_dep_trim")[0].value = trim.toFixed(2);
-      }
+        trim = aft - fwd;
+        $("#operating_condition_load_dep_trim")[0].value = trim.toFixed(2);
+      }      
+    }
+
+    // Calculate load daily trim
+    $("#operating_condition_load_daily_aft").bind("change", function(e){
+      calculate_load_daily_trim();
     });
 
+    $("#operating_condition_load_daily_fwd").bind("change", function(e){
+      calculate_load_daily_trim();
+    });
 
-    $("#operating_condition_load_daily_aft").bind("change", function(e){
-      aft = $(this)[0].value;
+    function calculate_load_daily_trim(){
+      aft = $("#operating_condition_load_daily_aft")[0].value;
       fwd = $("#operating_condition_load_daily_fwd")[0].value;
 
       if (fwd == ""){
-      	alert("Please fill the 'Load Daily fwd' first");
+        alert("Please fill the 'Load Daily fwd' first");
       }
       else {
-      	trim = aft - fwd;
-      	$("#operating_condition_load_daily_trim")[0].value = trim.toFixed(2);
-      }
-    });
+        trim = aft - fwd;
+        $("#operating_condition_load_daily_trim")[0].value = trim.toFixed(2);
+      }      
+    }
+
+  // Speed log calibration date
+  $("#speed_log_date").bind("change", function(e){
+    debugger;
+    alert("hello");
+    speed_log_date = $("#speed_log_date")[0].value;
+
+    log_date = new Date(value);
+    today = new Date();
+    log_date.setDate(log_date.getDate() + 90);
+
+    if(log_date < today){
+      alert("Speed log calibration is overdue by 3 days");
+    }  
+    else{
+      alert("hello");
+    }
+  });
+
 
 </script>
