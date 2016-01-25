@@ -213,7 +213,15 @@ body{
 .font_size-14{
     font-size: 12px !important;
     text-align: left;
-    /*background-color: orchid;*/
- 
+    /*background-color: orchid;*/ 
     /*width: inherit !important;*/
+}
+.f-size-8{
+   font-size: 10px !important;
+   background-color: #ADB2DA;
+}
+
+.f-size-9{
+    background-color: #D0DA98;
+    font-size: 12px !important;
 }

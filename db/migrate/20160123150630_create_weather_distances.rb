@@ -2,11 +2,13 @@ class CreateWeatherDistances < ActiveRecord::Migration
   def change
     create_table :weather_distances do |t|
 
+      t.integer :sea_report_id
+
 	  # Observation date n  time (UTC) 
       t.datetime :observation_utc
 
       # Observation date n time (SMT)
-      t.datetime :observation_smt
+      t.string :observation_smt
 
 	  # Position ( latitude/ Longitude) - Lat degree n min N/S
       t.string :position
@@ -35,6 +37,9 @@ class CreateWeatherDistances < ActiveRecord::Migration
       # Speed Logged  in Knots
       t.float :speed_knots
 
+      # Speed observed in Knots
+      t.float :speed_observed_knots
+
       # True wind force (BF)
       t.integer :true_wind_force
 
@@ -48,7 +53,7 @@ class CreateWeatherDistances < ActiveRecord::Migration
       t.float :wave_height
       
 	  # True Swell Direction (0-359 degrees)
-      t.integer :true_swell_direction
+    t.integer :true_swell_direction
 
 	  # True Swell height in meters
 	  t.float :true_swell_height

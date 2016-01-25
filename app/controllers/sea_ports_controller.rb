@@ -58,7 +58,6 @@ class SeaPortsController < ApplicationController
     @sea_port = SeaPort.find(params[:id])
     # Todo close the report and update its time
 
-   
     closed_status = @sea_port.sea_passage_close
 
     respond_to do |format|
@@ -77,4 +76,3 @@ class SeaPortsController < ApplicationController
   end
 
 end
-

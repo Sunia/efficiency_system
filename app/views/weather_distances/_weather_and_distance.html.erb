@@ -1,86 +1,114 @@
-<%= form_for(@operating_condition, url: operating_conditions_path ,html: {method: "post"}) do |f| %>
+<%= form_for(@weather_distances, url: create_multiple_weather_distances_path(@sea_report.id) ,html: {method: "post"}) do |f| %>
 
-<style> 
-	th{ background-color: #ADB2DA; text-align: center;}
+<!-- First table -->
+<table border="1">
 
- </style>
+	<%= f.hidden_field :sea_report_id, :value => @sea_report.id %>
+    <tr>
+      <td class="f-size-8"> </td>
+  	  <td class="f-size-8">Observation date <br>and time(SMT)</td>
+      <td class="f-size-8">Observation date <br>and time (UTC)</td>
 
-<div class="row">
-  <div class="col-md-1"></div>
-  <div class="col-md-10">
+    	<td class="f-size-8">ME Power<br> (Main Engine Power)<br>(In Kw)</td>
+    	<td class="f-size-8">ME <br>RPM</td>    	
+	  	<td class="f-size-8">Trip counter<br> log (Nm)</td>
+	  	<td class="f-size-8">Trip counter<br>(GPS) Nm</td>
+	  	<td class="f-size-8">Distance <br>remaining<br> to EOSP(NM)</td>
+	  	<td class="f-size-8">Time <br>remaining<br> to EOSP(hours)</td>
+	  	<td class="f-size-8">Speed <br>Logged in<br> Knots</td>
+      <td class="f-size-8">Speed observed<br>in Knots</td>
 
-    <!-- Drafts Table -->
-	<h4><b> Drafts: </b></h4>
-	<table border="1">
+    </tr>
 
-		<%= f.hidden_field :sea_report_id, :value => @sea_report.id %>
-	    <tr>
-	      <th> Observation date n  time (UTC) </th>
-	    </tr>
-	    <tr>
-	       <th>  </th>
-	       <td class="font_size-10">
-		    <%= f.number_field :visual_fwd, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;', :readonly => @fixed %>
-	       </td>
+    <tr>
+      <td class="f-size-9"> Values </td>
 
-	       <td class="font_size-10">
-		    <%= f.number_field :load_dep_fwd, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;', :readonly => @fixed %>
-	       </td>
+      <td>
+        <%= text_field_tag "weather[][observation_smt]",nil, :required => true, :style => 'width: 100px; font-size: 8px;' %>
+	    </td>
 
-	       <td class="font_size-10">
-		    <%= f.number_field :load_daily_fwd, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;' %>
-	       </td>
-	    </tr>
+      <td>
+        <%= text_field_tag "weather[][observation_utc]", nil, :required => true, :style => 'width: 100px; font-size: 8px;' %>
+    </td>
+   
+	  <td>
+      <%= number_field_tag "weather[][me_power]",nil, :required => true, :style => 'width: 94px;', :min=> '0', :max => '999999999' %>
+    </td>
 
-	    <tr>
-	       <th> Mid Ships </th>
-	       <td class="font_size-10">
-		    <%= f.number_field :visual_mid_ship, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;', :readonly => @fixed %>
-	       </td>
+	  <td>  
+      <%= number_field_tag "weather[][me_rpm]",nil, :required => true, :style => 'width: 50px;', :min=> '0', :max => '999999999' %></td>
 
-	       <td class="font_size-10">
-		    <%= f.number_field :load_dep_mid_ship, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;', :readonly => @fixed %>
-	       </td>
+	   <td>
+       <%= number_field_tag "weather[][trip_counter_log]",nil, :required => true, :style => 'width: 50px;', :min=> '0', :max => '999999999' %></td>
 
-	       <td class="font_size-10">
-		    <%= f.number_field :load_daily_mid_ship, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;' %>
-	       </td>
-	    </tr>
+     <td>
+       <%= number_field_tag "weather[][trip_counter_gps]",nil, :required => true, :style => 'width: 50px;', :min=> '0', :max => '999999999' %></td>
 
-	    <tr>
-	       <th> Aft </th>
-	       <td class="font_size-10">
-		    <%= f.number_field :visual_aft, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;', :readonly => @fixed %>
-	       </td>
+     <td>
+       <%= number_field_tag "weather[][distance_rem_eosp]",nil, :required => true, :style => 'width: 53px;', :min=> '0', :max => '999999999' %></td>
 
-	       <td class="font_size-10">
-		    <%= f.number_field :load_dep_aft, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;', :readonly => @fixed %>
-	       </td>
+     <td>
+       <%= number_field_tag "weather[][time_rem_eosp]",nil, :required => true, :style => 'width: 55px;', :min=> '0', :max => '999999999' %></td>
 
-	       <td class="font_size-10">
-		    <%= f.number_field :load_daily_aft, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;' %>
-	       </td>
-	    </tr>
+     <td>
+       <%= number_field_tag "weather[][speed_knots]",nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '999.99', :style => "width: 60px;" %></td>
+
+      <td><%= number_field_tag "weather[][speed_observed_knots]",nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '999.99', :style => "width: 60px;" %></td>
+
+    </tr>
+
+    <tr>
+      <td class="f-size-9"> Average </td>
+    </tr>
+    <tr>
+      <td class="f-size-9"> Total </td>
+    </tr>
+
+  </table>
+
+<br><br>
+<table border="1">
+
+	<%= f.hidden_field :sea_report_id, :value => @sea_report.id %>
+    <tr>
+        <td class="f-size-8"></td>
 
 
-	    <tr>
-	       <th class="font-size-14">  Trim(aft-fwd) </th>
-	       <td class="font_size-10">
-		    <%= f.number_field :visual_trim, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;', :readonly => true %>
-	       </td>
+      <td class="f-size-8"> Position <br>(latitude/<br>Longitude)</td>
+      <td class="f-size-8">Reliable <br>observation</td>
 
-	       <td class="font_size-10">
-		    <%= f.number_field :load_dep_trim, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;', :readonly => true %>
-	       </td>
+	  	
+	  	<td class="f-size-8">True wind<br>force(BF)</td>
+	  	<td class="f-size-8">True Wind<br>direction (0-359) degress</td>
 
-	       <td class="font_size-10">
-		    <%= f.number_field :load_daily_trim, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;', :readonly => true %>
-	       </td>
-	    </tr>
-	  </table>
+	  	<td class="f-size-8">True Wind<br>speed<br> in Knots</td>
+	  	<td class="f-size-8">Wave height <br> in meters(Seas)</td>
+	  	<td class="f-size-8">True Swell Direction <br>(0-359 degrees)</td>
+      <td class="f-size-8"> Water depth<br> in meters</td>
+      <td class="f-size-8"> Couse over <br>ground.<br>(0-359)</td>
+	  	<td class="f-size-8"> Gyro course<br> (0-359)</td>
+	  	<td class="f-size-8"> Compass course<br> (0-359)</td>
+    </tr>
 
-    <br><br>
-  	<%= submit_tag 'Update the Operating Condition' %>
-  </div>
-</div>
+    <tr>
+      <td class="f-size-8"> Values </td>
+    </tr>
+    <tr>
+      <td class="f-size-8"> Average </td>
+    </tr>
+    <tr>
+      <td class="f-size-8"> Total </td>
+    </tr>
+<!--     <tr>
+      <td>
+        <%= f.text_field :position, :required => true , :style => "width: 60px"%>
+      <td><%= f.number_field :reliable_observation, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99' %> </td>
+ -->
+    </td>
+    </tr>
+
+</table>
+
+	<br><br>
+	<%= submit_tag 'Update Weather and Distance report' %>
 <% end %>

@@ -24,7 +24,6 @@
 
       <td class="font_size-10"><%= f.number_field :lat_min, :required => true, :step =>'0.01', :min=> '0.00', :max => '59.99', :style => 'width: 60px;' %></td>
 
-
       <td class="font_size-10">
         <%= f.select(:lat_dir, [['North', 'N'], ['South', "S"]]) %>
       </td>

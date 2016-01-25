@@ -1,16 +1,20 @@
 Rails.application.routes.draw do
 
+  root to: "home#index"
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  devise_for :users
+
   resources :weather_distances
   resources :operating_conditions
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  root to: "home#index"
 
-  devise_for :users
   resources :sea_reports
   resources :sea_ports
   resources :passage_plans
 
   post 'passage_plan/:sea_report_id' => 'passage_plans#create_passage_plan', as: :create_passage_plan
+
+  post 'create_multiple_weather_distances/:sea_report_id' => 'weather_distances#create_multiple_weather_distances', as: :create_multiple_weather_distances
+
   post 'close_report/:id' => 'sea_reports#close_report', as: :close_report
   post 'close_sea_passage/:id' => 'sea_ports#close_sea_passage', as: :close_sea_passage
   # The priority is based upon order of creation: first created -> highest priority.
