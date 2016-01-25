@@ -1,1 +1,86 @@
-weather_and_distance
+<%= form_for(@operating_condition, url: operating_conditions_path ,html: {method: "post"}) do |f| %>
+
+<style> 
+	th{ background-color: #ADB2DA; text-align: center;}
+
+ </style>
+
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+
+    <!-- Drafts Table -->
+	<h4><b> Drafts: </b></h4>
+	<table border="1">
+
+		<%= f.hidden_field :sea_report_id, :value => @sea_report.id %>
+	    <tr>
+	      <th> Observation date n  time (UTC) </th>
+	    </tr>
+	    <tr>
+	       <th>  </th>
+	       <td class="font_size-10">
+		    <%= f.number_field :visual_fwd, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;', :readonly => @fixed %>
+	       </td>
+
+	       <td class="font_size-10">
+		    <%= f.number_field :load_dep_fwd, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;', :readonly => @fixed %>
+	       </td>
+
+	       <td class="font_size-10">
+		    <%= f.number_field :load_daily_fwd, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;' %>
+	       </td>
+	    </tr>
+
+	    <tr>
+	       <th> Mid Ships </th>
+	       <td class="font_size-10">
+		    <%= f.number_field :visual_mid_ship, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;', :readonly => @fixed %>
+	       </td>
+
+	       <td class="font_size-10">
+		    <%= f.number_field :load_dep_mid_ship, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;', :readonly => @fixed %>
+	       </td>
+
+	       <td class="font_size-10">
+		    <%= f.number_field :load_daily_mid_ship, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;' %>
+	       </td>
+	    </tr>
+
+	    <tr>
+	       <th> Aft </th>
+	       <td class="font_size-10">
+		    <%= f.number_field :visual_aft, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;', :readonly => @fixed %>
+	       </td>
+
+	       <td class="font_size-10">
+		    <%= f.number_field :load_dep_aft, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;', :readonly => @fixed %>
+	       </td>
+
+	       <td class="font_size-10">
+		    <%= f.number_field :load_daily_aft, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;' %>
+	       </td>
+	    </tr>
+
+
+	    <tr>
+	       <th class="font-size-14">  Trim(aft-fwd) </th>
+	       <td class="font_size-10">
+		    <%= f.number_field :visual_trim, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;', :readonly => true %>
+	       </td>
+
+	       <td class="font_size-10">
+		    <%= f.number_field :load_dep_trim, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;', :readonly => true %>
+	       </td>
+
+	       <td class="font_size-10">
+		    <%= f.number_field :load_daily_trim, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 150px;', :readonly => true %>
+	       </td>
+	    </tr>
+	  </table>
+
+    <br><br>
+  	<%= submit_tag 'Update the Operating Condition' %>
+  </div>
+</div>
+<% end %>

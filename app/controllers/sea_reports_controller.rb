@@ -196,7 +196,6 @@ class SeaReportsController < ApplicationController
         passage_plans.each do |plan|
           # Passage plan for the new sea_report.
           new_passage_plan = @sea_report.passage_plans.new(plan.attributes.slice(*PassagePlan.accessible_attributes))
-
           new_passage_plan.save
         end
 
@@ -205,13 +204,12 @@ class SeaReportsController < ApplicationController
           new_operating_condition = @sea_report.operating_conditions.new(condition.attributes.slice(*OperatingCondition.accessible_attributes))
           new_operating_condition.save
         end
-
         return true
+
       else
         return false
       end   
     end
-
   end
 
   private
