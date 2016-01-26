@@ -1,2 +1,63 @@
 <%= render 'weather_distances/weather_and_distance' %>
 
+<script> 
+
+  // Add new waypoint on the list of passage plan
+  $( "#new_weather_observation" ).on( "click", function( event ) {
+
+    first_data = make_row_for_first_table;
+
+    // $('#weather_first_table tr:last').after(first_data);
+    $('.first_table_values').last().after(first_data);
+
+  });
+
+  // Insert fields of passage plan in a row
+  function make_row_for_first_table() {
+
+    data = '<tr class="first_table_values">'
+
+    data +=  '<td class="f-size-9"> Values </td>'
+
+    // SMT
+    data += '<td><input type="text" name="weather[][observation_smt]" id="weather__observation_smt" value="2016-01-24 23:3:3 -1100" required="required" style="width: 100px; font-size: 8px;"></td>'
+
+    // UTC
+    data += '<td><input type="text" name="weather[][observation_utc]" id="weather__observation_utc" value="2016-01-25 10:03:03 UTC" required="required" style="width: 100px; font-size: 8px;"></td>'
+
+    // ME Power
+    data +=	'<td><input type="number" name="weather[][me_power]" id="weather__me_power" required="required" style="width: 94px;" min="0" max="999999999"></td>'
+
+
+    // ME RPM
+	data +=  '<td> <input type="number" name="weather[][me_rpm]" id="weather__me_rpm" required="required" style="width: 50px;" min="0" max="999999999"></td>'
+
+    data +='<td><input type="number" name="weather[][trip_counter_log]" id="weather__trip_counter_log" required="required" style="width: 50px;" min="0" max="999999999"></td>'
+
+    data += '<td><input type="number" name="weather[][trip_counter_gps]" id="weather__trip_counter_gps" required="required" style="width: 50px;" min="0" max="999999999"></td>'
+
+     
+    data += '<td><input type="number" name="weather[][distance_rem_eosp]" id="weather__distance_rem_eosp" required="required" style="width: 58px;" min="0" max="999999999"></td>'
+
+    data += '<td><input type="number" name="weather[][time_rem_eosp]" id="weather__time_rem_eosp" required="required" style="width: 67px;" min="0" max="999999999"></td>'
+
+    data += '<td><input type="number" name="weather[][speed_knots]" id="weather__speed_knots" required="required" step="0.01" min="0.00" max="999.99" style="width: 60px;"></td>'
+
+    data += '<td><input type="number" name="weather[][speed_observed_knots]" id="weather__speed_observed_knots" required="required" step="0.01" min="0.00" max="999.99" style="width: 67px;"></td>'
+
+    // Delete image
+    data += "<td><img src='/assets/delete.png' style='height: 10%;' onClick='deleteRow(this)'> </td>"
+
+    data += '</tr>'
+    return data;
+  }
+
+
+  // Delete the row
+  function deleteRow(btn) {
+    var row = btn.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+  }
+
+
+</script>
