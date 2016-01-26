@@ -1,0 +1,93 @@
+<!-- First table -->
+<table id="weather_first_table" border="1">
+
+	<% hidden_field_tag "sea_report_id",  @sea_report.id %>
+    <tr>
+      <td class="f-size-8"> </td>
+  	  <td class="f-size-8">Observation date <br>and time(SMT)</td>
+      <td class="f-size-8">Observation date <br>and time (UTC)</td>
+
+    	<td class="f-size-8">ME Power<br> (Main Engine Power)<br>(In Kw)</td>
+    	<td class="f-size-8">ME <br>RPM</td>    	
+	  	<td class="f-size-8">Trip counter<br> log (Nm)</td>
+	  	<td class="f-size-8">Trip counter<br>(GPS) Nm</td>
+	  	<td class="f-size-8">Distance <br>remaining<br> to EOSP(NM)</td>
+	  	<td class="f-size-8">Time <br>remaining<br> to EOSP(hours)</td>
+	  	<td class="f-size-8">Speed <br>Logged in<br> Knots</td>
+      <td class="f-size-8">Speed observed<br>in Knots</td>
+
+    </tr>
+
+    <tr class="first_table_values">
+      <td class="f-size-9"> Values </td>
+
+      <%= hidden_field_tag "weather[][sea_report_id]", @sea_report.id, :required => true, :style => 'width: 100px; font-size: 8px;' %>
+
+      <td>
+        <%= text_field_tag "weather[][observation_smt]", @sea_report.opened_time_in_smt, :required => true, :style => 'width: 100px; font-size: 8px;' %>
+	    </td>
+
+      <td>
+        <%= text_field_tag "weather[][observation_utc]", @sea_report.created_at, :required => true, :style => 'width: 100px; font-size: 8px;' %>
+      </td>   
+
+	  <td>
+      <%= number_field_tag "weather[][me_power]",nil, :required => true, :style => 'width: 94px;',:class => "me_power",:min=> '0', :max => '999999999' %>
+    </td>
+
+	  <td>  
+      <%= number_field_tag "weather[][me_rpm]",nil, :required => true, :style => 'width: 50px;', :min=> '0', :max => '999999999' %></td>
+
+	   <td>
+       <%= number_field_tag "weather[][trip_counter_log]",nil, :required => true, :style => 'width: 50px;', :min=> '0', :max => '999999999' %></td>
+
+     <td>
+       <%= number_field_tag "weather[][trip_counter_gps]",nil, :required => true, :style => 'width: 50px;', :min=> '0', :max => '999999999' %></td>
+
+     <td>
+       <%= number_field_tag "weather[][distance_rem_eosp]",nil, :required => true, :style => 'width: 58px;', :min=> '0', :max => '999999999' %></td>
+
+     <td>
+       <%= number_field_tag "weather[][time_rem_eosp]",nil, :required => true, :style => 'width: 67px;', :min=> '0', :max => '999999999' %></td>
+
+     <td>
+       <%= number_field_tag "weather[][speed_knots]",nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '999.99', :style => "width: 60px;" %></td>
+
+      <td><%= number_field_tag "weather[][speed_observed_knots]",nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '999.99', :style => "width: 67px;" %></td>
+
+    </tr>
+
+    <!-- Average fields--> 
+    <tr>
+      <td class="f-size-9"> Average </td>
+
+      <td></td>
+      <td></td>
+      <td><%= number_field_tag "weather[][avg_me_power]",nil, :style => "width: 94px;", :readonly => true %></td>
+      <td><%= number_field_tag "weather[][avg_me_rpm]",nil, :style => "width: 50px;", :readonly => true %></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><%= number_field_tag "sea_report[][avg_speed_log_knots]",nil, :style => "width: 60px;", :readonly => true %></td>
+      <td><%= number_field_tag "sea_report[][avg_speed_observed_knots]",nil, :style => "width: 67px;", :readonly => true %></td>
+  </tr>
+
+    <!--  Total fields-->
+    <tr>
+      <td class="f-size-9"> Total </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+
+      <td><%= number_field_tag "sea_report[][total_trip_counter_log]",nil, :style => "width: 50px;", :readonly => true %></td>
+      <td><%= number_field_tag "sea_report[][total_trip_counter_gps]",nil, :style => "width: 50px;", :readonly => true %></td>
+      <td><%= number_field_tag "sea_report[][total_distance_rem_eosp]",nil,:style => "width: 58px;", :readonly => true %></td>
+      <td><%= number_field_tag "sea_report[][total_time_rem_eosp]",nil, :style => "width: 67px;", :readonly => true %></td>
+
+      <td></td>
+      <td></td>
+    </tr>
+
+  </table>

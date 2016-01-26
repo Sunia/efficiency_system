@@ -1,0 +1,43 @@
+<table border="1">
+    <tr>
+      <td class="f-size-8"></td>
+
+      <td class="f-size-8"> Position <br>(latitude/<br>Longitude)</td>
+      <td class="f-size-8">Reliable <br>observation</td>
+
+	  	<td class="f-size-8">True wind<br>force(BF)</td>
+	  	<td class="f-size-8">True Wind<br>direction (0-359) degress</td>
+
+	  	<td class="f-size-8">True Wind<br>speed<br> in Knots</td>
+	  	<td class="f-size-8">Wave height <br> in meters(Seas)</td>
+	  	<td class="f-size-8">True Swell Direction <br>(0-359 degrees)</td>
+      <td class="f-size-8"> Water depth<br> in meters</td>
+      <td class="f-size-8"> Couse over <br>ground.<br>(0-359)</td>
+	  	<td class="f-size-8"> Gyro course<br> (0-359)</td>
+	  	<td class="f-size-8"> Compass course<br> (0-359)</td>
+    </tr>
+
+    <tr>
+      <td class="f-size-8"> Values </td>
+      <!-- Position -->
+      <td><%= text_field_tag "weather[][position]", nil, :required => true, :style => 'width: 100px; font-size: 8px;' %></td>
+
+      <!-- Reliable Observation -->
+      <td>
+       <select name="passage[][reliable_observation]" style ='width: 50px;font-size: 10px;' >
+            <option value="Reliable">Reliable</option>
+            <option value="Non-Reliable">Non-Reliable</option>
+       </select>
+      </td>
+
+      <!-- True wind force(BF) -->
+      <td>
+        <%= number_field_tag "weather[][true_wind_force]",nil, :required => true, :style => 'width: 94px;',:min=> '0', :max => '100' %>
+    </td>
+
+
+
+
+    </tr>
+
+</table>
