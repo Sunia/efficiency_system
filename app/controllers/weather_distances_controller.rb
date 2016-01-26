@@ -52,29 +52,28 @@ class WeatherDistancesController < ApplicationController
   end
 
   # DELETE /weather_distances/1
-  # DELETE /weather_distances/1.json
+  # DELETE /weather_dist
   def destroy
-    @weather_distance.destroy
+    @weather_distance.deroy
     respond_to do |format|
       format.html { redirect_to weather_distances_url, notice: 'Weather distance was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
-  # Create multiple Passage Plans
+  # Create multiple weather distances
   def create_multiple_weather_distances
 
-    debugger
-    weather_distances = params[:weather_distance]
+    weather_distances = params[:weather]
 
     unless weather_distances.blank?
 
-      # weather_distances.each do |weather_distance|
-        debugger
-        wd = WeatherDistance.new(weather_distances.to_hash)
-        # wd.update_attributes(:sea_report_id => params[:sea_report_id])
+      weather_distances.each do |weather_distance|
+        
+        wd = WeatherDistance.new(weather_distance)
+        wd.update_attributes(:sea_report_id => params[:sea_report_id])
         wd.save
-      # end
+      end
     end
     respond_to do |format|
      format.html { redirect_to edit_sea_report_path(params[:sea_report_id]), notice: 'Information updated successfully' }

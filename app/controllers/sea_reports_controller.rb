@@ -25,7 +25,6 @@ class SeaReportsController < ApplicationController
 
   # GET /sea_reports/1/edit
   def edit
-
     @sea_report = SeaReport.find(params[:id])
     @report_number = @sea_report.report_number
 
@@ -35,10 +34,10 @@ class SeaReportsController < ApplicationController
     @passage_plans = @sea_report.passage_plans.order('waypoint_no asc')
     @passage_plan_count = @passage_plans.count
 
-    debugger
-    @weather_distances = @sea_report.weather_distances.new
-    @weather_distances.update_attributes(:observation_smt => @sea_report.opened_time_in_smt, :observation_utc => @sea_report.created_at)
-
+    # debugger
+    # @weather_distances = @sea_report.weather_distances.new
+    # @weather_distances.update_attributes(:observation_smt => @sea_report.opened_time_in_smt, :observation_utc => @sea_report.created_at)
+    
     if @sea_report.operating_conditions.blank?
       @operating_condition = @sea_report.operating_conditions.new
     else
