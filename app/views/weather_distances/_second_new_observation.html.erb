@@ -6,15 +6,15 @@
       <td class="f-size-8">Reliable <br>observation</td>
 
 	  	<td class="f-size-8">True wind<br>force(BF)</td>
-	  	<td class="f-size-8">True Wind<br>direction (0-359) degress</td>
+	  	<td class="f-size-8">True Wind<br>direction</td>
 
 	  	<td class="f-size-8">True Wind<br>speed<br> in Knots</td>
 	  	<td class="f-size-8">Wave height <br> in meters(Seas)</td>
-	  	<td class="f-size-8">True Swell Direction <br>(0-359 degrees)</td>
+	  	<td class="f-size-8">True Swell Direction</td>
       <td class="f-size-8"> Water depth<br> in meters</td>
-      <td class="f-size-8"> Couse over <br>ground.<br>(0-359)</td>
-	  	<td class="f-size-8"> Gyro course<br> (0-359)</td>
-	  	<td class="f-size-8"> Compass course<br> (0-359)</td>
+      <td class="f-size-8"> Couse over <br>ground.</td>
+	  	<td class="f-size-8"> Gyro course</td>
+	  	<td class="f-size-8"> Compass course</td>
     </tr>
 
     <tr>
@@ -35,7 +35,33 @@
         <%= number_field_tag "weather[][true_wind_force]",nil, :required => true, :style => 'width: 94px;',:min=> '0', :max => '100' %>
     </td>
 
+     
+      # True Wind direction (0-359) degrees
+      t.integer :true_wind_dir
 
+      # True wind speed in Knots
+      t.float :true_wind_speed_knots
+
+      # Wave height in meters(Seas)
+      t.float :wave_height
+      
+    # True Swell Direction (0-359 degrees)
+    t.integer :true_swell_direction
+
+    # True Swell height in meters
+    t.float :true_swell_height
+
+    #Water depth in meters
+    t.integer :water_depth
+
+    # Couse over ground.(0-359)
+    t.integer :couse_over_ground
+
+    #Gyro course (0-359)
+      t.integer :gyro_course
+
+    # Compass course (0-359)
+    t.integer :compass_course
 
 
     </tr>

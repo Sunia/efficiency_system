@@ -7,14 +7,16 @@
   	  <td class="f-size-8">Observation date <br>and time(SMT)</td>
       <td class="f-size-8">Observation date <br>and time (UTC)</td>
 
-    	<td class="f-size-8">ME Power<br> (Main Engine Power)<br>(In Kw)</td>
+    	<td class="f-size-8">Average ME Power<br>(In kW)</td>
+
     	<td class="f-size-8">ME <br>RPM</td>    	
+      <td class="f-size-8">Speed <br>Logged in<br> Knots</td>
+      <td class="f-size-8">Speed observed<br>in Knots</td>
+
 	  	<td class="f-size-8">Trip counter<br> log (Nm)</td>
-	  	<td class="f-size-8">Trip counter<br>(GPS) Nm</td>
+	  	<td class="f-size-8">Trip counter<br>GPS(Nm)</td>
 	  	<td class="f-size-8">Distance <br>remaining<br> to EOSP(NM)</td>
 	  	<td class="f-size-8">Time <br>remaining<br> to EOSP(hours)</td>
-	  	<td class="f-size-8">Speed <br>Logged in<br> Knots</td>
-      <td class="f-size-8">Speed observed<br>in Knots</td>
 
     </tr>
 
@@ -36,24 +38,26 @@
     </td>
 
 	  <td>  
-      <%= number_field_tag "weather[][me_rpm]",nil, :required => true, :style => 'width: 50px;', :min=> '0', :max => '999999999' %></td>
+      <%= number_field_tag "weather[][me_rpm]",nil, :required => true, :style => 'width: 50px;', :min=> '0', :max => '9999', :step =>'0.01' %></td>
+
+     <td>
+       <%= number_field_tag "weather[][speed_knots]",nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => "width: 60px;" %></td>
+
+      <td><%= number_field_tag "weather[][speed_observed_knots]",nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => "width: 67px;" %></td>
 
 	   <td>
-       <%= number_field_tag "weather[][trip_counter_log]",nil, :required => true, :style => 'width: 50px;', :min=> '0', :max => '999999999' %></td>
+       <%= number_field_tag "weather[][trip_counter_log]",nil, :required => true, :style => 'width: 50px;', :min=> '0', :max => '99999.99', :step => '0.01' %></td>
 
      <td>
-       <%= number_field_tag "weather[][trip_counter_gps]",nil, :required => true, :style => 'width: 50px;', :min=> '0', :max => '999999999' %></td>
+       <%= number_field_tag "weather[][trip_counter_gps]",nil, :required => true, :style => 'width: 50px;', :min=> '0', :max => '99999.99', :step => '0.01' %></td>
+
 
      <td>
-       <%= number_field_tag "weather[][distance_rem_eosp]",nil, :required => true, :style => 'width: 58px;', :min=> '0', :max => '999999999' %></td>
+       <%= number_field_tag "weather[][distance_rem_eosp]",nil, :required => true, :style => 'width: 58px;', :min=> '0', :max => '99999.99', :step =>'0.01' %></td>
 
      <td>
-       <%= number_field_tag "weather[][time_rem_eosp]",nil, :required => true, :style => 'width: 67px;', :min=> '0', :max => '999999999' %></td>
+       <%= number_field_tag "weather[][time_rem_eosp]",nil, :required => true, :style => 'width: 67px;', :min=> '0', :max => '9999.99', :step =>'0.01' %></td>
 
-     <td>
-       <%= number_field_tag "weather[][speed_knots]",nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '999.99', :style => "width: 60px;" %></td>
-
-      <td><%= number_field_tag "weather[][speed_observed_knots]",nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '999.99', :style => "width: 67px;" %></td>
 
     </tr>
 
@@ -65,12 +69,14 @@
       <td></td>
       <td><%= number_field_tag "weather[][avg_me_power]",nil, :style => "width: 94px;", :readonly => true %></td>
       <td><%= number_field_tag "weather[][avg_me_rpm]",nil, :style => "width: 50px;", :readonly => true %></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
       <td><%= number_field_tag "sea_report[][avg_speed_log_knots]",nil, :style => "width: 60px;", :readonly => true %></td>
       <td><%= number_field_tag "sea_report[][avg_speed_observed_knots]",nil, :style => "width: 67px;", :readonly => true %></td>
+
+
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
   </tr>
 
     <!--  Total fields-->
@@ -81,13 +87,14 @@
       <td></td>
       <td></td>
 
+      <td></td>
+      <td></td>
+
       <td><%= number_field_tag "sea_report[][total_trip_counter_log]",nil, :style => "width: 50px;", :readonly => true %></td>
       <td><%= number_field_tag "sea_report[][total_trip_counter_gps]",nil, :style => "width: 50px;", :readonly => true %></td>
       <td><%= number_field_tag "sea_report[][total_distance_rem_eosp]",nil,:style => "width: 58px;", :readonly => true %></td>
       <td><%= number_field_tag "sea_report[][total_time_rem_eosp]",nil, :style => "width: 67px;", :readonly => true %></td>
 
-      <td></td>
-      <td></td>
     </tr>
 
   </table>
