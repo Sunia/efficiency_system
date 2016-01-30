@@ -11,7 +11,7 @@ class CreateWeatherDistances < ActiveRecord::Migration
       t.string :observation_smt
 
 	  # Position ( latitude/ Longitude) - Lat degree n min N/S
-      t.string :position
+      t.text :position
 
 	  # ME Power (MAin Engine Power)(In Kw)
       t.integer :me_power
@@ -20,7 +20,7 @@ class CreateWeatherDistances < ActiveRecord::Migration
       t.integer :me_rpm
 
 	  # Reliable observation
-      t.integer :reliable_observation
+      t.string :reliable_observation
 
       # Trip counter log (Nm)
       t.integer :trip_counter_log

@@ -225,3 +225,8 @@ body{
     background-color: #D0DA98;
     font-size: 12px !important;
 }
+
+.padding-0-col{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}

@@ -68,10 +68,11 @@ class WeatherDistancesController < ApplicationController
 
     unless weather_distances.blank?
 
-      weather_distances.each do |weather_distance|
+      weather_distances.each.with_index do |weather_distance, index|
         
         wd = WeatherDistance.new(weather_distance)
         wd.update_attributes(:sea_report_id => params[:sea_report_id])
+        wd.update_attributes(:position => params[:position][index])
         wd.save
       end
     end
