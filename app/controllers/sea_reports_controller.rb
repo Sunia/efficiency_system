@@ -34,7 +34,10 @@ class SeaReportsController < ApplicationController
     @passage_plans = @sea_report.passage_plans.order('waypoint_no asc')
     @passage_plan_count = @passage_plans.count
 
-    # debugger
+    # Weather and distance
+    @weather_distances = @sea_report.weather_distances.order('created_at asc')
+    @weather_distances_count = @weather_distances.count
+
     # @weather_distances = @sea_report.weather_distances.new
     # @weather_distances.update_attributes(:observation_smt => @sea_report.opened_time_in_smt, :observation_utc => @sea_report.created_at)
     

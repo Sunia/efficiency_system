@@ -54,9 +54,11 @@ class WeatherDistancesController < ApplicationController
   # DELETE /weather_distances/1
   # DELETE /weather_dist
   def destroy
-    @weather_distance.deroy
+    sea_report_id = @weather_distance.sea_report_id
+
+    @weather_distance.destroy
     respond_to do |format|
-      format.html { redirect_to weather_distances_url, notice: 'Weather distance was successfully destroyed.' }
+      format.html { redirect_to edit_sea_report_path(sea_report_id), notice: 'Observation is successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -70,6 +72,7 @@ class WeatherDistancesController < ApplicationController
 
       weather_distances.each.with_index do |weather_distance, index|
         
+        debugger
         wd = WeatherDistance.new(weather_distance)
         wd.update_attributes(:sea_report_id => params[:sea_report_id])
         wd.update_attributes(:position => params[:position][index])

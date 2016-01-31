@@ -1,14 +1,22 @@
 
 <%= form_tag create_multiple_weather_distances_path(@sea_report.id), :method => :post do %>
 
-  <%= render "weather_distances/first_new_observation" %>
+  	<% if @weather_distances_count == 0 %>
 
-  <br><br>
+	  <%= render "weather_distances/first_new_observation" %>
 
-  <%= render "weather_distances/second_new_observation" %>
+	  <br><br>
+
+	  <%= render "weather_distances/second_new_observation" %>
+
+    <% else %>
+      <%= render "weather_distances/list_of_weather_distance" %>
+
+  	<% end %>
 
 	<br><br>
 	<%= submit_tag 'Update Weather and Distance report' %>
-  <button type="button" id="new_weather_observation">Add new Observation</button>
-  <br>
+
+	<button type="button" id="new_weather_observation">Add new Observation</button>
+  	<br>
 <% end %>

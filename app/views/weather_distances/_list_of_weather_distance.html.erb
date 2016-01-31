@@ -1,0 +1,225 @@
+<!-- To display list of weather_distance on edit of sea report-->
+
+<!-- First table -->
+<table id="weather_first_table" border="1">
+
+    <tr>
+      <td class="f-size-8">Observation date <br>and time(SMT)</td>
+      <td class="f-size-8">Observation date <br>and time (UTC)</td>
+      <td class="f-size-8">Avg.<br> Rudder angle</td>
+      <td class="f-size-8">Average ME Power<br>(In kW)</td>
+      <td class="f-size-8">ME <br>RPM</td>      
+      <td class="f-size-8">Speed <br>Logged in<br> Knots</td>
+      <td class="f-size-8">Speed observed<br>in Knots</td>
+      <td class="f-size-8">Trip counter<br> log (Nm)</td>
+      <td class="f-size-8">Trip counter<br>GPS(Nm)</td>
+      <td class="f-size-8">Distance <br>remaining<br> to EOSP(NM)</td>
+      <td class="f-size-8">Time <br>remaining<br> to EOSP(hours)</td>
+
+    </tr>
+
+  <% @weather_distances.each do |weather_distance| %>
+    <tr class="first_table_values">
+
+      <td style = 'width: 100px; font-size: 8px;'>
+        <%= weather_distance.observation_smt  %>
+      </td>
+
+      <td style = 'width: 100px; font-size: 8px;'>
+        <%= weather_distance.observation_utc  %>
+      </td>
+
+      <td style = 'width: 46px;'>
+        <%= weather_distance.avg_rudder_angle  %>
+      </td>
+
+      <td style = 'width: 94px;'>
+        <%= weather_distance.me_power %>
+      </td>
+
+      <td style = 'width: 50px;'>
+        <%= weather_distance.me_rpm %>
+      </td>
+
+      <td style = 'width: 60px;'>
+        <%= weather_distance.speed_knots %>
+      </td>
+
+      <td style = 'width: 67px;'>
+        <%= weather_distance.speed_observed_knots %>
+      </td>
+
+      <td style = 'width: 50px;'>
+        <%= weather_distance.trip_counter_log %>
+      </td>
+
+      <td style = 'width: 50px;'>
+        <%= weather_distance.trip_counter_gps %>
+      </td>
+
+      <td style = 'width: 58px;'>
+        <%= weather_distance.distance_rem_eosp %>
+      </td>
+
+      <td style = 'width: 67px;'>
+        <%= weather_distance.time_rem_eosp %>
+      </td>
+
+
+      <td title='Delete this waypoint.'>
+          <%= link_to weather_distance, method: :delete, data: { confirm: 'Are you sure?' } do %>
+              <%= image_tag 'delete.png', style: 'height: 10%;'%>
+          <% end %>
+      </td>
+    </tr>
+    <% end %>
+
+    <!-- Average fields--> 
+    <tr>
+      <td class="f-size-9" colspan = "3"> Average </td>
+      
+      <td><%= number_field_tag "weather[][avg_me_power]",nil, :style => "width: 94px;", :readonly => true %></td>
+      <td><%= number_field_tag "weather[][avg_me_rpm]",nil, :style => "width: 50px;", :readonly => true %></td>
+      <td><%= number_field_tag "sea_report[][avg_speed_log_knots]",nil, :style => "width: 60px;", :readonly => true %></td>
+      <td><%= number_field_tag "sea_report[][avg_speed_observed_knots]",nil, :style => "width: 67px;", :readonly => true %></td>
+
+
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+  </tr>
+
+    <!--  Total fields-->
+    <tr>
+      
+      <td class="f-size-9" colspan = "7"> Total </td>
+      
+
+      <td><%= number_field_tag "sea_report[][total_trip_counter_log]",nil, :style => "width: 50px;", :readonly => true %></td>
+      <td><%= number_field_tag "sea_report[][total_trip_counter_gps]",nil, :style => "width: 50px;", :readonly => true %></td>
+      <td><%= number_field_tag "sea_report[][total_distance_rem_eosp]",nil,:style => "width: 58px;", :readonly => true %></td>
+      <td><%= number_field_tag "sea_report[][total_time_rem_eosp]",nil, :style => "width: 67px;", :readonly => true %></td>
+
+    </tr>
+  
+  </table>
+
+  <br><br>
+
+  <!-- Start of the Second table -->
+  <table id="second_weather_table" border="1">
+    <tr>
+      <td class="f-size-8" style="width:250px"> Position (latitude/Longitude)</td>
+
+      <td class="f-size-8">True wind<br>force(BF)</td>
+      <td class="f-size-8">True Wind<br>direction</td>
+      <td class="f-size-8">True Wind<br>speed<br> in Knots</td>
+
+      <td class="f-size-8">Wave height <br> in meters<br>(Seas)</td>
+      <td class="f-size-8">True Swell Direction</td>
+      <td class="f-size-8">True Swell Height</td>
+
+      <td class="f-size-8"> Water depth<br> in meters</td>
+      <td class="f-size-8"> Couse over <br>ground.</td>
+      <td class="f-size-8"> Gyro course</td>
+      <td class="f-size-8"> Compass course</td>
+
+      <td class="f-size-8">Reliable <br>observation</td>
+    </tr>
+  <% @weather_distances.each do |weather_distance| %>
+    <tr>
+      <td class="font_size-10">
+        <div class= "row">
+          <div class="col-md-2" style="padding-left: 15px;padding-right: 0px; width: 35px;">
+            <%= weather_distance.position["lat_degree"] %>
+          </div>
+
+          <div class="col-md-2" style="padding-left: 0px;padding-right: 0px; width: 40px;">
+            <%= weather_distance.position["lat_min"] %>
+          </div>
+          <div class="col-md-2" style="padding-left: 0px;padding-right: 0px; width: 50px;">
+             <%= weather_distance.position["lat_dir"] %>
+          </div>
+
+          <div class="col-md-2" style="padding-left: 3px;padding-right: 0px; width: 47px;">
+            <%= weather_distance.position["long_degree"] %>
+          </div>
+
+          <div class="col-md-2" style="padding-left: 0px;padding-right: 0px; width: 40px">
+            <%= weather_distance.position["long_min"] %>
+          </div>
+          <div class="col-md-2" style="padding-left: 0px;padding-right: 10px; width: 16%">
+             <%= weather_distance.position["long_dir"] %>
+          </div>
+        </div>
+      </td>
+
+      <!-- True wind force(BF) -->
+      <td style = 'width: 60px;'>
+        <%= weather_distance.true_wind_force %>
+      </td>
+
+      <!-- True wind direction -->
+      <td style = 'width: 42px;'>
+        <%= weather_distance.true_wind_dir %>
+      </td>
+
+      <!-- True wind speed in Knots -->
+      <td style = 'width: 42px;'>
+        <%= weather_distance.true_wind_speed_knots %>
+      </td>
+
+      <!-- Wave height in meters(Seas) -->
+      <td style ='width: 40px;'>
+        <%= weather_distance.wave_height %>
+      </td>
+
+      <!-- True Swell Direction (0-359 degrees) -->
+      <td style ='width: 44px;'>
+        
+        <%= weather_distance.true_swell_direction %>
+      </td>
+
+    <!-- True Swell height in meters -->
+    <td style ='width: 40px;'>
+      <%= weather_distance.true_swell_height %>
+    </td>
+
+    <!-- Water depth in meters -->
+    <td style ='width: 46px;'>
+      <%= weather_distance.water_depth %>
+    </td>
+
+    <!-- Couse over ground (0-359) -->
+    <td style ='width: 40px;'>
+      <%= weather_distance.couse_over_ground %>
+    </td>
+
+    <!-- Gyro course (0-359) -->
+    <td style ='width: 40px;'>
+      <%= weather_distance.gyro_course %>
+    </td>
+ 
+    <!-- Compass course (0-359) -->
+    <td style ='width: 42px;'>
+      <%= weather_distance.compass_course %>
+    </td>
+
+    <!-- Reliable Observation -->
+    <td>
+     <%= weather_distance.reliable_observation %>
+    </td>
+
+    <td title='Delete this waypoint.'>
+        <%= link_to weather_distance, method: :delete, data: { confirm: 'Are you sure?' } do %>
+            <%= image_tag 'delete.png', style: 'height: 10%;'%>
+        <% end %>
+    </td>
+
+  </tr>
+  <% end %>
+</table>
+
+
+
