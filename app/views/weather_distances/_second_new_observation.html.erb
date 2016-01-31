@@ -1,19 +1,21 @@
-<table border="1">
+<table id="second_weather_table" border="1">
     <tr>
       <td class="f-size-8" style="width:250px"> Position (latitude/Longitude)</td>
-      <td class="f-size-8">Reliable <br>observation</td>
 
 	  	<td class="f-size-8">True wind<br>force(BF)</td>
 	  	<td class="f-size-8">True Wind<br>direction</td>
-
 	  	<td class="f-size-8">True Wind<br>speed<br> in Knots</td>
+
 	  	<td class="f-size-8">Wave height <br> in meters<br>(Seas)</td>
       <td class="f-size-8">True Swell Direction</td>
       <td class="f-size-8">True Swell Height</td>
+
       <td class="f-size-8"> Water depth<br> in meters</td>
       <td class="f-size-8"> Couse over <br>ground.</td>
 	  	<td class="f-size-8"> Gyro course</td>
 	  	<td class="f-size-8"> Compass course</td>
+
+      <td class="f-size-8">Reliable <br>observation</td>
     </tr>
 
     <tr>
@@ -83,23 +85,11 @@
           </div>
           <div class="col-md-2" style="padding-left: 0px;padding-right: 10px; width: 16%">
              <select name="position[][long_dir]"  style="width: 31px;height: 23px;" >
-                <option value="E">East</option>
                 <option value="W">West</option>
+                <option value="E">East</option>
              </select>
           </div>
-
-
         </div>
-
-
-      </td>
-
-      <!-- Reliable Observation -->
-      <td>
-       <select name="passage[][reliable_observation]" style ='width: 55px;font-size: 10px; height: 23px;' >
-            <option value="Reliable">Reliable</option>
-            <option value="Non-Reliable">Non-Reliable</option>
-       </select>
       </td>
 
       <!-- True wind force(BF) -->
@@ -150,6 +140,14 @@
     <!-- Compass course (0-359) -->
     <td>
       <%= number_field_tag "weather[][compass_course]",nil, :required => true, :style => 'width: 42px;',:min=> '0', :max => '100' %>
+    </td>
+
+    <!-- Reliable Observation -->
+    <td>
+     <select name="weather[][reliable_observation]" style ='width: 55px;font-size: 10px; height: 23px;' >
+          <option value="Reliable">Reliable</option>
+          <option value="Non-Reliable">Non-Reliable</option>
+     </select>
     </td>
 
   </tr>

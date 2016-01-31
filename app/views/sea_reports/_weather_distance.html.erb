@@ -2,22 +2,27 @@
 
 <script> 
 
+  // Delete the row
+  function deleteRow(btn) {
+    var row = btn.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+  }
+
   // Add new waypoint on the list of passage plan
   $( "#new_weather_observation" ).on( "click", function( event ) {
 
     first_data = make_row_for_first_table;
+    second_data = make_row_for_second_table;
 
     // $('#weather_first_table tr:last').after(first_data);
     $('.first_table_values').last().after(first_data);
-
+    $('#second_weather_table tr:last').after(second_data);
   });
 
-  // Insert fields of passage plan in a row
+  // Make new row for the first table.
   function make_row_for_first_table() {
 
     data = '<tr class="first_table_values">'
-
-    data +=  '<td class="f-size-9"> Values </td>'
 
     // SMT
     data += '<td><input type="text" name="weather[][observation_smt]" id="weather__observation_smt" value="2016-01-24 23:3:3 -1100" required="required" style="width: 100px; font-size: 8px;"></td>'
@@ -25,23 +30,32 @@
     // UTC
     data += '<td><input type="text" name="weather[][observation_utc]" id="weather__observation_utc" value="2016-01-25 10:03:03 UTC" required="required" style="width: 100px; font-size: 8px;"></td>'
 
+    // Avg Rudder Angle
+    data += '<td><input type="number" name="weather[][avg_rudder_angle]" id="weather__avg_rudder_angle" required="required" style="width: 46px;" class="avg_rudder_angle" min="0" max="99"></td>'
+
     // ME Power
-    data +=	'<td><input type="number" name="weather[][me_power]" id="weather__me_power", class="me_power" required="required" style="width: 94px;" min="0" max="999999999"></td>'
+    data +=	'<td><input type="number" name="weather[][me_power]" id="weather__me_power" required="required" style="width: 94px;" class="me_power" min="0" max="999999999"></td>'
 
     // ME RPM
-	data +=  '<td> <input type="number" name="weather[][me_rpm]" id="weather__me_rpm" required="required" style="width: 50px;" min="0" max="999999999"></td>'
+	 data +=  '<td> <input type="number" name="weather[][me_rpm]" id="weather__me_rpm" required="required" style="width: 50px;" min="0" max="9999" step="0.01"></td>'
 
-    data +='<td><input type="number" name="weather[][trip_counter_log]" id="weather__trip_counter_log" required="required" style="width: 50px;" min="0" max="999999999"></td>'
+    // Speed knots
+     data += '<td><input type="number" name="weather[][speed_knots]" id="weather__speed_knots" required="required" step="0.01" min="0.00" max="99.99" style="width: 60px;"></td>'
 
-    data += '<td><input type="number" name="weather[][trip_counter_gps]" id="weather__trip_counter_gps" required="required" style="width: 50px;" min="0" max="999999999"></td>'
-     
-    data += '<td><input type="number" name="weather[][distance_rem_eosp]" id="weather__distance_rem_eosp" required="required" style="width: 58px;" min="0" max="999999999"></td>'
+    // Speed observed knots 
+    data += '<td><input type="number" name="weather[][speed_observed_knots]" id="weather__speed_observed_knots" required="required" step="0.01" min="0.00" max="99.99" style="width: 67px;"></td>'
 
-    data += '<td><input type="number" name="weather[][time_rem_eosp]" id="weather__time_rem_eosp" required="required" style="width: 67px;" min="0" max="999999999"></td>'
+   // Trip Counter log
+    data +='<td><input type="number" name="weather[][trip_counter_log]" id="weather__trip_counter_log" required="required" style="width: 50px;" min="0" max="99999.99" step="0.01"></td>'
 
-    data += '<td><input type="number" name="weather[][speed_knots]" id="weather__speed_knots" required="required" step="0.01" min="0.00" max="999.99" style="width: 60px;"></td>'
+    // Trip Counter gps
+    data += '<td><input type="number" name="weather[][trip_counter_gps]" id="weather__trip_counter_gps" required="required" style="width: 50px;" min="0" max="99999.99" step="0.01"></td>'
+    
+    // Distance remaining to EOSP
+    data += '<td><input type="number" name="weather[][distance_rem_eosp]" id="weather__distance_rem_eosp" required="required" style="width: 58px;" min="0" max="99999.99" step="0.01"></td>'
 
-    data += '<td><input type="number" name="weather[][speed_observed_knots]" id="weather__speed_observed_knots" required="required" step="0.01" min="0.00" max="999.99" style="width: 67px;"></td>'
+    // Time remaining to EOSP
+    data += '<td><input type="number" name="weather[][time_rem_eosp]" id="weather__time_rem_eosp" required="required" style="width: 67px;" min="0" max="9999.99" step="0.01"></td>'
 
     // Delete image
     data += "<td><img src='/assets/delete.png' style='height: 10%;' onClick='deleteRow(this)'> </td>"
@@ -50,11 +64,77 @@
     return data;
   }
 
-  // Delete the row
-  function deleteRow(btn) {
-    var row = btn.parentNode.parentNode;
-    row.parentNode.removeChild(row);
-  }
 
+  // Make new row for the second table 
+  function make_row_for_second_table() {
+
+    data = '<tr>'
+
+    // Position
+    data += '<td class="font_size-10">'
+
+    // LAtitude
+    data += '<div class="row"><div class="col-md-2" style="padding-left: 15px;padding-right: 0px;">'
+      // latitude degree
+    data += '<input type="number" name="position[][lat_degree]" id="position__lat_degree" required="required" min="0" max="90" style="width: 35px;"></div>'
+      
+      // latitude min
+      data+=  '<div class="col-md-2" style="padding-left: 0px;padding-right: 0px;"><input type="number" name="position[][lat_min]" id="position__lat_min" required="required" step="0.01" min="0.00" max="59.99" style="width: 40px;"></div>'
+
+      // latitude dir
+      data+= '<div class="col-md-2" style="padding-left: 0px;padding-right: 0px;"><select name="position[][lat_dir]" style="width: 50px;height: 23px;"><option value="N">North</option><option value="S">South</option></select></div>'
+
+
+      // long degree
+      data += '<div class="col-md-2" style="padding-left: 3px;padding-right: 0px;"><input type="number" name="position[][long_degree]" id="position__long_degree" required="required" min="0" max="90" style="width: 47px;"></div>'
+
+      // long min
+      data += '<div class="col-md-2" style="padding-left: 0px;padding-right: 0px;"><input type="number" name="position[][long_min]" id="position__long_min" required="required" step="0.01" min="0.00" max="59.99" style="width: 40px;"></div>'
+
+      // long_dir
+      data += '<div class="col-md-2" style="padding-left: 0px;padding-right: 10px; width: 16%"><select name="position[][long_dir]" style="width: 31px;height: 23px;"><option value="W">West</option><option value="E">East</option></select></div></div></td>'
+      // End of position
+
+
+      // True wind force(BF)
+      data += '<td><input type="number" name="weather[][true_wind_force]" id="weather__true_wind_force" required="required" style="width: 60px;" min="0" max="99"></td>'
+
+      // True wind direction
+      data += '<td><input type="number" name="weather[][true_wind_dir]" id="weather__true_wind_dir" required="required" style="width: 42px;" min="0" max="100"></td>'
+
+      // True wind speed in Knots
+      data += '<td><input type="number" name="weather[][true_wind_speed_knots]" id="weather__true_wind_speed_knots" required="required" style="width: 42px;" min="0" max="100"></td>'
+
+      // Wave height in meters(Seas)
+      data += '<td><input type="number" name="weather[][wave_height]" id="weather__wave_height" required="required" style="width: 40px;" min="0" max="100"></td>'
+
+      //True Swell Direction (0-359 degrees)
+      data += '<td><input type="number" name="weather[][true_swell_direction]" id="weather__true_swell_direction" required="required" style="width: 44px;" min="0" max="100"></td>'
+
+      // True Swell height in meters
+     data += '<td><input type="number" name="weather[][true_swell_height]" id="weather__true_swell_height" required="required" style="width: 40px;" min="0" max="100"></td>'
+
+    // Water depth in meters
+    data += '<td><input type="number" name="weather[][water_depth]" id="weather__water_depth" required="required" style="width: 46px;" min="0" max="100"></td>'
+
+    // Couse over ground (0-359)
+    data += '<td><input type="number" name="weather[][couse_over_ground]" id="weather__couse_over_ground" required="required" style="width: 40px;" min="0" max="100"></td>'
+
+    // Gyro course (0-359)
+    data += '<td><input type="number" name="weather[][gyro_course]" id="weather__gyro_course" required="required" style="width: 40px;" min="0" max="100"></td>'
+
+    // Compass course (0-359)
+    data += '<td><input type="number" name="weather[][compass_course]" id="weather__compass_course" required="required" style="width: 42px;" min="0" max="100"></td>'
+
+    // Reliable Observation
+    data += '<td><select name="weather[][reliable_observation]" style="width: 55px;font-size: 10px; height: 23px;"><option value="Reliable">Reliable</option><option value="Non-Reliable">Non-Reliable</option></select></td>'
+
+    // Delete image
+    data += "<td><img src='/assets/delete.png' style='height: 10%;' onClick='deleteRow(this)'> </td>"
+
+    data += '</tr>'
+    return data;
+
+  }
 
 </script>
