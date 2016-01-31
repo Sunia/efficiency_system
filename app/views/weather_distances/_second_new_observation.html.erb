@@ -1,8 +1,26 @@
 <table id="second_weather_table" border="1">
     <tr>
-      <td class="f-size-8"> Position (latitude/Longitude)</td>
+      <td class="f-size-8"> 
+        <table border="1" style="width: 220px;"> 
+          <tr><td colspan="12" style="text-align: center;"> Position </td> </tr>
+          <tr> 
+            <td colspan="6" style="text-align: center; font-size: 10px;"> Latitude </td>
+            <td colspan="6" style="text-align: center; font-size: 10px;"> Longitude </td>
+          </tr>
+          <tr>
+            <td colspan="2" style="text-align: center; font-size: 10px;"> Deg </td>
+            <td colspan="3" style="text-align: center; font-size: 10px;"> Min </td>
+            <td colspan="1" style="text-align: center; font-size: 10px;"> N/S </td>
 
-	  	<td class="f-size-8">True wind<br>force <br>(BF)</td>
+            <td colspan="2" style="text-align: center; font-size: 10px;"> Deg </td>
+            <td colspan="3" style="text-align: center; font-size: 10px;"> Min </td>
+            <td colspan="1" style="text-align: center; font-size: 10px;"> E/W </td>
+          </tr>
+        </table>
+
+      </td>
+
+	  	<td class="f-size-8">True wind force <br>(BF)</td>
 	  	<td class="f-size-8">True Wind<br>direction<br>(000-359)</td>
 	  	<td class="f-size-8">True Wind<br>speed<br>(in Knots)</td>
 
@@ -20,7 +38,7 @@
 
     <tr>
 
-      <td style="width: 222px; font-size:10px;">
+      <td style="width: 220px; font-size:10px;">
 
         <%= number_field_tag "position[][lat_degree]",nil, :required => true, :min => 0, :max => 90, :style => 'width: 40px;', :class => 'padding-0-col' %>
 
@@ -43,7 +61,7 @@
 
       <!-- True wind force(BF) -->
       <td>
-        <%= number_field_tag "weather[][true_wind_force]",nil, :required => true, :style => 'width: 40px;',:min=> '0', :max => '99' %>
+        <%= number_field_tag "weather[][true_wind_force]",nil, :required => true, :style => 'width: 44px;',:min=> '0', :max => '99' %>
       </td>
 
       <!-- True wind direction -->
