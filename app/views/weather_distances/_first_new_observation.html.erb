@@ -6,17 +6,17 @@
   	  <td class="f-size-8">Observation date <br>and time(SMT)</td>
       <td class="f-size-8">Observation date <br>and time (UTC)</td>
 
-      <td class="f-size-8">Avg.<br> Rudder angle</td>
-    	<td class="f-size-8">Average ME Power<br>(In kW)</td>
+      <td class="f-size-8">Average <br> ME Power<br>(In kW)</td>
 
-    	<td class="f-size-8">ME <br>RPM</td>    	
-      <td class="f-size-8">Speed <br>Logged in<br> Knots</td>
-      <td class="f-size-8">Speed observed<br>in Knots</td>
+      <td class="f-size-8">ME <br>RPM</td>      
+      <td class="f-size-8">Speed <br>Logged <br>(in Knots)</td>
+      <td class="f-size-8">Speed observed<br>(in Knots)</td>
 
-	  	<td class="f-size-8">Trip counter<br> log (Nm)</td>
-	  	<td class="f-size-8">Trip counter<br>GPS(Nm)</td>
-	  	<td class="f-size-8">Distance <br>remaining<br> to EOSP(NM)</td>
-	  	<td class="f-size-8">Time <br>remaining<br> to EOSP(hours)</td>
+      <td class="f-size-8">Trip counter<br> log<br>(Nm)</td>
+      <td class="f-size-8">Trip counter<br>GPS<br>(Nm)</td>
+      <td class="f-size-8">Distance <br>remaining<br> to EOSP <br>(Nm)</td>
+      <td class="f-size-8">Time <br>remaining<br> to EOSP <br>(hours)</td>
+      <td class="f-size-8">Average <br> Rudder angle</td>
 
     </tr>
 
@@ -31,10 +31,6 @@
       <td>
         <%= text_field_tag "weather[][observation_utc]", @sea_report.created_at, :required => true, :style => 'width: 100px; font-size: 8px;' %>
       </td>   
-
-      <td>
-        <%= number_field_tag "weather[][avg_rudder_angle]",nil, :required => true, :style => 'width: 46px;',:class => "avg_rudder_angle",:min=> '0', :max => '99' %>
-      </td>
 
 	  <td>
       <%= number_field_tag "weather[][me_power]",nil, :required => true, :style => 'width: 94px;',:class => "me_power",:min=> '0', :max => '999999999' %>
@@ -61,12 +57,17 @@
      <td>
        <%= number_field_tag "weather[][time_rem_eosp]",nil, :required => true, :style => 'width: 67px;', :min=> '0', :max => '9999.99', :step =>'0.01' %></td>
 
+      <td>
+        <%= number_field_tag "weather[][avg_rudder_angle]",nil, :required => true, :style => 'width: 46px;',:class => "avg_rudder_angle",:min=> '0', :max => '99' %>
+      </td>
+
+
 
     </tr>
 
     <!-- Average fields--> 
     <tr>
-      <td class="f-size-9" colspan = "3"> Average </td>
+      <td class="f-size-9" colspan = "2"> Average </td>
       
       <td><%= number_field_tag "weather[][avg_me_power]",nil, :style => "width: 94px;", :readonly => true %></td>
       <td><%= number_field_tag "weather[][avg_me_rpm]",nil, :style => "width: 50px;", :readonly => true %></td>
@@ -78,19 +79,7 @@
       <td></td>
       <td></td>
       <td></td>
+      <td></td>
   </tr>
-
-    <!--  Total fields-->
-    <tr>
-      
-      <td class="f-size-9" colspan = "7"> Total </td>
-      
-
-      <td><%= number_field_tag "sea_report[][total_trip_counter_log]",nil, :style => "width: 50px;", :readonly => true %></td>
-      <td><%= number_field_tag "sea_report[][total_trip_counter_gps]",nil, :style => "width: 50px;", :readonly => true %></td>
-      <td><%= number_field_tag "sea_report[][total_distance_rem_eosp]",nil,:style => "width: 58px;", :readonly => true %></td>
-      <td><%= number_field_tag "sea_report[][total_time_rem_eosp]",nil, :style => "width: 67px;", :readonly => true %></td>
-
-    </tr>
 
   </table>

@@ -77,12 +77,10 @@
     <!-- Average fields--> 
     <tr>
       <td class="f-size-9" colspan = "3"> Average </td>
-      
       <td><%= number_field_tag "weather[][avg_me_power]",nil, :style => "width: 94px;", :readonly => true %></td>
       <td><%= number_field_tag "weather[][avg_me_rpm]",nil, :style => "width: 50px;", :readonly => true %></td>
       <td><%= number_field_tag "sea_report[][avg_speed_log_knots]",nil, :style => "width: 60px;", :readonly => true %></td>
       <td><%= number_field_tag "sea_report[][avg_speed_observed_knots]",nil, :style => "width: 67px;", :readonly => true %></td>
-
 
       <td></td>
       <td></td>
@@ -90,19 +88,6 @@
       <td></td>
   </tr>
 
-    <!--  Total fields-->
-    <tr>
-      
-      <td class="f-size-9" colspan = "7"> Total </td>
-      
-
-      <td><%= number_field_tag "sea_report[][total_trip_counter_log]",nil, :style => "width: 50px;", :readonly => true %></td>
-      <td><%= number_field_tag "sea_report[][total_trip_counter_gps]",nil, :style => "width: 50px;", :readonly => true %></td>
-      <td><%= number_field_tag "sea_report[][total_distance_rem_eosp]",nil,:style => "width: 58px;", :readonly => true %></td>
-      <td><%= number_field_tag "sea_report[][total_time_rem_eosp]",nil, :style => "width: 67px;", :readonly => true %></td>
-
-    </tr>
-  
   </table>
 
   <br><br>

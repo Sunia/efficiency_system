@@ -3,19 +3,19 @@
       <td class="f-size-8" style="width:250px"> Position (latitude/Longitude)</td>
 
 	  	<td class="f-size-8">True wind<br>force(BF)</td>
-	  	<td class="f-size-8">True Wind<br>direction</td>
-	  	<td class="f-size-8">True Wind<br>speed<br> in Knots</td>
+	  	<td class="f-size-8">True Wind<br>direction<br>(000-359)</td>
+	  	<td class="f-size-8">True Wind<br>speed<br>(in Knots)</td>
 
-	  	<td class="f-size-8">Wave height <br> in meters<br>(Seas)</td>
-      <td class="f-size-8">True Swell Direction</td>
-      <td class="f-size-8">True Swell Height</td>
+	  	<td class="f-size-8">Wave height <br>(in meters)</td>
+      <td class="f-size-8">True Swell Direction <br>(000-359)</td>
+      <td class="f-size-8">True Swell Height <br>(in meters)</td>
 
-      <td class="f-size-8"> Water depth<br> in meters</td>
-      <td class="f-size-8"> Couse over <br>ground.</td>
-	  	<td class="f-size-8"> Gyro course</td>
-	  	<td class="f-size-8"> Compass course</td>
+      <td class="f-size-8"> Water depth<br>(in meters)</td>
+      <td class="f-size-8"> Couse over <br>ground <br>(000-359)</td>
+	  	<td class="f-size-8"> Gyro course <br>(000-359)</td>
+	  	<td class="f-size-8"> Compass course <br>(000-359)</td>
 
-      <td class="f-size-8">Reliable <br>observation</td>
+      <td class="f-size-8">Is the<br>observation <br> Reliable ?</td>
     </tr>
 
     <tr>
@@ -61,32 +61,32 @@
 
       <td class="font_size-10">
 
-        <div class= "row">
+        <div class= "row" style="width: 257px;">
           <div class="col-md-2" style="padding-left: 15px;padding-right: 0px;">
-            <%= number_field_tag "position[][lat_degree]",nil, :required => true, :min => 0, :max => 90, :style => 'width: 35px;' %>
+            <%= number_field_tag "position[][lat_degree]",nil, :required => true, :min => 0, :max => 90, :style => 'width: 40px;' %>
           </div>
 
           <div class="col-md-2" style="padding-left: 0px;padding-right: 0px;">
             <%= number_field_tag "position[][lat_min]",  nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '59.99', :style => 'width: 40px;'  %>
           </div>
-          <div class="col-md-2" style="padding-left: 0px;padding-right: 0px;">
-             <select name="position[][lat_dir]"  style="width: 50px;height: 23px;" >
-                <option value="N">North</option>
-                <option value="S">South</option>
+          <div class="col-md-1" style="padding-left: 0px;padding-right: 0px;">
+             <select name="position[][lat_dir]"  style="width: 30px;height: 23px;" >
+                <option value="N">N</option>
+                <option value="S">S</option>
              </select>
           </div>
 
           <div class="col-md-2" style="padding-left: 3px;padding-right: 0px;">
-            <%= number_field_tag "position[][long_degree]",nil, :required => true, :min => 0, :max => 90, :style => 'width: 47px;' %>
+            <%= number_field_tag "position[][long_degree]",nil, :required => true, :min => 0, :max => 90, :style => 'width: 40px;' %>
           </div>
 
           <div class="col-md-2" style="padding-left: 0px;padding-right: 0px;">
             <%= number_field_tag "position[][long_min]",  nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '59.99', :style => 'width: 40px;'  %>
           </div>
-          <div class="col-md-2" style="padding-left: 0px;padding-right: 10px; width: 16%">
-             <select name="position[][long_dir]"  style="width: 31px;height: 23px;" >
-                <option value="W">West</option>
-                <option value="E">East</option>
+          <div class="col-md-1" style="padding-left: 0px;padding-right: 10px; width: 16%">
+             <select name="position[][long_dir]"  style="width: 30px;height: 23px;" >
+                <option value="W">W</option>
+                <option value="E">E</option>
              </select>
           </div>
         </div>
@@ -94,12 +94,12 @@
 
       <!-- True wind force(BF) -->
       <td>
-        <%= number_field_tag "weather[][true_wind_force]",nil, :required => true, :style => 'width: 60px;',:min=> '0', :max => '99' %>
+        <%= number_field_tag "weather[][true_wind_force]",nil, :required => true, :style => 'width: 43px;',:min=> '0', :max => '99' %>
       </td>
 
       <!-- True wind direction -->
       <td>
-        <%= number_field_tag "weather[][true_wind_dir]",nil, :required => true, :style => 'width: 42px;',:min=> '0', :max => '100' %>
+        <%= number_field_tag "weather[][true_wind_dir]",nil, :required => true, :style => 'width: 42px;',:min=> '000', :max => '359' %>
       </td>
 
       <!-- True wind speed in Knots -->
@@ -114,7 +114,7 @@
 
       <!-- True Swell Direction (0-359 degrees) -->
       <td>
-        <%= number_field_tag "weather[][true_swell_direction]",nil, :required => true, :style => 'width: 44px;',:min=> '0', :max => '100' %>
+        <%= number_field_tag "weather[][true_swell_direction]",nil, :required => true, :style => 'width: 44px;',:min=> '000', :max => '359' %>
       </td>
 
     <!-- True Swell height in meters -->
@@ -124,29 +124,29 @@
 
     <!-- Water depth in meters -->
     <td>
-      <%= number_field_tag "weather[][water_depth]",nil, :required => true, :style => 'width: 46px;',:min=> '0', :max => '100' %>
+      <%= number_field_tag "weather[][water_depth]",nil, :required => true, :style => 'width: 46px;',:min=> '0', :max => '10000' %>
     </td>
 
     <!-- Couse over ground (0-359) -->
     <td>
-      <%= number_field_tag "weather[][couse_over_ground]",nil, :required => true, :style => 'width: 40px;',:min=> '0', :max => '100' %>
+      <%= number_field_tag "weather[][couse_over_ground]",nil, :required => true, :style => 'width: 40px;',:min=> '000', :max => '359' %>
     </td>
 
     <!-- Gyro course (0-359) -->
     <td>
-      <%= number_field_tag "weather[][gyro_course]",nil, :required => true, :style => 'width: 40px;',:min=> '0', :max => '100' %>
+      <%= number_field_tag "weather[][gyro_course]",nil, :required => true, :style => 'width: 40px;',:min=> '000', :max => '359' %>
     </td>
 
     <!-- Compass course (0-359) -->
     <td>
-      <%= number_field_tag "weather[][compass_course]",nil, :required => true, :style => 'width: 42px;',:min=> '0', :max => '100' %>
+      <%= number_field_tag "weather[][compass_course]",nil, :required => true, :style => 'width: 42px;',:min=> '000', :max => '359' %>
     </td>
 
     <!-- Reliable Observation -->
     <td>
      <select name="weather[][reliable_observation]" style ='width: 55px;font-size: 10px; height: 23px;' >
-          <option value="Reliable">Reliable</option>
-          <option value="Non-Reliable">Non-Reliable</option>
+          <option value="Reliable">Yes</option>
+          <option value="Non-Reliable">No</option>
      </select>
     </td>
 

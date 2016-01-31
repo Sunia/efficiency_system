@@ -100,7 +100,7 @@
       data += '<td><input type="number" name="weather[][true_wind_force]" id="weather__true_wind_force" required="required" style="width: 60px;" min="0" max="99"></td>'
 
       // True wind direction
-      data += '<td><input type="number" name="weather[][true_wind_dir]" id="weather__true_wind_dir" required="required" style="width: 42px;" min="0" max="100"></td>'
+      data += '<td><input type="number" name="weather[][true_wind_dir]" id="weather__true_wind_dir" required="required" style="width: 42px;" min="000" max="359"></td>'
 
       // True wind speed in Knots
       data += '<td><input type="number" name="weather[][true_wind_speed_knots]" id="weather__true_wind_speed_knots" required="required" style="width: 42px;" min="0" max="100"></td>'
@@ -109,22 +109,22 @@
       data += '<td><input type="number" name="weather[][wave_height]" id="weather__wave_height" required="required" style="width: 40px;" min="0" max="100"></td>'
 
       //True Swell Direction (0-359 degrees)
-      data += '<td><input type="number" name="weather[][true_swell_direction]" id="weather__true_swell_direction" required="required" style="width: 44px;" min="0" max="100"></td>'
+      data += '<td><input type="number" name="weather[][true_swell_direction]" id="weather__true_swell_direction" required="required" style="width: 44px;" min="000" max="359"></td>'
 
       // True Swell height in meters
      data += '<td><input type="number" name="weather[][true_swell_height]" id="weather__true_swell_height" required="required" style="width: 40px;" min="0" max="100"></td>'
 
     // Water depth in meters
-    data += '<td><input type="number" name="weather[][water_depth]" id="weather__water_depth" required="required" style="width: 46px;" min="0" max="100"></td>'
+    data += '<td><input type="number" name="weather[][water_depth]" id="weather__water_depth" required="required" style="width: 46px;" min="0" max="10000"></td>'
 
     // Couse over ground (0-359)
-    data += '<td><input type="number" name="weather[][couse_over_ground]" id="weather__couse_over_ground" required="required" style="width: 40px;" min="0" max="100"></td>'
+    data += '<td><input type="number" name="weather[][couse_over_ground]" id="weather__couse_over_ground" required="required" style="width: 40px;" min="000" max="359"></td>'
 
     // Gyro course (0-359)
-    data += '<td><input type="number" name="weather[][gyro_course]" id="weather__gyro_course" required="required" style="width: 40px;" min="0" max="100"></td>'
+    data += '<td><input type="number" name="weather[][gyro_course]" id="weather__gyro_course" required="required" style="width: 40px;" min="000" max="359"></td>'
 
     // Compass course (0-359)
-    data += '<td><input type="number" name="weather[][compass_course]" id="weather__compass_course" required="required" style="width: 42px;" min="0" max="100"></td>'
+    data += '<td><input type="number" name="weather[][compass_course]" id="weather__compass_course" required="required" style="width: 42px;" min="000" max="359"></td>'
 
     // Reliable Observation
     data += '<td><select name="weather[][reliable_observation]" style="width: 55px;font-size: 10px; height: 23px;"><option value="Reliable">Reliable</option><option value="Non-Reliable">Non-Reliable</option></select></td>'
