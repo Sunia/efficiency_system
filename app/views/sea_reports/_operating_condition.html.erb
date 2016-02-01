@@ -2,6 +2,7 @@
 
 <%= render 'operating_conditions/operating_conditions' %>
 
+
 <!-- Javascript -->
 <script>
 
@@ -72,22 +73,46 @@
     }
 
   // Speed log calibration date
-  $("#speed_log_date").bind("change", function(e){
-    debugger;
-    alert("hello");
+
+  function check_overdue_for_speed_and_torsion(){
+    calculate_speed_log_date();
+    calculate_torsion_meter_date();
+  }
+
+  function calculate_speed_log_date(){
+    
     speed_log_date = $("#speed_log_date")[0].value;
 
-    log_date = new Date(value);
+    log_date = new Date(speed_log_date);
     today = new Date();
-    log_date.setDate(log_date.getDate() + 90);
 
-    if(log_date < today){
-      alert("Speed log calibration is overdue by 3 days");
+    var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+
+    var diffDays = Math.round(Math.abs((today.getTime() - log_date.getTime())/(oneDay)))
+
+    if(diffDays > 90){
+      due_days = diffDays - 90
+      alert("Speed log calibration is overdue by " + due_days +  " days");
     }  
-    else{
-      alert("hello");
-    }
-  });
+  }
+
+
+  function calculate_torsion_meter_date(){
+    torsion_meter_date = $("#torsion_meter_date")[0].value;
+
+    log_date = new Date(torsion_meter_date);
+    today = new Date();
+
+    var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+
+    var diffDays = Math.round(Math.abs((today.getTime() - log_date.getTime())/(oneDay)))
+
+    if(diffDays > 90){
+      due_days = diffDays - 90
+      alert("Torsion meter Calibration Date is overdue by " + due_days +  " days");
+    }  
+  }
+
 
 
 </script>

@@ -24,12 +24,13 @@ class OperatingConditionsController < ApplicationController
   # POST /operating_conditions
   # POST /operating_conditions.json
   def create
-
     sea_report_id = params[:operating_condition][:sea_report_id]
     @operating_condition = OperatingCondition.where(:sea_report_id => sea_report_id.to_i).first
 
     if @operating_condition.blank?
       @operating_condition = OperatingCondition.create(params[:operating_condition])
+    else
+      @operating_condition.update(operating_condition_params)
     end
 
     respond_to do |format|
@@ -46,6 +47,7 @@ class OperatingConditionsController < ApplicationController
   # PATCH/PUT /operating_conditions/1
   # PATCH/PUT /operating_conditions/1.json
   def update
+
     respond_to do |format|
       if @operating_condition.update(operating_condition_params)
         format.html { redirect_to @operating_condition, notice: 'Operating condition was successfully updated.' }
