@@ -77,10 +77,10 @@
     <!-- Average fields--> 
     <tr>
       <td class="f-size-9" colspan = "3"> Average </td>
-      <td><%= number_field_tag "weather[][avg_me_power]",nil, :style => "width: 94px;", :readonly => true %></td>
-      <td><%= number_field_tag "weather[][avg_me_rpm]",nil, :style => "width: 50px;", :readonly => true %></td>
-      <td><%= number_field_tag "sea_report[][avg_speed_log_knots]",nil, :style => "width: 60px;", :readonly => true %></td>
-      <td><%= number_field_tag "sea_report[][avg_speed_observed_knots]",nil, :style => "width: 67px;", :readonly => true %></td>
+      <td style="width: 94px;"><%= @sea_report.avg_me_power %></td>
+      <td style="width: 50px;"><%= @sea_report.avg_me_rpm %></td>
+      <td style="width: 60px;"><%= @sea_report.avg_speed_log_knots %></td>
+      <td style="width: 67px;"><%= @sea_report.avg_speed_observed_knots %></td>
 
       <td></td>
       <td></td>

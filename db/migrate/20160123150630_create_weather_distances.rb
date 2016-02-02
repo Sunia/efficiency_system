@@ -17,7 +17,7 @@ class CreateWeatherDistances < ActiveRecord::Migration
       t.integer :me_power
  
       # ME RPM
-      t.integer :me_rpm
+      t.float :me_rpm
 
 	  # Reliable observation
       t.string :reliable_observation

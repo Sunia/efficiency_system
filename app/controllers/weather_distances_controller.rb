@@ -71,13 +71,15 @@ class WeatherDistancesController < ApplicationController
     unless weather_distances.blank?
 
       weather_distances.each.with_index do |weather_distance, index|
-        
-        debugger
+        @sea_report_id = params[:sea_report_id]
         wd = WeatherDistance.new(weather_distance)
         wd.update_attributes(:sea_report_id => params[:sea_report_id])
         wd.update_attributes(:position => params[:position][index])
         wd.save
       end
+
+      # Calculate average and total of weather_and_distance
+      WeatherDistance.calculate_average_of_weather_distance_fields(@sea_report_id)
     end
     respond_to do |format|
      format.html { redirect_to edit_sea_report_path(params[:sea_report_id]), notice: 'Information updated successfully' }
