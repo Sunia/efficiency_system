@@ -12,6 +12,7 @@ class WeatherDistance < ActiveRecord::Base
 
     weather_distances = sea_report.weather_distances.order("created_at")
     # ME Power
+
     me_powers_arr = weather_distances.map(&:me_power)
     sea_report.avg_me_power = me_powers_arr.inject(0.0) { |sum, el| sum + el }/me_powers_arr.size
 

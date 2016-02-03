@@ -20,7 +20,7 @@
 
     </tr>
 
-    <tr class="first_table_values">
+    <tr class="first_table_values"">
 
       <%= hidden_field_tag "weather[][sea_report_id]", @sea_report.id %>
 
@@ -61,22 +61,5 @@
         <%= number_field_tag "weather[][avg_rudder_angle]",nil, :required => true, :style => 'width: 48px;',:class => "avg_rudder_angle",:min=> '0', :max => '99' %>
       </td>
     <tr>
-
-    <!-- Average fields--> 
-    <tr>
-      <td class="f-size-9" colspan = "2"> Average </td>
-      
-      <td><%= number_field_tag "weather[][avg_me_power]",nil, :style => "width: 92px;", :readonly => true %></td>
-      <td><%= number_field_tag "weather[][avg_me_rpm]",nil, :style => "width: 52px;", :readonly => true %></td>
-      <td><%= number_field_tag "sea_report[][avg_speed_log_knots]",nil, :style => "width: 60px;", :readonly => true %></td>
-      <td><%= number_field_tag "sea_report[][avg_speed_observed_knots]",nil, :style => "width: 68px;", :readonly => true %></td>
-
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-  </tr>
-
 
   </table>

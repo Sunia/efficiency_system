@@ -37,14 +37,12 @@
     </tr>
 
     <tr>
-
-      <td style="width: 220px; font-size:10px;">
-
+      <td style="width: 220px;">
         <%= number_field_tag "position[][lat_degree]",nil, :required => true, :min => 0, :max => 90, :style => 'width: 40px;', :class => 'padding-0-col' %>
 
         <%= number_field_tag "position[][lat_min]",  nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '59.99', :style => 'width: 40px;' , :class => 'padding-0-col'  %>
 
-         <select name="position[][lat_dir]"  style="width: 30px;height: 23px;" class = 'padding-0-col' >
+         <select name="position[][lat_dir]"  style="width: 30px;height: 23px; font-size:10px;" class = 'padding-0-col' >
             <option value="N">N</option>
             <option value="S">S</option>
          </select>
@@ -53,7 +51,7 @@
 
         <%= number_field_tag "position[][long_min]",  nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '59.99', :style => 'width: 40px;' , :class => 'padding-0-col'  %>
 
-         <select name="position[][long_dir]"  style="width: 30px;height: 23px;" class='padding-0-col'  >
+         <select name="position[][long_dir]"  style="width: 30px;height: 23px;  font-size:10px;" class='padding-0-col'  >
             <option value="W">W</option>
             <option value="E">E</option>
          </select>

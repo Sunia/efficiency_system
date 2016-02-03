@@ -67,17 +67,19 @@ class WeatherDistancesController < ApplicationController
   def create_multiple_weather_distances
 
     weather_distances = params[:weather]
+    
 
     unless weather_distances.blank?
 
       weather_distances.each.with_index do |weather_distance, index|
         @sea_report_id = params[:sea_report_id]
+        
         wd = WeatherDistance.new(weather_distance)
         wd.update_attributes(:sea_report_id => params[:sea_report_id])
         wd.update_attributes(:position => params[:position][index])
         wd.save
       end
-
+      
       # Calculate average and total of weather_and_distance
       WeatherDistance.calculate_average_of_weather_distance_fields(@sea_report_id)
     end

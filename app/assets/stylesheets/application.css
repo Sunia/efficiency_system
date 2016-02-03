@@ -233,3 +233,7 @@ body{
     padding-right: 0px !important;
     float: left;
 }
+
+input {
+    font-size: 11px !important;
+}
