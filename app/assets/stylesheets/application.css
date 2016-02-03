@@ -219,6 +219,8 @@ body{
 .f-size-8{
    font-size: 10px !important;
    background-color: #ADB2DA;
+   font-style: oblique;
+   font-weight: bold;
 }
 
 .f-size-9{

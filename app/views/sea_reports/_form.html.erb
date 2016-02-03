@@ -7,7 +7,7 @@ Report <%= @report_number %> from <%= @sea_port.starting_port_name %> to <%= @se
 </b> </h4>
 <br>
 
-<div class="col-md-offset-1 container">
+<div class="container col-md-12">
 
   <!-- Menu bar-->
   <ul class="nav nav-tabs">
@@ -23,10 +23,12 @@ Report <%= @report_number %> from <%= @sea_port.starting_port_name %> to <%= @se
   <br>
 
   <!-- Tab content -->
-  <div class="tab-content fieldset col-md-10 bg-change1">
+  <!-- <fieldset class="tab-content fieldset bg-change1"> -->
+  <fieldset class="fieldset bg-change tab-content">
+  <!-- <div class="tab-content fieldset col-md-10 bg-change1"> -->
 
       <!-- First Section -->
-
+ 
     <div id="port_details" class="tab-pane fade in active">
       <h4><b>Port Details</b></h4>
       <div class="row">
@@ -57,7 +59,7 @@ Report <%= @report_number %> from <%= @sea_port.starting_port_name %> to <%= @se
     </div>
 
     <!-- Weather and Distance -->
-    <div id="weather_distance" class="tab-pane fade">
+    <div id="weather_distance" class="tab-pane fade" style="padding-left: 1%;">
       <h4><b>Weather and Distance</b></h4>
       <div class="row">
         <div class="col-md-12">

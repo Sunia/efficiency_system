@@ -1,14 +1,14 @@
 <!-- First table -->
-<table id="weather_first_table" border="1">
+<table id="weather_first_table" border="1" style="width: 95%;">
 
 	<% hidden_field_tag "sea_report_id",  @sea_report.id %>
     <tr>
-  	  <td class="f-size-8">Observation date <br>and time(SMT)</td>
-      <td class="f-size-8">Observation date <br>and time (UTC)</td>
+  	  <td class="f-size-8">Observation date and time <br> (SMT)</td>
+      <td class="f-size-8">Observation date and time<br> (UTC)</td>
 
-      <td class="f-size-8">Average <br> ME Power<br>(In kW)</td>
+      <td class="f-size-8">Average ME Power<br>(In kW)</td>
 
-      <td class="f-size-8">ME <br>RPM</td>      
+      <td class="f-size-8">ME RPM</td>      
       <td class="f-size-8">Speed <br>Logged <br>(in Knots)</td>
       <td class="f-size-8">Speed observed<br>(in Knots)</td>
 
@@ -22,58 +22,54 @@
 
     <tr class="first_table_values">
 
-      <%= hidden_field_tag "weather[][sea_report_id]", @sea_report.id, :required => true, :style => 'width: 100px; font-size: 8px;' %>
+      <%= hidden_field_tag "weather[][sea_report_id]", @sea_report.id %>
 
       <td>
-        <%= text_field_tag "weather[][observation_smt]", @sea_report.opened_time_in_smt, :required => true, :style => 'width: 100px; font-size: 8px;' %>
+        <%= text_field_tag "weather[][observation_smt]", @sea_report.opened_time_in_smt, :required => true, :style => 'width: 148px' %>
 	    </td>
 
       <td>
-        <%= text_field_tag "weather[][observation_utc]", @sea_report.created_at, :required => true, :style => 'width: 100px; font-size: 8px;' %>
+        <%= text_field_tag "weather[][observation_utc]", @sea_report.created_at, :required => true, :style => 'width: 156px;' %>
       </td>   
 
 	  <td>
-      <%= number_field_tag "weather[][me_power]",nil, :required => true, :style => 'width: 94px;',:class => "me_power",:min=> '0', :max => '999999999' %>
+      <%= number_field_tag "weather[][me_power]",nil, :required => true, :style => 'width: 92px;',:class => "me_power",:min=> '0', :max => '999999999' %>
     </td>
 
 	  <td>  
-      <%= number_field_tag "weather[][me_rpm]",nil, :required => true, :style => 'width: 50px;', :min=> '0', :max => '9999', :step =>'0.01' %></td>
+      <%= number_field_tag "weather[][me_rpm]",nil, :required => true, :style => 'width: 52px;', :min=> '0', :max => '9999', :step =>'0.01' %></td>
 
      <td>
        <%= number_field_tag "weather[][speed_knots]",nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => "width: 60px;" %></td>
 
-      <td><%= number_field_tag "weather[][speed_observed_knots]",nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => "width: 67px;" %></td>
+      <td><%= number_field_tag "weather[][speed_observed_knots]",nil, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => "width: 68px;" %></td>
 
 	   <td>
-       <%= number_field_tag "weather[][trip_counter_log]",nil, :required => true, :style => 'width: 50px;', :min=> '0', :max => '99999.99', :step => '0.01' %></td>
+       <%= number_field_tag "weather[][trip_counter_log]",nil, :required => true, :style => 'width: 52px;', :min=> '0', :max => '99999.99', :step => '0.01' %></td>
 
      <td>
-       <%= number_field_tag "weather[][trip_counter_gps]",nil, :required => true, :style => 'width: 50px;', :min=> '0', :max => '99999.99', :step => '0.01' %></td>
+       <%= number_field_tag "weather[][trip_counter_gps]",nil, :required => true, :style => 'width: 52px;', :min=> '0', :max => '99999.99', :step => '0.01' %></td>
 
 
      <td>
-       <%= number_field_tag "weather[][distance_rem_eosp]",nil, :required => true, :style => 'width: 58px;', :min=> '0', :max => '99999.99', :step =>'0.01' %></td>
+       <%= number_field_tag "weather[][distance_rem_eosp]",nil, :required => true, :style => 'width: 56px;', :min=> '0', :max => '99999.99', :step =>'0.01' %></td>
 
      <td>
-       <%= number_field_tag "weather[][time_rem_eosp]",nil, :required => true, :style => 'width: 67px;', :min=> '0', :max => '9999.99', :step =>'0.01' %></td>
+       <%= number_field_tag "weather[][time_rem_eosp]",nil, :required => true, :style => 'width: 64px;', :min=> '0', :max => '9999.99', :step =>'0.01' %></td>
 
       <td>
-        <%= number_field_tag "weather[][avg_rudder_angle]",nil, :required => true, :style => 'width: 46px;',:class => "avg_rudder_angle",:min=> '0', :max => '99' %>
+        <%= number_field_tag "weather[][avg_rudder_angle]",nil, :required => true, :style => 'width: 48px;',:class => "avg_rudder_angle",:min=> '0', :max => '99' %>
       </td>
-
-
-
-    </tr>
+    <tr>
 
     <!-- Average fields--> 
     <tr>
       <td class="f-size-9" colspan = "2"> Average </td>
       
-      <td><%= number_field_tag "weather[][avg_me_power]",nil, :style => "width: 94px;", :readonly => true %></td>
-      <td><%= number_field_tag "weather[][avg_me_rpm]",nil, :style => "width: 50px;", :readonly => true %></td>
+      <td><%= number_field_tag "weather[][avg_me_power]",nil, :style => "width: 92px;", :readonly => true %></td>
+      <td><%= number_field_tag "weather[][avg_me_rpm]",nil, :style => "width: 52px;", :readonly => true %></td>
       <td><%= number_field_tag "sea_report[][avg_speed_log_knots]",nil, :style => "width: 60px;", :readonly => true %></td>
-      <td><%= number_field_tag "sea_report[][avg_speed_observed_knots]",nil, :style => "width: 67px;", :readonly => true %></td>
-
+      <td><%= number_field_tag "sea_report[][avg_speed_observed_knots]",nil, :style => "width: 68px;", :readonly => true %></td>
 
       <td></td>
       <td></td>
@@ -81,5 +77,6 @@
       <td></td>
       <td></td>
   </tr>
+
 
   </table>
