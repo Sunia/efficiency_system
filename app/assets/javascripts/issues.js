@@ -12,6 +12,7 @@ $(document).ready(function(){
 			return date.valueOf() > now.valueOf() ? 'disabled' : '';
 		}
 	}).on('changeDate', function(ev){
+		$('.datepicker').hide();
 		startDate=new Date(ev.date.getFullYear(),ev.date.getMonth(),ev.date.getDate(),0,0,0);
 		if(endDate!=null && endDate!='undefined'){
 			if(endDate < startDate){

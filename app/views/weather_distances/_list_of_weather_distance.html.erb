@@ -9,7 +9,7 @@
 
       <td class="f-size-8">Average ME Power<br>(In kW)</td>
 
-      <td class="f-size-8">ME RPM</td>      
+      <td class="f-size-8">ME <br>RPM</td>      
       <td class="f-size-8">Speed <br>Logged <br>(in Knots)</td>
       <td class="f-size-8">Speed observed<br>(in Knots)</td>
 
@@ -79,12 +79,13 @@
 
     <!-- Average fields--> 
     <tr>
-      <td class="f-size-9" colspan = "3"> Average </td>
+      <td class="f-size-9" colspan = "2"> Average </td>
       <td style="width: 94px; font-size: 11px;"><%= @sea_report.avg_me_power %></td>
       <td style="width: 50px; font-size: 11px;"><%= @sea_report.avg_me_rpm %></td>
       <td style="width: 60px; font-size: 11px;"><%= @sea_report.avg_speed_log_knots %></td>
       <td style="width: 67px; font-size: 11px;"><%= @sea_report.avg_speed_observed_knots %></td>
 
+      <td></td>
       <td></td>
       <td></td>
       <td></td>

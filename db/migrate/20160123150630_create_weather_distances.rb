@@ -19,20 +19,20 @@ class CreateWeatherDistances < ActiveRecord::Migration
       # ME RPM
       t.float :me_rpm
 
-	  # Reliable observation
+	   # Reliable observation
       t.string :reliable_observation
 
       # Trip counter log (Nm)
-      t.integer :trip_counter_log
+      t.float :trip_counter_log
 
       # Trip counter(GPS) Nm
-      t.integer :trip_counter_gps
+      t.float :trip_counter_gps
 
       # Distance remaining to EOSP(NM)
-      t.integer  :distance_rem_eosp
+      t.float  :distance_rem_eosp
 
       # Time remaining to EOSP(hours)
-      t.integer :time_rem_eosp
+      t.float :time_rem_eosp
 
       # Speed Logged  in Knots
       t.float :speed_knots
@@ -41,7 +41,7 @@ class CreateWeatherDistances < ActiveRecord::Migration
       t.float :speed_observed_knots
 
       # True wind force (BF)
-      t.integer :true_wind_force
+      t.float :true_wind_force
 
       # True Wind direction (0-359) degrees
       t.integer :true_wind_dir
@@ -52,23 +52,23 @@ class CreateWeatherDistances < ActiveRecord::Migration
       # Wave height in meters(Seas)
       t.float :wave_height
       
-	  # True Swell Direction (0-359 degrees)
-    t.integer :true_swell_direction
+	   # True Swell Direction (0-359 degrees)
+      t.integer :true_swell_direction
 
-	  # True Swell height in meters
-	  t.float :true_swell_height
+	   # True Swell height in meters
+	   t.float :true_swell_height
 
-	  #Water depth in meters
-	  t.integer :water_depth
+	   #Water depth in meters
+	   t.integer :water_depth
 
-	  # Couse over ground.(0-359)
-	  t.integer :couse_over_ground
+	   # Couse over ground.(0-359)
+	   t.integer :couse_over_ground
 
-	  #Gyro course (0-359)
+	   #Gyro course (0-359)
       t.integer :gyro_course
 
-	  # Compass course (0-359)
-	  t.integer :compass_course
+	   # Compass course (0-359)
+	   t.integer :compass_course
 
       t.timestamps null: false
     end

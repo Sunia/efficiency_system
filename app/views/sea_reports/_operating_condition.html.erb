@@ -51,7 +51,9 @@
     }
 
     // Calculate load daily trim
-    $("#operating_condition_load_daily_aft").bind("change", function(e){
+    // $('.filter-btn-ser').on('click', function(){
+    $('#operating_condition_load_daily_aft').change(function(){
+    // $("#operating_condition_load_daily_aft").bind("change", function(e){
       calculate_load_daily_trim();
     });
 
@@ -79,8 +81,22 @@
     calculate_torsion_meter_date();
   }
 
+  // $("#speed_log_date").on('click', function(){
+  // $("#speed_log_date").bind("change", function(e){ 
+  // });
+  $('.startDate').on('changeDate', function(ev){
+      $('.datepicker').hide();
+      calculate_speed_log_date();
+  });
+
+
+  $("#torsion_meter_date").on('changeDate', function(ev){
+    $('.datepicker').hide();
+    calculate_torsion_meter_date();
+
+  });
+
   function calculate_speed_log_date(){
-    
     speed_log_date = $("#speed_log_date")[0].value;
 
     log_date = new Date(speed_log_date);

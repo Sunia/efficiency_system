@@ -176,13 +176,13 @@
     <!-- Speed log Calibration Date: -->
 	<div class="col-sm-12" style="padding-left: 1px;">
         <div class="col-sm-5" style="padding-left: 1px;">
-			<br>
+		<br>
 			<b>Speed log Calibration Date: </b>
 		</div>
 
         <div class="col-sm-6 s">
            <br>
-           <%= f.text_field :speed_log_date, class: "startDate form-control", required: true, placeholder: "Calibration Date", style: "margin-bottom:10px", id:"speed_log_date" %>
+           <%= f.text_field :speed_log_date, class: "startDate form-control", required: true, placeholder: "Calibration Date", style: "margin-bottom:10px", id:"speed_log_date" , :onchange=>"calculate_speed_log_date()"%>
 
         </div>
 	</div>
