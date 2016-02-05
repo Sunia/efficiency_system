@@ -25,11 +25,11 @@
       <%= hidden_field_tag "weather[][sea_report_id]", @sea_report.id %>
 
       <td>
-        <%= text_field_tag "weather[][observation_smt]", @sea_report.opened_time_in_smt, :required => true, :style => 'width: 148px' %>
+        <%= text_field_tag "weather[][observation_smt]", @sea_report.opened_time_in_smt, :required => true, :style => 'width: 148px', :class => "observation_smt" %>
 	    </td>
 
       <td>
-        <%= text_field_tag "weather[][observation_utc]", @sea_report.created_at, :required => true, :style => 'width: 156px;' %>
+        <%= text_field_tag "weather[][observation_utc]", @sea_report.created_at, :required => true, :style => 'width: 156px;', :class => "observation_utc" %>
       </td>   
 
 	  <td>

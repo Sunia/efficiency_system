@@ -19,16 +19,42 @@
     $('#second_weather_table tr:last').after(second_data);
   });
 
+
   // Make new row for the first table.
   function make_row_for_first_table() {
 
     data = '<tr class="first_table_values">'
+    
+    smts = $('.observation_smt')
+    smt_time = smts.last()[0].value
+
+    smt = new Date(smt_time)
+    debugger
+    smt.setHours(smt.getHours() + 4);
+
+    utc_4_hr_forward = smt.toUTCString();
+
+
+    // smts = $('.observation_smt')
+    // smt_time = smts.last()[0].value
+
+    // smtArr = smt_time.split(String.fromCharCode(32));
+    // old_hr = parseInt(smtArr[1].split(":")[0])
+    // new_hr = old_hr + 4
+    // if(new_hr > 20){
+    //    new_hr = 00 
+    // }
+    // smt_time = smt_time.replace(old_hr, new_hr);
+
+    // smt = new Date(smt_time)
+    // utc_4_hr_forward = smt.toUTCString();
+
 
     // SMT
-    data += '<td><input type="text" name="weather[][observation_smt]" id="weather__observation_smt" value="2016-01-24 23:3:3 -1100" required="required" style="width: 148px;"></td>'
+    data += '<td><input type="text" name="weather[][observation_smt]" id="weather__observation_smt" value="' +smt + '%>" required="required" style="width: 148px;" class="observation_smt"></td>'
 
     // UTC
-    data += '<td><input type="text" name="weather[][observation_utc]" id="weather__observation_utc" value="2016-01-25 10:03:03 UTC" required="required" style="width: 156px"></td>'
+    data += '<td><input type="text" name="weather[][observation_utc]" id="weather__observation_utc" value="'+ utc_4_hr_forward +'" required="required" style="width: 156px" class="observation_utc"></td>'
 
 
     // ME Power
@@ -133,6 +159,12 @@
     data += '</tr>'
     return data;
 
+  }
+
+
+  function calculate_smt_utc_time_4_hrs(){
+    debugger;
+    return smt_4_hr_forward, utc_4_hr_forward;
   }
 
 </script>
