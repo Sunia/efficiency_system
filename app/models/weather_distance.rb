@@ -14,19 +14,22 @@ class WeatherDistance < ActiveRecord::Base
     # ME Power
 
     me_powers_arr = weather_distances.map(&:me_power)
-    sea_report.avg_me_power = me_powers_arr.inject(0.0) { |sum, el| sum + el }/me_powers_arr.size
-
+    avg_me_power = me_powers_arr.inject(0.0) { |sum, el| sum + el }/me_powers_arr.size.round(2)
+    sea_report.avg_me_power = avg_me_power.round(2)
     # ME RPM
     me_rpm_arr = weather_distances.map(&:me_rpm)
-    sea_report.avg_me_rpm = me_rpm_arr.inject(0.0) { |sum, el| sum + el }/me_rpm_arr.size
+    avg_me_rpm = me_rpm_arr.inject(0.0) { |sum, el| sum + el }/me_rpm_arr.size
+    sea_report.avg_me_rpm = avg_me_rpm.round(2)
 
     # Speed log knots
     speed_knots_arr = weather_distances.map(&:speed_knots)
-    sea_report.avg_speed_log_knots = speed_knots_arr.inject(0.0) { |sum, el| sum + el }/speed_knots_arr.size
+    avg_speed_log_knots = speed_knots_arr.inject(0.0) { |sum, el| sum + el }/speed_knots_arr.size
+    sea_report.avg_speed_log_knots = avg_speed_log_knots.round(2)
 
     # Speed observed knots
     speed_observed_arr = weather_distances.map(&:speed_observed_knots)
-    sea_report.avg_speed_observed_knots = speed_observed_arr.inject(0.0) { |sum, el| sum + el }/speed_observed_arr.size
+    avg_speed_observed_knots = speed_observed_arr.inject(0.0) { |sum, el| sum + el }/speed_observed_arr.size
+    sea_report.avg_speed_observed_knots = avg_speed_observed_knots.round(2)
 
     # Calculate total
     sea_report.total_trip_counter_log = weather_distances.last.trip_counter_log - weather_distances.first.trip_counter_log

@@ -84,8 +84,9 @@ class SeaPortsController < ApplicationController
     hr = 12 if hr < 12 && hr > 8
     hr = 16 if hr < 16 && hr > 12
     hr = 20 if hr < 20 && hr > 16
-    hr = 24 if hr < 24 && hr > 20
+    hr = 0 if hr < 24 && hr > 20
 
+    hr = "0#{hr}" if hr < 10
     smt_time = "#{date} #{hr}:00:00 #{zone_time}"
     return smt_time
   end

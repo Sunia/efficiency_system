@@ -23,11 +23,16 @@
   <% @weather_distances.each do |weather_distance| %>
     <tr class="first_table_values"  style="">
 
+    <%= hidden_field_tag "observation_smt",weather_distance.observation_smt , :required => true, :class => "observation_smt" %>
+
+
+    <%= hidden_field_tag "observation_utc",weather_distance.observation_utc , :required => true, :class => "observation_utc" %>
+
       <td style = 'width: 148px; font-size: 11px;'>
         <%= weather_distance.observation_smt  %>
       </td>
 
-      <td style = 'width: 156px; font-size: 11px;'>
+      <td style = 'width: 164px; font-size: 11px;'>
         <%= weather_distance.observation_utc  %>
       </td>
 
