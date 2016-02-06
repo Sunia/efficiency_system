@@ -43,7 +43,15 @@
     zone = smtArr[2]
 
     old_hr = parseInt(time.split(":")[0])
-    new_hr = old_hr + 4
+
+    if(old_hr < 4 && old_hr > 0){new_hr = 4 }
+    else if(old_hr < 8 && old_hr > 4){new_hr = 8 }
+    else if(old_hr < 12 && old_hr > 8){new_hr = 12 }
+    else if(old_hr < 16 && old_hr > 12){new_hr = 16 }
+    else if(old_hr < 20 && old_hr > 16){new_hr = 20 }
+    else if(old_hr <= 24 && old_hr > 20){new_hr = 24 }
+    else{ new_hr = old_hr + 4}
+
     if(new_hr < 10){new_hr = "0" + new_hr}
 
     if(new_hr > 20){
@@ -87,8 +95,8 @@
 
       if(month < 10 ){ month = "0" + month}
       if(day < 10){day = "0" + day} 
-        yr = year + "-" + month + "-" + day
-      }
+      yr = year + "-" + month + "-" + day
+    }
 
     time = new_hr + ":00:00"
     smt_time = yr + " " + time + " " + zone

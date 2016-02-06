@@ -3,7 +3,7 @@
 
 	<% hidden_field_tag "sea_report_id",  @sea_report.id %>
     <tr>
-  	  <td class="f-size-8">Observation date and time <br> (SMT)</td>
+  	  <td class="f-size-8">Observation date and time <br> (SMT / ZoneTime)</td>
       <td class="f-size-8">Observation date and time<br> (UTC)</td>
 
       <td class="f-size-8">Average ME Power<br>(In kW)</td>
@@ -29,7 +29,8 @@
 	    </td>
 
       <td>
-        <%= text_field_tag "weather[][observation_utc]", @sea_report.created_at, :required => true, :style => 'width: 164px;', :class => "observation_utc", :readonly => true %>
+        <% debugger %>
+        <%= text_field_tag "weather[][observation_utc]", @sea_report.created_at.to_formatted_s(:rfc822)[0..-7] , :required => true, :style => 'width: 164px;', :class => "observation_utc", :readonly => true %>
       </td>   
 
 	  <td>
