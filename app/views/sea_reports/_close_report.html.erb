@@ -26,7 +26,7 @@
 		<div class="col-sm-6">
 			<label class="" for="input01">Select Closing Date(SMT)</label>  
 			<div class="s">
-	          <input type="text" class="startDate form-control" name="date" id="dateStartReport" style = "margin-bottom:10px" required %>
+	          <input type="text" class="startDate form-control" name="date" id="date_close_report" style = "margin-bottom:10px" required %>
 			</div> 
 		</div>
 
@@ -111,7 +111,37 @@
         changeConfirmation = confirm(message);
 
         if (changeConfirmation) {
-          $(this)[0].value = "true";
+          
+
+          if ($("#date_close_report")[0].value == ""){
+          	debugger;
+            $(this)[0].value = "false"; 	
+          	alert ("Please enter the date of close report first");
+          }
+          else if ($(".close_hours")[0].value == ""){
+            $(this)[0].value = "false"; 	
+          	alert ("Please enter the hours first");
+          }
+          else if ($(".close_min")[0].value == ""){
+            $(this)[0].value = "false"; 	
+          	alert ("Please enter the minutes first");
+          }
+          else if($(".close_sec")[0].value == ""){
+            $(this)[0].value = "false"; 	
+          	alert ("Please enter the seconds first");
+          }
+          else{
+              $(this)[0].value = "true";
+	          $("#close_report_li")[0].className = ""
+	          $("#close_report")[0].className = "tab-pane fade"
+
+	          $("#weather_distance_li")[0].className = "active"
+	          $("#weather_distance")[0].className = "tab-pane fade in active"
+
+	          alert("Kindly update the weather and distance data for the end of sea passage time.");
+	          last_observation_same_as_close_sea_passage();
+          }
+
         } else {
          $(this)[0].value = "false";
         }
@@ -149,6 +179,7 @@
       if (changeConfirmation) {
         alert(msg);
         $("#sea_report_description")[0].value = msg;
+
       } else {
        $(this).val(last_z);
       }

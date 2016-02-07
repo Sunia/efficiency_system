@@ -8,10 +8,27 @@
     row.parentNode.removeChild(row);
   }
 
+
+  function last_observation_same_as_close_sea_passage(){
+
+    smt = add_observation_smt_from_close_report_smt();
+    utc_4_hr_forward = smt.toUTCString(); 
+
+    first_data = make_row_for_first_table(smt, utc_4_hr_forward);
+    second_data = make_row_for_second_table;
+
+    // $('#weather_first_table tr:last').after(first_data);
+    $('.first_table_values').last().after(first_data);
+    $('#second_weather_table tr:last').after(second_data);
+  }  
+
   // Add new waypoint on the list of passage plan
   $( "#new_weather_observation" ).on( "click", function( event ) {
 
-    first_data = make_row_for_first_table;
+    smt = add_observation_smt_to_4_hours();
+    utc_4_hr_forward = smt.toUTCString(); 
+
+    first_data = make_row_for_first_table(smt, utc_4_hr_forward);
     second_data = make_row_for_second_table;
 
     // $('#weather_first_table tr:last').after(first_data);
@@ -21,7 +38,7 @@
 
 
   // Make new row for the first table.
-  function make_row_for_first_table() {
+  function make_row_for_first_table(smt, utc_4_hr_forward) {
 
     data = '<tr class="first_table_values">'
     
@@ -35,79 +52,6 @@
 
     //############################################################
 
-    smt_time = $('.observation_smt').last()[0].value
-
-    smtArr = smt_time.split(String.fromCharCode(32));
-    yr = smtArr[0]
-    time = smtArr[1]
-    zone = smtArr[2]
-
-    old_hr = parseInt(time.split(":")[0])
-    minutes = parseInt(time.split(":")[0])
-    seconds = parseInt(time.split(":")[0])
-
-    if(old_hr < 4 && old_hr > 0){new_hr = 4 }
-    else if(old_hr < 8 && old_hr > 4){new_hr = 8 }
-    else if(old_hr < 12 && old_hr > 8){new_hr = 12 }
-    else if(old_hr < 16 && old_hr > 12){new_hr = 16 }
-    else if(old_hr < 20 && old_hr > 16){new_hr = 20 }
-    else if(old_hr <= 24 && old_hr > 20){new_hr = 24 }
-    else{ new_hr = old_hr + 4}
-
-    if(new_hr < 10){new_hr = "0" + new_hr}
-    if(minutes < 10){minutes = "0" + minutes}
-    if(seconds < 10){seconds = "0" + seconds}
-
-    if(new_hr > 20){
-      new_hr = "00"
-
-      year = parseInt(yr.split("-")[0])  
-      is_leap = new Date(year, 1, 29).getMonth() == 1
-
-      month = parseInt(yr.split("-")[1])  
-      day = parseInt(yr.split("-")[2])
-
-
-      if(day == 30 && month == 4 || month == 6 || month == 9 || month == 11){
-        month = month + 1
-        day = 1
-      }
-      else if(is_leap && month == 2 && day == 29){
-        month = month + 1
-        day = 1
-      }
-      else if(is_leap && month == 2 && day == 28){
-        day = day + 1
-      }
-      else if(!is_leap && month == 2 && day == 28){
-        month = month + 1
-        day = day +1
-      }
-      else if(day == 31 && month == 1 || month == 3 || month == 5 || 
-        month == 7 || 
-        month == 8 || month == 10 || month == 12 ){
-        day = 1
-        month = month + 1
-      }
-      else{
-        day = day + 1
-      }
-
-      if(month >= 12){
-        year = year + 1
-        month = 1
-      }
-
-      if(month < 10 ){ month = "0" + month}
-      if(day < 10){day = "0" + day} 
-      yr = year + "-" + month + "-" + day
-    }
-
-    time = new_hr + ":"+ "00" + ":" + "00"
-    smt_time = yr + " " + time + " " + zone
-
-    smt = new Date(smt_time)
-    utc_4_hr_forward = smt.toUTCString();
 
     // SMT
     data += '<td><input type="text" name="weather[][observation_smt]" id="weather__observation_smt" value="' +smt_time + '" required="required" style="width: 148px;" class="observation_smt" readonly="readonly"></td> '
@@ -217,6 +161,100 @@
     data += '</tr>'
     return data;
 
+  }
+
+  function add_observation_smt_to_4_hours(){
+
+    smt_time = $('.observation_smt').last()[0].value
+
+    smtArr = smt_time.split(String.fromCharCode(32));
+    yr = smtArr[0]
+    time = smtArr[1]
+    zone = smtArr[2]
+
+    old_hr = parseInt(time.split(":")[0])
+    minutes = parseInt(time.split(":")[0])
+    seconds = parseInt(time.split(":")[0])
+
+    if(old_hr < 4 && old_hr > 0){new_hr = 4 }
+    else if(old_hr < 8 && old_hr > 4){new_hr = 8 }
+    else if(old_hr < 12 && old_hr > 8){new_hr = 12 }
+    else if(old_hr < 16 && old_hr > 12){new_hr = 16 }
+    else if(old_hr < 20 && old_hr > 16){new_hr = 20 }
+    else if(old_hr <= 24 && old_hr > 20){new_hr = 24 }
+    else{ new_hr = old_hr + 4}
+
+    if(new_hr < 10){new_hr = "0" + new_hr}
+    if(minutes < 10){minutes = "0" + minutes}
+    if(seconds < 10){seconds = "0" + seconds}
+
+    if(new_hr > 20){
+      new_hr = "00"
+
+      year = parseInt(yr.split("-")[0])  
+      is_leap = new Date(year, 1, 29).getMonth() == 1
+
+      month = parseInt(yr.split("-")[1])  
+      day = parseInt(yr.split("-")[2])
+
+
+      if(day == 30 && month == 4 || month == 6 || month == 9 || month == 11){
+        month = month + 1
+        day = 1
+      }
+      else if(is_leap && month == 2 && day == 29){
+        month = month + 1
+        day = 1
+      }
+      else if(is_leap && month == 2 && day == 28){
+        day = day + 1
+      }
+      else if(!is_leap && month == 2 && day == 28){
+        month = month + 1
+        day = day +1
+      }
+      else if(day == 31 && month == 1 || month == 3 || month == 5 || 
+        month == 7 || 
+        month == 8 || month == 10 || month == 12 ){
+        day = 1
+        month = month + 1
+      }
+      else{
+        day = day + 1
+      }
+
+      if(month >= 12){
+        year = year + 1
+        month = 1
+      }
+
+      if(month < 10 ){ month = "0" + month}
+      if(day < 10){day = "0" + day} 
+      yr = year + "-" + month + "-" + day
+    }
+    
+    time = new_hr + ":"+ "00" + ":" + "00"
+    smt_time = yr + " " + time + " " + zone
+
+    smt = new Date(smt_time)
+    return smt;
+  }
+
+  function add_observation_smt_from_close_report_smt(){
+    
+    yr = $("#date_close_report")[0].value
+    old_hr = $(".close_hours")[0].value
+    minutes = $(".close_min")[0].value
+    seconds = $(".close_sec")[0].value
+
+    time = old_hr + ":" + minutes + ":" + seconds
+
+    zone = $("#sea_report_zone_time")[0].value
+
+    smt_time = yr + " " + time + " " + zone
+
+    smt = new Date(smt_time)
+    return smt;
   }
 
 
