@@ -7,7 +7,7 @@ class SeaPortsController < ApplicationController
   def create
     # Calculate smt and utc time of sea report
     zone_time = params[:sea_port][:zone_time]
-    smt_time_string = create_smt_time_for_sea_port(params[:date], params[:hours], zone_time)
+    smt_time_string = create_smt_time_for_sea_port(params[:date], params[:hours], params[:minutes], params[:seconds], zone_time)
 
     utc_time = Time.parse(smt_time_string).getutc
 
@@ -78,8 +78,13 @@ class SeaPortsController < ApplicationController
   end
 
   # Create SMT time
-  def create_smt_time_for_sea_port(date, hour, zone_time)
-    smt_time = "#{date} #{hour}:00:00 #{zone_time}"
+  def create_smt_time_for_sea_port(date, hour, minutes, seconds, zone_time)
+
+    hour = "0" + hour if hour.to_i < 10
+    minutes = "0" + minutes if minutes.to_i < 10
+    seconds = "0" + seconds if seconds.to_i < 10
+
+    smt_time = "#{date} #{hour}:#{minutes}:#{seconds} #{zone_time}"
     return smt_time
   end
 
