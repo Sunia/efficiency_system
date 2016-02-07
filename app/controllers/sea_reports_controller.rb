@@ -178,6 +178,13 @@ class SeaReportsController < ApplicationController
     # Create new report - starting time same as closing time of previous.
     @sea_report = SeaReport.new(:opened_time_in_smt => smt_time_string, :created_at => utc_time, :zone_time => zone_time, :update_passage_plan_date => Time.now )
 
+    # Create weather_observation_smt and weather_observation_utc
+    observation_smt_time = create_weather_observation_smt_new_sea_report
+
+    observation_utc_time = Time.parse(observation_smt_time).getutc
+
+    @sea_report.update_attributes(:weather_observation_smt => observation_smt_time, :weather_observation_utc => observation_utc_time)
+
     if @sea_report.save
 
       # update the report_number, sea_port_id of sea_report
@@ -227,5 +234,82 @@ class SeaReportsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def sea_report_params
       params.require(:sea_report).permit(:is_closed, :closed_time_in_smt, :closed_time_in_utc, :report_number,  :zone_time, :report_interval)
+    end
+
+    # Create weather_observation_smt for new sea report.
+    def create_weather_observation_smt_new_sea_report
+
+      if @old_sea_report.weather_distances.nil?
+        previous_observation_smt = @old_sea_report.weather_distances.last.observation_smt
+      else
+        previous_observation_smt = @old_sea_report.weather_observation_smt
+      end
+
+      smtArray = previous_observation_smt.split(" ")
+      date =  smtArray[0]
+      time = smtArray[1]
+      zone_time = smtArray[2]
+
+      hr = time.split(":")[0].to_i
+      
+      # Add 4 hours to the previous observation_smt
+      if hr < 4 && hr > 0
+        new_hr = 4 
+      elsif hr < 8 && hr > 4
+        new_hr = 8 
+      elsif hr < 12 && hr > 8
+        new_hr = 12 
+      elsif hr < 16 && hr > 12
+        new_hr = 16 
+      elsif hr < 20 && hr > 16
+        new_hr = 20 
+      elsif hr < 24 && hr > 20
+        new_hr = 24 
+      else 
+        new_hr = hr + 4
+      end
+
+      # #===================================================
+
+      #Calculate year,month and date
+      year = date.split("-")[0].to_i
+      month = date.split("-")[1].to_i
+      day = date.split("-")[2].to_i
+
+      # #===================================================
+
+      if (new_hr > 20)
+        new_hr = "00"
+
+        is_leap = Date.leap?( year.to_i )
+
+        if(day == 30 && month == 4 || month == 6 || month == 9 || month == 11)
+          month = month + 1
+          day = 1
+        elsif(is_leap && month == 2 && day == 29)
+          month = month + 1
+          day = 1
+        elsif(is_leap && month == 2 && day == 28)
+          day = day + 1
+        elsif(!is_leap && month == 2 && day == 28)
+          month = month + 1
+          day = day +1
+        elsif(day == 31 && month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12 )
+          day = 1
+          month = month + 1
+        else
+          day = day + 1
+        end
+        
+        year = year + 1 if(month >= 12)
+
+        month = "0#{month}" if(month < 10 )
+        day = "0#{day}" if(day < 10)
+        date = "#{year}-#{month}-#{day}"
+      end
+
+      new_hr = 0 if hr < 24 && hr > 20
+      new_hr = "0#{new_hr}" if new_hr < 10
+      observation_smt_time = "#{date} #{new_hr}:00:00 #{zone_time}"
     end
 end

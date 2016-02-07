@@ -21,6 +21,7 @@ class SeaPortsController < ApplicationController
   
         # Create the new sea report
         @sea_report = @sea_port.sea_reports.create(:opened_time_in_smt => smt_time_string, :created_at => utc_time,  :zone_time => zone_time)
+        @sea_report.update_attributes(:weather_observation_smt => smt_time_string, :weather_observation_utc => utc_time )
           
         # update the report_number, sea_port_id of sea_report
         @sea_report.report_number = @sea_port.total_reports + 1
@@ -78,56 +79,6 @@ class SeaPortsController < ApplicationController
 
   # Create SMT time
   def create_smt_time_for_sea_port(date, hour, zone_time)
-    # hr = hour.to_i
-    # new_hr = 4 if hr < 4 && hr > 0
-    # new_hr = 8 if hr < 8 && hr > 4
-    # new_hr = 12 if hr < 12 && hr > 8
-    # new_hr = 16 if hr < 16 && hr > 12
-    # new_hr = 20 if hr < 20 && hr > 16
-    # new_hr = 24 if hr < 24 && hr > 20
-
-    # #===================================================
-
-    # #Calculate year,month and date
-    # year = date.split("-")[0].to_i
-    # month = date.split("-")[1].to_i
-    # day = date.split("-")[2].to_i
-
-    # #===================================================
-
-    # if (new_hr > 20)
-    #   new_hr = "00"
-
-    #   is_leap = Date.leap?( year.to_i )
-
-    #   if(day == 30 && month == 4 || month == 6 || month == 9 || month == 11)
-    #     month = month + 1
-    #     day = 1
-    #   elsif(is_leap && month == 2 && day == 29)
-    #     month = month + 1
-    #     day = 1
-    #   elsif(is_leap && month == 2 && day == 28)
-    #     day = day + 1
-    #   elsif(!is_leap && month == 2 && day == 28)
-    #     month = month + 1
-    #     day = day +1
-    #   elsif(day == 31 && month == 1 || month == 3 || month == 5 || month == 7 || month == 8 || month == 10 || month == 12 )
-    #     day = 1
-    #     month = month + 1
-    #   else
-    #     day = day + 1
-    #   end
-      
-    #   year = year + 1 if(month >= 12)
-
-    #   month = "0#{month}" if(month < 10 )
-    #   day = "0#{day}" if(day < 10)
-    #   date = "#{year}-#{month}-#{day}"
-    # end
-
-    # new_hr = 0 if hr < 24 && hr > 20
-    # new_hr = "0#{new_hr}" if new_hr < 10
-    #smt_time = "#{date} #{new_hr}:00:00 #{zone_time}"
     smt_time = "#{date} #{hour}:00:00 #{zone_time}"
     return smt_time
   end
