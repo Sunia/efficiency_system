@@ -111,42 +111,82 @@
         changeConfirmation = confirm(message);
 
         if (changeConfirmation) {
-          
 
-          if ($("#date_close_report")[0].value == ""){
-          	debugger;
-            $(this)[0].value = "false"; 	
-          	alert ("Please enter the date of close report first");
-          }
-          else if ($(".close_hours")[0].value == ""){
-            $(this)[0].value = "false"; 	
-          	alert ("Please enter the hours first");
-          }
-          else if ($(".close_min")[0].value == ""){
-            $(this)[0].value = "false"; 	
-          	alert ("Please enter the minutes first");
-          }
-          else if($(".close_sec")[0].value == ""){
-            $(this)[0].value = "false"; 	
-          	alert ("Please enter the seconds first");
-          }
-          else{
-              $(this)[0].value = "true";
-	          $("#close_report_li")[0].className = ""
-	          $("#close_report")[0].className = "tab-pane fade"
+	        everything_ok = true;
 
-	          $("#weather_distance_li")[0].className = "active"
-	          $("#weather_distance")[0].className = "tab-pane fade in active"
+    	    if ($("#date_close_report")[0].value == ""){
+        	
+            	$(this)[0].checked = false;
+          		alert ("Please enter the date of close report first");
+          		everything_ok = false;
+          	}
+          	else if ($(".close_hours")[0].value == ""){
+            	$(this)[0].checked = false; 	
+          		alert ("Please enter the hours first");
+          		everything_ok = false;
+          	}
+          	else if ($(".close_min")[0].value == ""){
+            	$(this)[0].checked = false;
+          		alert ("Please enter the minutes first");
+          		everything_ok = false;
+          	}
+          	else if($(".close_sec")[0].value == ""){
+            	$(this)[0].checked = false; 	
+          		alert ("Please enter the seconds first");
+          		everything_ok = false;
+          	}
+          	// Check closing time should be less than starting date.
+          	if (everything_ok == true){
 
-	          alert("Kindly update the weather and distance data for the end of sea passage time.");
-	          last_observation_same_as_close_sea_passage();
-          }
+                closing_smt_time = calculate_closing_smt_time();
+		    	starting_smt_time = $("#sea_report_opened_time_in_smt")[0].value
+
+				closing_smt = new Date(closing_smt_time)
+            	starting_smt = new Date(starting_smt_time)
+          	}
+
+		  	if(closing_smt <= starting_smt){
+          		$(this)[0].checked = false;
+          		alert("Closing date should be greater than the starting date.")
+          	}
+
+          	else if(closing_smt > starting_smt){
+	          	$(this)[0].value = "true";
+	          	$(this)[0].checked = true;
+	          	$("#close_report_li")[0].className = ""
+	          	$("#close_report")[0].className = "tab-pane fade"
+
+	          	$("#weather_distance_li")[0].className = "active"
+	          	$("#weather_distance")[0].className = "tab-pane fade in active"
+
+	          	alert("Kindly update the weather and distance data for the end of sea passage time.");
+	          	last_observation_same_as_close_sea_passage(closing_smt_time);
+          	}
 
         } else {
-         $(this)[0].value = "false";
+         	$(this)[0].checked = false;
         }
       }
     });
+
+    // Find closing smt time
+    function calculate_closing_smt_time(){
+
+    	yr = $("#date_close_report")[0].value
+    	old_hr = $(".close_hours")[0].value
+    	minutes = $(".close_min")[0].value
+    	seconds = $(".close_sec")[0].value
+
+        if(old_hr < 10){old_hr = "0" + old_hr}
+        if(minutes < 10){minutes = "0" + minutes}
+        if(seconds < 10){seconds = "0" + seconds}
+
+    	time = old_hr + ":" + minutes + ":" + seconds
+    	zone = $("#sea_report_zone_time")[0].value
+
+    	closing_smt_time = yr + " " + time + " " + zone
+        return closing_smt_time;
+    }
 
 //===========================================================
 //== Zone time changes in the sea report.

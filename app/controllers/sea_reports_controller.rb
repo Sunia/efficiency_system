@@ -239,8 +239,9 @@ class SeaReportsController < ApplicationController
     # Create weather_observation_smt for new sea report.
     def create_weather_observation_smt_new_sea_report
 
-      unless @old_sea_report.weather_distances.nil?
+      unless @old_sea_report.weather_distances.blank?
         previous_observation_smt = @old_sea_report.weather_distances.last.observation_smt
+
       else
         previous_observation_smt = @old_sea_report.weather_observation_smt
       end

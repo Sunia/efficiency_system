@@ -9,12 +9,13 @@
   }
 
 
-  function last_observation_same_as_close_sea_passage(){
+  function last_observation_same_as_close_sea_passage(closing_smt_time){
 
-    smt = add_observation_smt_from_close_report_smt();
-    utc_4_hr_forward = smt.toUTCString(); 
+    // smt = add_observation_smt_from_close_report_smt();
+    closing_smt = new Date(closing_smt_time)
+    utc_4_hr_forward = closing_smt.toUTCString(); 
 
-    first_data = make_row_for_first_table(smt, utc_4_hr_forward);
+    first_data = make_row_for_first_table(closing_smt_time, utc_4_hr_forward);
     second_data = make_row_for_second_table;
 
     // $('#weather_first_table tr:last').after(first_data);
@@ -54,7 +55,7 @@
 
 
     // SMT
-    data += '<td><input type="text" name="weather[][observation_smt]" id="weather__observation_smt" value="' +smt_time + '" required="required" style="width: 148px;" class="observation_smt" readonly="readonly"></td> '
+    data += '<td><input type="text" name="weather[][observation_smt]" id="weather__observation_smt" value="' +smt+ '" required="required" style="width: 148px;" class="observation_smt" readonly="readonly"></td> '
 
     // UTC
     data += '<td><input type="text" name="weather[][observation_utc]" id="weather__observation_utc" value="'+ utc_4_hr_forward.slice(0,-4) +'" required="required" style="width: 164px" class="observation_utc" readonly="readonly"></td> '

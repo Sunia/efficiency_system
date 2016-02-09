@@ -66,6 +66,7 @@ class WeatherDistancesController < ApplicationController
   # Create multiple weather distances
   def create_multiple_weather_distances
 
+    debugger
     weather_distances = params[:weather]
 
     unless weather_distances.blank?
@@ -83,8 +84,12 @@ class WeatherDistancesController < ApplicationController
       # Calculate average and total of weather_and_distance
       WeatherDistance.calculate_average_of_weather_distance_fields(@sea_report_id)
     end
+
     respond_to do |format|
-     format.html { redirect_to edit_sea_report_path(params[:sea_report_id]), notice: 'Information updated successfully' }
+      format.html { redirect_to edit_sea_report_path(params[:sea_report_id]), notice: 'Information updated successfully' }
+      format.js #{ render :js}# => "window.location.assign='"+ edit_sea_report_path(params[:sea_report_id]) +"'" }
+      #format.html {redirect_to buildings_path} if params[:q].present?
+      #render :js => "window.location.assign='"+ edit_sea_report_path(params[:sea_report_id]) +"'" 
     end
   end
   private

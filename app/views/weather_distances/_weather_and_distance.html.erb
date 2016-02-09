@@ -1,5 +1,5 @@
 
-<%= form_tag create_multiple_weather_distances_path(@sea_report.id), :method => :post do %>
+<%= form_tag create_multiple_weather_distances_path(@sea_report.id), :method => :post , :remote => true do %>
 
   	<% if @weather_distances_count == 0 %>
 
