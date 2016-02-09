@@ -1,3 +1,22 @@
-debugger;
-alert("hello");
-window.location.assign='"+ edit_sea_report_path(params[:sea_report_id]) +"'
+
+
+// window.location.assign='"+ edit_sea_report_path(params[:sea_report_id]) +"'
+
+<% if @last_report == "true" %>
+	alert("Report will be closed with the updated weather and distance records.")
+	$("#close_report_id")[0].click();
+<% else %>
+  	alert("Observation is successfully updated.")
+  	window.location.reload();
+<% end %>
+
+
+// window.location.reload();
+
+// debugger;
+// alert("hello1");
+// $("#port_details_li")[0].className = ""
+// $("#port_details")[0].className = "tab-pane fade"
+
+// $("#weather_distance_li")[0].className = "active"
+// $("#weather_distance")[0].className = "tab-pane fade in active"

@@ -178,7 +178,7 @@ class SeaReportsController < ApplicationController
     # Create new report - starting time same as closing time of previous.
     @sea_report = SeaReport.new(:opened_time_in_smt => smt_time_string, :created_at => utc_time, :zone_time => zone_time, :update_passage_plan_date => Time.now )
 
-    # Create weather_observation_smt and weather_observation_utc
+    # Create weather_observation_smt and weather_observation_utc by adding 4 hours 
     observation_smt_time = create_weather_observation_smt_new_sea_report
 
     observation_utc_time = Time.parse(observation_smt_time).getutc

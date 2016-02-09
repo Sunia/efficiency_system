@@ -66,13 +66,13 @@ class WeatherDistancesController < ApplicationController
   # Create multiple weather distances
   def create_multiple_weather_distances
 
-    debugger
     weather_distances = params[:weather]
 
     unless weather_distances.blank?
 
       weather_distances.each.with_index do |weather_distance, index|
         @sea_report_id = params[:sea_report_id]
+        @last_report = params[:weather][index]["last_report"]
 
         wd = WeatherDistance.new(weather_distance)
         wd.update_attributes(:sea_report_id => params[:sea_report_id])
