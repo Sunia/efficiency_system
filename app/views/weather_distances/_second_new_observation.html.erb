@@ -59,12 +59,12 @@
 
       <!-- True wind force(BF) -->
       <td>
-        <%= number_field_tag "weather_second[][true_wind_force]",nil, :required => true, :style => 'width: 76px;',:min=> '0', :max => '99' %>
+        <%= number_field_tag "weather_second[][true_wind_force]",nil,:class => "true_wind_force", :required => true, :style => 'width: 76px;',:min=> '0', :max => '99', :onchange=> "check_true_force_value(this)" %>
       </td>
 
       <!-- True wind direction -->
       <td>
-        <%= number_field_tag "weather_second[][true_wind_dir]",nil, :required => true, :style => 'width: 60px;',:min=> '000', :max => '359' %>
+        <%= number_field_tag "weather_second[][true_wind_dir]",nil, :class => "true_wind_dir", :required => true, :style => 'width: 60px;',:min=> '000', :max => '359', :onchange=> "check_digit(this)" %>
       </td>
 
       <!-- True wind speed in Knots -->
@@ -79,7 +79,7 @@
 
       <!-- True Swell Direction (0-359 degrees) -->
       <td>
-        <%= number_field_tag "weather_second[][true_swell_direction]",nil, :required => true, :style => 'width: 76px;',:min=> '000', :max => '359' %>
+        <%= number_field_tag "weather_second[][true_swell_direction]",nil, :required => true, :style => 'width: 76px;',:class => "true_swell_direction",:min=> '000', :max => '359' , :onchange=> "check_digit(this)"%>
       </td>
 
     <!-- True Swell height in meters -->
@@ -94,17 +94,17 @@
 
     <!-- Couse over ground (0-359) -->
     <td>
-      <%= number_field_tag "weather_second[][couse_over_ground]",nil, :required => true, :style => 'width: 44px;',:min=> '000', :max => '359' %>
+      <%= number_field_tag "weather_second[][couse_over_ground]",nil, :required => true, :style => 'width: 44px;',:min=> '000', :max => '359', :class => 'couse_over_ground', :onchange=> "check_digit(this)" %>
     </td>
 
     <!-- Gyro course (0-359) -->
     <td>
-      <%= number_field_tag "weather_second[][gyro_course]",nil, :required => true, :style => 'width: 44px;',:min=> '000', :max => '359' %>
+      <%= number_field_tag "weather_second[][gyro_course]",nil, :required => true, :style => 'width: 44px;',:min=> '000', :max => '359',:class => "gyro_course", :onchange=> "check_digit(this)"%>
     </td>
 
     <!-- Compass course (0-359) -->
     <td>
-      <%= number_field_tag "weather_second[][compass_course]",nil, :required => true, :style => 'width: 48px;',:min=> '000', :max => '359' %>
+      <%= number_field_tag "weather_second[][compass_course]",nil, :required => true, :style => 'width: 48px;',:min=> '000', :max => '359', :class => "compass_course", :onchange=> "check_digit(this)" %>
     </td>
 
     <!-- Reliable Observation -->
@@ -118,3 +118,28 @@
   </tr>
 
 </table>
+
+<script>
+
+  // Alert if number is less than 3-digit notation.
+  function check_digit(digit_value){
+    value = digit_value.value
+    if (value.length < 3){
+      alert("Please enter 3-digit notation");
+    }
+  }
+
+  function check_true_force_value(bf_value){
+
+  // $(".true_wind_force").bind("change", function(e){ 
+     value = bf_value.value
+     if(value <= 2 || value >= 7){
+       alert("Kindly update the weather and distance tab every hour until the present weather conditions continue.")
+     }
+     else{
+      alert("Weather observation can now be made every 4 hours at the change of the watch.")
+     }
+
+  }
+
+</script>
