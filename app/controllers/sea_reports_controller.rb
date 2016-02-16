@@ -241,9 +241,13 @@ class SeaReportsController < ApplicationController
 
       unless @old_sea_report.weather_distances.blank?
         previous_observation_smt = @old_sea_report.weather_distances.last.observation_smt
+        last_true_wind_force = @old_sea_report.weather_distances.last.true_wind_force
 
       else
         previous_observation_smt = @old_sea_report.weather_observation_smt
+
+        # Make BF default value between 2 and 7
+        last_true_wind_force = 6
       end
 
       smtArray = previous_observation_smt.split(" ")
@@ -252,24 +256,31 @@ class SeaReportsController < ApplicationController
       zone_time = smtArray[2]
 
       hr = time.split(":")[0].to_i
-      
-      # Add 4 hours to the previous observation_smt
-      if hr < 4 && hr > 0
-        new_hr = 4 
-      elsif hr < 8 && hr > 4
-        new_hr = 8 
-      elsif hr < 12 && hr > 8
-        new_hr = 12 
-      elsif hr < 16 && hr > 12
-        new_hr = 16 
-      elsif hr < 20 && hr > 16
-        new_hr = 20 
-      elsif hr < 24 && hr > 20
-        new_hr = 24 
-      else 
-        new_hr = hr + 4
-      end
 
+      if true_wind_force <= 2  || true_wind_force >= 7
+        # Add 1 hour to the previous observation_smt
+        new_hr = hr + 1
+        hour_greater_than_condition = 23
+      else
+        # Add 4 hours to the previous observation_smt
+        hour_greater_than_condition = 20
+
+        if hr < 4 && hr > 0
+          new_hr = 4 
+        elsif hr < 8 && hr > 4
+          new_hr = 8 
+        elsif hr < 12 && hr > 8
+          new_hr = 12 
+        elsif hr < 16 && hr > 12
+          new_hr = 16 
+        elsif hr < 20 && hr > 16
+          new_hr = 20 
+        elsif hr < 24 && hr > 20
+          new_hr = 24 
+        else 
+          new_hr = hr + 4
+        end
+      end
       # #===================================================
 
       #Calculate year,month and date
@@ -279,7 +290,7 @@ class SeaReportsController < ApplicationController
 
       # #===================================================
 
-      if (new_hr > 20)
+      if (new_hr > hour_greater_than_condition)
         new_hr = "00"
 
         is_leap = Date.leap?( year.to_i )
@@ -309,7 +320,7 @@ class SeaReportsController < ApplicationController
         date = "#{year}-#{month}-#{day}"
       end
 
-      new_hr = 0 if hr < 24 && hr > 20
+      #new_hr = 0 if new_hr < 24 && new_hr > 20
       new_hr = "0#{new_hr}" if new_hr < 10
       observation_smt_time = "#{date} #{new_hr}:00:00 #{zone_time}"
     end
