@@ -14,8 +14,9 @@ Report <%= @report_number %> from <%= @sea_port.starting_port_name %> to <%= @se
       <li id="port_details_li" class="active"><a data-toggle="tab" href="#port_details">Port Details</a></li>
       <li id="passage_plan_li"><a data-toggle="tab" href="#passage_plan">Passage Plan</a></li>
 
-      <li id="operating_condition_li"><a data-toggle="tab" href="#operating_condition" onclick="check_overdue_for_speed_and_torsion();">Operating condition</a></li>
-      <li id="weather_distance_li"><a data-toggle="tab" href="#weather_distance">Weather and Distance</a></li>
+      <li id="operating_condition_li"><a data-toggle="tab" href="#operating_condition" onclick="check_overdue_for_speed_and_torsion();"> Operating condition </a></li>
+      <li id="weather_distance_li"><a data-toggle="tab" href="#weather_distance">Weather &amp Distance</a></li>
+      <li id="power_fuel_li"><a data-toggle="tab" href="#power_fuel">Power &amp Fuel</a></li>
       <li id="close_report_li"><a data-toggle="tab" href="#close_report">Close the Report</a></li>
       <li><a data-toggle="tab" href="#help">Help</a></li>
   </ul>
@@ -64,6 +65,16 @@ Report <%= @report_number %> from <%= @sea_port.starting_port_name %> to <%= @se
       <div class="row">
         <div class="col-md-12">
           <%= render 'weather_distance' %>
+        </div>
+      </div>
+    </div>
+
+    <!-- Power & Fuel -->
+    <div id="power_fuel" class="tab-pane fade" style="padding-left: 1%;">
+      <h4><b>Power and Fuel</b></h4>
+      <div class="row">
+        <div class="col-md-12">
+          <%= render 'power_fuel' %>
         </div>
       </div>
     </div>

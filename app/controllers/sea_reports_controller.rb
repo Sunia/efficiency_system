@@ -257,7 +257,7 @@ class SeaReportsController < ApplicationController
 
       hr = time.split(":")[0].to_i
 
-      if true_wind_force <= 2  || true_wind_force >= 7
+      if last_true_wind_force <= 2  || last_true_wind_force >= 7
         # Add 1 hour to the previous observation_smt
         new_hr = hr + 1
         hour_greater_than_condition = 23

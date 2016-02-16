@@ -30,6 +30,11 @@
   $( "#new_weather_observation" ).on( "click", function( event ) {
 
     true_wind_force_in_string = $(".true_wind_force").last().val()
+
+    if(true_wind_force_in_string == ""){ 
+      true_wind_force_in_string = $(".true_wind_force").last()[0].innerHTML.trim()
+    }
+
     true_wind_force = parseInt(true_wind_force_in_string)
 
     if(true_wind_force <= 2 || true_wind_force >= 7){  
@@ -248,7 +253,6 @@
     
     time = new_hr + ":"+ "00" + ":" + "00"
     smt_time = yr + " " + time + " " + zone
-
     
     return smt_time;
   }
@@ -271,7 +275,7 @@
 
     if(new_hr < 10){new_hr = "0" + new_hr}
 
-    if(new_hr > 20){
+    if(new_hr > 23){
       new_hr = "00"
 
       year = parseInt(yr.split("-")[0])  
@@ -279,7 +283,6 @@
 
       month = parseInt(yr.split("-")[1])  
       day = parseInt(yr.split("-")[2])
-
 
       if(day == 30 && month == 4 || month == 6 || month == 9 || month == 11){
         month = month + 1
@@ -340,6 +343,26 @@
   }
 
 
+  // Alert if number is less than 3-digit notation.
+  function check_digit(digit_value){
+    value = digit_value.value
+    if (value.length < 3){
+      alert("Please enter 3-digit notation");
+    }
+  }
+
+  function check_true_force_value(bf_value){
+
+  // $(".true_wind_force").bind("change", function(e){ 
+     value = bf_value.value
+     if(value <= 2 || value >= 7){
+       alert("Kindly update the weather and distance tab every hour until the present weather conditions continue.")
+     }
+     else{
+      alert("Weather observation can now be made every 4 hours at the change of the watch.")
+     }
+
+  }
 
 
 </script>
