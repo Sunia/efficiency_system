@@ -1,0 +1,17 @@
+<%= form_for(@power_fuel) do |f| %>
+  <% if @power_fuel.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@power_fuel.errors.count, "error") %> prohibited this power_fuel from being saved:</h2>
+
+      <ul>
+      <% @power_fuel.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -221,6 +221,8 @@ body{
    background-color: #ADB2DA;
    font-style: oblique;
    font-weight: bold;
+   text-align: center;
+   width:20% !important;
 }
 
 .f-size-9{

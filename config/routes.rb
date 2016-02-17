@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :power_fuels
   root to: "home#index"
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
