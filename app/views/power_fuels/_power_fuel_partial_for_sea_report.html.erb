@@ -19,9 +19,7 @@
         </tr>
 
         <tr>
-          <td>
-            <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" value="M.E" required="required" style="width: 91px;" readonly="true">
-          </td>
+          <td class="f-size-8" style="width: 93% !important;">M.E</td>
 
           <td>
             <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 88px;">
@@ -37,6 +35,25 @@
             <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 95px;">
           </td>
         </tr>
+
+        <tr>
+          <td colspan = "4" class="font-set-readonly">
+            Total/Average in period(KW)
+          </td>
+          <td class="font-set-readonly">
+            3971
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan = "4" class="font-set-readonly">
+            ME SFOC(g/KWh) @ 40290 (KJ/Kg)
+          </td>
+          <td class="font-set-readonly">
+            195.2
+          </td>
+        </tr>
+
       </table>
     </div>
 
@@ -61,9 +78,7 @@
         </tr>
 
         <tr>
-          <td>
-            <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" value="LCV KJ/Kg" required="required" style="width: 91px;" readonly="true">
-          </td>
+          <td class="f-size-8" style="width: 93% !important;">LCV KJ/Kg</td>
           <td>
             <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 60px;">
           </td>
@@ -84,9 +99,8 @@
         </tr>
 
         <tr>
-          <td>
-            <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" value="Sulphur %" required="required" style="width: 91px;" readonly="true">
-          </td>
+          <td class="f-size-8" style="width: 93% !important;">Sulphur %</td>
+
           <td>
             <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 60px;">
           </td>
@@ -129,9 +143,7 @@
 
         </tr>
         <tr>
-          <td>
-            <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" value ="M.E" required="required" style="width: 91px;">
-          </td>
+          <td class="f-size-8" style="width: 93%">M.E</td>
 
           <td>
             <input type="text" name="weather[][observation_smt]" id="wea
@@ -148,16 +160,15 @@
             <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 63px;">
           </td>
 
+
           <td>
             <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 87px;">
           </td>
         </tr>
 
         <tr>
+          <td class="f-size-8" style="width: 93% !important;">Aux Engg.</td>
 
-          <td>
-            <input type="text" name="weather[][observation_smt]" value ="Aux Engg." id="weather__observation_smt" required="required" style="width: 91px;">
-          </td>
           <td>
             <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 60px;">
           </td>
@@ -178,10 +189,8 @@
         </tr>
 
         <tr>
+          <td class="f-size-8" style="width: 93% !important;">Boiler</td>
 
-          <td>
-            <input type="text" name="weather[][observation_smt]" value ="Boiler" id="weather__observation_smt" required="required" style="width: 91px;">
-          </td>
           <td>
             <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 60px;">
           </td>
@@ -198,6 +207,27 @@
 
           <td>
             <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 87px;">
+          </td>
+        </tr>
+
+        <tr>
+          <td class="font-set-readonly">
+            Total
+          </td>
+          <td class="font-set-readonly">
+            19.30
+          </td>
+          <td class="font-set-readonly">
+            00.00
+          </td>
+          <td class="font-set-readonly">
+            00.00
+          </td>
+          <td class="font-set-readonly">
+            00.00
+          </td>
+          <td class="font-set-readonly">
+            00.00
           </td>
         </tr>
 
@@ -215,21 +245,166 @@
   <!-- Second division -->
   <div class="col-md-6">
 
-  <!-- First row of second division(col-md-6)-->
+  <!-- Second row of second division(col-md-6)-->
     <div class="row">
       <table border="1" style="width: 95%;">
 
         <% hidden_field_tag "sea_report_id",  @sea_report.id %>
         <tr>
-          <td class="f-size-8">Main Engines</td>
-          <td class="f-size-8">Power,KW</td>
+          <td class="f-size-8" style="width: 38% !important;">Electrical Generators</td>
+          <td class="f-size-8" style="width: 38% !important;">Power prod., KWh</td>
 
-          <td class="f-size-8">Hours</td>
-
-          <td class="f-size-8">RPM</td>      
-          <td class="f-size-8">TC cut-out</td>
+          <td class="f-size-8" style="width: 38% !important;">Run. Hours</td>
         </tr>
+
+        <tr>
+          <td class="f-size-8" style="width: 42% !important;">Aux Eng 1</td>
+
+          <td>
+            <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 164px;">
+          </td>
+          <td>
+            <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 152px;">
+          </td>
+        </tr>
+
+        <tr>
+          <td class="f-size-8" style="width: 42% !important;">Aux Eng 2</td>
+
+          <td>
+            <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 164px;">
+          </td>
+          <td>
+            <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 152px;">
+          </td>
+        </tr>
+
+        <tr>
+          <td class="f-size-8" style="width: 42% !important;">Aux Eng 3</td>
+
+          <td>
+            <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 164px;">
+          </td>
+          <td>
+            <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 152px;">
+          </td>
+        </tr>
+
+
+        <tr>
+          <td class="f-size-8" style="width: 42% !important;">Aux Eng 4</td>
+
+          <td>
+            <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 164px;">
+          </td>
+          <td>
+            <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 152px;">
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan= "3">
+              <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 100%;height: 48px;">
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan = "2" class="font-set-readonly">
+            Total power production(kWh)
+          </td>
+          <td class="font-set-readonly">
+            3971
+          </td>
+        </tr>
+
       </table>
+
+      <br>
+      <!-- Second table of second division -->
+
+      <table border="1" style="width: 95%;">
+
+        <% hidden_field_tag "sea_report_id",  @sea_report.id %>
+        <tr>
+          <td class="f-size-8" style="width: 38% !important;">Electrical Consumers</td>
+          <td class="f-size-8" style="width: 38% !important;">Power cons., KWh</td>
+
+          <td class="f-size-8" style="width: 38% !important;">No. of Reefers</td>
+        </tr>
+
+        <tr>
+          <td class="f-size-8" style="width: 42% !important;">Reefers</td>
+
+          <td>
+            <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 164px;">
+          </td>
+          <td>
+            <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 152px;">
+          </td>
+        </tr>
+
+        <tr>
+          <td class="f-size-8" style="width: 42% !important;">Reefer Cargo Hold..</td>
+
+          <td>
+            <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 164px;">
+          </td>
+          <td>
+            <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 152px;">
+          </td>
+        </tr>
+
+        <tr>
+          <td class="f-size-8" style="width: 42% !important;">Auxiliary Blowers</td>
+
+          <td>
+            <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 164px;">
+          </td>
+          <td>
+            <input type="text" name="weather[][observation_smt]" id="weather__observation_smt" required="required" style="width: 152px;">
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan = "2" class="font-set-readonly">
+            Total power consumption(kWh)
+          </td>
+          <td class="font-set-readonly">
+            2121
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan = "2" class="font-set-readonly">
+            AE SFOC(g/kWh)
+          </td>
+          <td class="font-set-readonly">
+            2121
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan = "2" class="font-set-readonly">
+            Basic Load at 20&deg;C(kW)
+          </td>
+          <td class="font-set-readonly">
+            2121
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan = "2" class="font-set-readonly">
+            Reference, class average(kW)
+          </td>
+          <td class="font-set-readonly">
+            2121
+          </td>
+        </tr>
+
+      </table>
+
+
+
     </div>
     <br><br>
 

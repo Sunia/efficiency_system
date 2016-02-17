@@ -225,6 +225,13 @@ body{
    width:20% !important;
 }
 
+.font-set-readonly{
+   font-size: 10px !important;
+   font-style: oblique;
+   text-align:  right;
+   width:20% !important;
+}
+
 .f-size-9{
     background-color: #D0DA98;
     font-size: 12px !important;
