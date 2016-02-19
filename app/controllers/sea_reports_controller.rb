@@ -46,6 +46,12 @@ class SeaReportsController < ApplicationController
     else
       @operating_condition = @sea_report.operating_conditions.first
     end
+
+    if @sea_report.power_fuels.blank?
+      @power_fuels = @sea_report.power_fuels.new
+    else
+      @power_fuels = @sea_report.power_fuels.first
+    end
   end
 
   # POST /sea_reports

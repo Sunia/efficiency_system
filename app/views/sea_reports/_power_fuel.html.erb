@@ -1,1 +1,9 @@
-<%= render 'power_fuels/power_fuel_partial_for_sea_report' %>
+<%= form_tag create_multiple_weather_distances_path(@sea_report.id), :method => :post , :remote => true do %>
+
+	<%= render 'power_fuels/power_fuel_partial_for_sea_report' %>
+
+	<%= submit_tag 'Update Power Fuel' %>
+  	<br>
+<% end %>
+
+
