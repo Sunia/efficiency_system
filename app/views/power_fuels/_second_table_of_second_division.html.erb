@@ -1,0 +1,87 @@
+  
+      <!-- Second table of second division -->
+    <div class="row">
+      <table border="1" style="width: 95%;">
+
+        <% hidden_field_tag "sea_report_id",  @sea_report.id %>
+        <tr>
+          <td class="f-size-8" style="width: 38% !important;">Electrical Consumers</td>
+          <td class="f-size-8" style="width: 38% !important;">Power consumption (kWh)</td>
+
+          <td class="f-size-8" style="width: 38% !important;">No. of Reefers</td>
+        </tr>
+
+
+
+        <tr>
+          <td class="f-size-8" style="width: 42% !important;">Reefers</td>
+
+          <td>
+            <%= f.number_field :electrical_consumers_reefers_power, :required => true, :min=> '0', :max => '999999999', :style => 'width: 164px;' %>
+          </td>
+          <td>
+            <%= f.number_field :electrical_consumers_reefers_number, :required => true, :min=> '0', :max => '999999999', :style => 'width: 152px;' %>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="f-size-8" style="width: 42% !important;">Reefer Cargo Hold..</td>
+
+          <td>
+            <%= f.number_field :electrical_consumers_reefer_cargo_power, :required => true, :min=> '0', :max => '999999999', :style => 'width: 164px;' %>
+          </td>
+          <td>
+            <%= f.number_field :electrical_consumers_reefer_cargo_number, :required => true, :min=> '0', :max => '999999999', :style => 'width: 152px;' %>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="f-size-8" style="width: 42% !important;">Auxiliary Blowers</td>
+
+          <td>
+            <%= f.number_field :electrical_consumers_aux_power, :required => true, :min=> '0', :max => '999999999', :style => 'width: 164px;' %>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan = "2" class="font-set-readonly">
+            Total power consumption(kWh)
+          </td>
+          <td class="font-set-readonly">
+            2121
+            <!-- :electrical_consumers_total_power, -->
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan = "2" class="font-set-readonly">
+            AE SFOC(g/kWh)
+          </td>
+          <td class="font-set-readonly">
+            2121
+            <!-- :electrical_consumers_ae_sfoc, -->
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan = "2" class="font-set-readonly">
+            Basic Load at 20&deg;C(kW)
+          </td>
+          <td class="font-set-readonly">
+            2121
+            <!-- :electrical_consumers_basic_load, -->
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan = "2" class="font-set-readonly">
+            Reference, class average(kW)
+            <!-- :electrical_consumers_reference -->
+          </td>
+          <td class="font-set-readonly">
+            2121
+          </td>
+        </tr>
+      </table>
+
+    </div>

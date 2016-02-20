@@ -1,4 +1,7 @@
-<%= form_tag create_multiple_weather_distances_path(@sea_report.id), :method => :post , :remote => true do %>
+
+
+<%= form_for(@operating_condition, url: operating_conditions_path ,html: {method: "post"}) do |f| %>
+
 
 	<%= render 'power_fuels/power_fuel_partial_for_sea_report' %>
 

@@ -1,0 +1,110 @@
+    <div class="row">
+
+      <div style="text-align: right; width: 95%;">
+        All quantities should be entered in tons
+      </div>
+
+      <table border="1" style="width: 95%;">
+
+        <tr>
+          <td class="f-size-8">Oil Consumers</td>
+          <td class="f-size-8">H.S.HFO</td>
+
+          <td class="f-size-8">L.S.HFO</td>
+
+          <td class="f-size-8">H.S.MDO</td>      
+          <td class="f-size-8">L.S.MDO</td>
+          <td class="f-size-8">Sludge</td>
+
+        </tr>
+        <tr>
+          <td class="f-size-8" style="width: 93%">M.E</td>
+
+          <td>
+            <%= f.number_field :oil_consumers_me_hshfo, :required => true, :step =>'0.01', :min=> '0.00', :max => '999999.99', :style => 'width: 60px;' %>
+          </td>
+          <td>
+            <%= f.number_field :oil_consumers_me_lshfo, :required => true, :step =>'0.01', :min=> '0.00', :max => '999999.99', :style => 'width: 60px;' %>
+          </td>
+          <td>
+            <%= f.number_field :oil_consumers_me_hsmdo, :required => true, :step =>'0.01', :min=> '0.00', :max => '999999.99', :style => 'width: 60px;' %>
+          </td>
+
+          <td>
+            <%= f.number_field :oil_consumers_me_lsmdo, :required => true, :step =>'0.01', :min=> '0.00', :max => '999999.99', :style => 'width: 60px;' %>
+          </td>
+
+          <td>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="f-size-8" style="width: 93% !important;">Aux Engg.</td>
+
+          <td>
+            <%= f.number_field :oil_consumers_aux_hshfo, :required => true, :step =>'0.01', :min=> '0.00', :max => '999999.99', :style => 'width: 60px;' %>
+          </td>
+          <td>
+            <%= f.number_field :oil_consumers_aux_lshfo, :required => true, :step =>'0.01', :min=> '0.00', :max => '999999.99', :style => 'width: 60px;' %>
+          </td>
+          <td>
+            <%= f.number_field :oil_consumers_aux_hsmdo, :required => true, :step =>'0.01', :min=> '0.00', :max => '999999.99', :style => 'width: 60px;' %>
+          </td>
+
+          <td>
+            <%= f.number_field :oil_consumers_aux_lsmdo, :required => true, :step =>'0.01', :min=> '0.00', :max => '999999.99', :style => 'width: 60px;' %>
+          </td>
+          <td>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="f-size-8" style="width: 93% !important;">Boiler</td>
+          <td>
+            <%= f.number_field :oil_consumers_boiler_hshfo, :required => true, :step =>'0.01', :min=> '0.00', :max => '999999.99', :style => 'width: 60px;' %>
+          </td>
+          <td>
+            <%= f.number_field :oil_consumers_boiler_lshfo, :required => true, :step =>'0.01', :min=> '0.00', :max => '999999.99', :style => 'width: 60px;' %>
+          </td>
+          <td>
+            <%= f.number_field :oil_consumers_boiler_hsmdo, :required => true, :step =>'0.01', :min=> '0.00', :max => '999999.99', :style => 'width: 60px;' %>
+          </td>
+
+          <td>
+            <%= f.number_field :oil_consumers_boiler_lsmdo, :required => true, :step =>'0.01', :min=> '0.00', :max => '999999.99', :style => 'width: 60px;' %>
+          </td>
+
+          <td>
+            <%= f.number_field :oil_consumers_boiler_sludge, :required => true, :step =>'0.01', :min=> '0.00', :max => '999999.99', :style => 'width: 60px;' %>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="font-set-readonly">
+            Total
+
+          </td>
+          <td class="font-set-readonly">
+            19.30
+            <!-- :oil_consumers_total_hshfo -->
+          </td>
+          <td class="font-set-readonly">
+            00.00
+            <!-- :oil_consumers_total_lshfo -->
+          </td>
+          <td class="font-set-readonly">
+            00.00
+            <!-- oil_consumers_total_hsmdo -->
+
+          </td>
+          <td class="font-set-readonly">
+            00.00
+            <!-- :oil_consumers_total_lsmdo -->
+          </td>
+          <td class="font-set-readonly">
+            00.00
+            <!-- :oil_consumers_total_sludge -->
+          </td>
+        </tr>
+      </table>
+    </div>

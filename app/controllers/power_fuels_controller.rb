@@ -24,11 +24,18 @@ class PowerFuelsController < ApplicationController
   # POST /power_fuels
   # POST /power_fuels.json
   def create
-    @power_fuel = PowerFuel.new(power_fuel_params)
+    sea_report_id = params[:power_fuels][:sea_report_id]
+    @power_fuel = PowerFuel.where(:sea_report_id => sea_report_id.to_i).first
+
+    if @power_fuel.blank?
+      @power_fuel = PowerFuel.create(params[:power_fuels])
+    else
+      @power_fuel.update(params[:power_fuels])
+    end
 
     respond_to do |format|
-      if @power_fuel.save
-        format.html { redirect_to @power_fuel, notice: 'Power fuel was successfully created.' }
+      if @power_fuel
+        format.html { redirect_to edit_sea_report_path(sea_report_id), notice: 'Power Fuel info is successfully updated.' }
         format.json { render :show, status: :created, location: @power_fuel }
       else
         format.html { render :new }

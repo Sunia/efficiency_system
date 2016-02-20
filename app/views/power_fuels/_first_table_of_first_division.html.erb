@@ -1,0 +1,79 @@
+  <!-- First row of first division(col-md-6)-->
+    <div class="row">
+      <table border="1" style="width: 95%;">
+
+        <tr>
+          <td class="f-size-8">Main Engines</td>
+          <td class="f-size-8">Avg. M.E Power (kW) for report period</td>
+          <td class="f-size-8">Load (in % MCR)</td>
+
+          <td class="f-size-8">M.E. Running Hours</td>
+
+          <td class="f-size-8">Avg. RPM for report period</td>
+          <td class="f-size-8">TC cut-out</td>
+        </tr>
+
+        <tr>
+          <td class="f-size-8" style="width: 93% !important;">M.E</td>
+
+          <%= f.hidden_field :sea_report_id, :value => @sea_report.id %>
+
+          <td>
+            <%= f.number_field :me_power, :required => true, :min=> '0', :max => '999999999', :style => 'width: 72px;' %>
+          </td>
+
+          <td>
+            <%= f.number_field :me_load_mcr, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 72px;' %>
+          </td>
+          <td>
+            <%= f.number_field :hours, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 72px;' %>
+          </td>
+          <td>
+            <%= f.number_field :me_rpm, :required => true, :step =>'0.01', :min=> '0.00', :max => '999.99', :style => 'width: 72px;' %>
+          </td>
+          <td>
+            <%= f.number_field :tc_cut_out, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 72px;' %>
+          </td>
+
+        </tr>
+
+        <tr>
+          <td colspan = "5" class="font-set-readonly">
+            Average M.E. Power for the report period(KW)
+          </td>
+          <td class="font-set-readonly">
+            3971
+            <!-- me_total_average -->
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan = "5" class="font-set-readonly">
+            ME SFOC(g/KWh) @ 40290 (KJ/Kg)
+          </td>
+          <td class="font-set-readonly">
+            195.2
+            <!-- me_sfoc -->
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan = "5" class="font-set-readonly">
+            M.E. Power(in kW) MCR value
+          </td>
+          <td class="font-set-readonly">
+            1000
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan = "5" class="font-set-readonly">
+            M.E. Power(in kW) CSR value
+          </td>
+          <td class="font-set-readonly">
+            900
+          </td>
+        </tr>
+
+      </table>
+    </div>

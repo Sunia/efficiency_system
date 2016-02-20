@@ -1,0 +1,69 @@
+  <!-- Second row of second division(col-md-6)-->
+    <div class="row">
+      <table border="1" style="width: 95%;">
+
+        <% hidden_field_tag "sea_report_id",  @sea_report.id %>
+        <tr>
+          <td class="f-size-8" style="width: 38% !important;">Electrical Generators</td>
+          <td class="f-size-8" style="width: 38% !important;">Power produced (kWh)</td>
+
+          <td class="f-size-8" style="width: 38% !important;">Running Hours</td>
+        </tr>
+
+        <tr>
+          <td class="f-size-8" style="width: 42% !important;">Aux Eng 1</td>
+
+          <td>
+            <%= f.number_field :generators_aux1_power, :required => true, :min=> '0', :max => '999999999', :style => 'width: 164px;' %>
+          </td>
+          <td>
+            <%= f.number_field :generators_aux1_hours, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 152px;' %>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="f-size-8" style="width: 42% !important;">Aux Eng 2</td>
+
+          <td>
+            <%= f.number_field :generators_aux2_power, :required => true, :min=> '0', :max => '999999999', :style => 'width: 164px;' %>
+          </td>
+          <td>
+            <%= f.number_field :generators_aux2_hours, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 152px;' %>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="f-size-8" style="width: 42% !important;">Aux Eng 3</td>
+
+          <td>
+            <%= f.number_field :generators_aux3_power, :required => true, :min=> '0', :max => '999999999', :style => 'width: 164px;' %>
+          </td>
+          <td>
+            <%= f.number_field :generators_aux3_hours, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 152px;' %>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="f-size-8" style="width: 42% !important;">Aux Eng 4</td>
+
+          <td>
+            <%= f.number_field :generators_aux4_power, :required => true, :min=> '0', :max => '999999999', :style => 'width: 164px;' %>
+          </td>
+          <td>
+            <%= f.number_field :generators_aux4_hours, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 152px;' %>
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan = "2" class="font-set-readonly">
+            Total power production(kWh)
+          </td>
+          <td class="font-set-readonly">
+            3971
+            <!-- generators_total_power -->
+
+          </td>
+        </tr>
+
+      </table>
+    </div>
