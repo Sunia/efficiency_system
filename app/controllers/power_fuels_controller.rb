@@ -24,14 +24,36 @@ class PowerFuelsController < ApplicationController
   # POST /power_fuels
   # POST /power_fuels.json
   def create
-    sea_report_id = params[:power_fuels][:sea_report_id]
+    power_fuel = params[:power_fuel]
+    sea_report_id = params[:power_fuel][:sea_report_id]
     @power_fuel = PowerFuel.where(:sea_report_id => sea_report_id.to_i).first
 
     if @power_fuel.blank?
-      @power_fuel = PowerFuel.create(params[:power_fuels])
+      @power_fuel = PowerFuel.create(params[:power_fuel])
     else
-      @power_fuel.update(params[:power_fuels])
+      @power_fuel.update(params[:power_fuel])
     end
+
+    # Set Total Avg. me power for Main Engine and calculate load MCR%
+    load_mcr = (power_fuel["me_power"].to_i * 100)/1000
+
+    @power_fuel.update_attributes(:me_total_average => power_fuel["me_power"], :me_load_mcr => load_mcr)
+
+    # Total of each field in Oil consumers tab
+    total =  {}
+    total["oil_consumers_total_hshfo"] =   power_fuel[:oil_consumers_me_hshfo].to_f + power_fuel[:oil_consumers_aux_hshfo].to_f +  power_fuel[:oil_consumers_boiler_hshfo].to_f
+    total["oil_consumers_total_lshfo"] =   power_fuel[:oil_consumers_me_lshfo].to_f + power_fuel[:oil_consumers_aux_lshfo].to_f +  power_fuel[:oil_consumers_boiler_lshfo].to_f
+    total["oil_consumers_total_hsmdo"] =   power_fuel[:oil_consumers_me_hsmdo].to_f + power_fuel[:oil_consumers_aux_hsmdo].to_f +  power_fuel[:oil_consumers_boiler_hsmdo].to_f
+    total["oil_consumers_total_lsmdo"] =   power_fuel[:oil_consumers_me_lsmdo].to_f + power_fuel[:oil_consumers_aux_lsmdo].to_f +  power_fuel[:oil_consumers_boiler_lsmdo].to_f
+    total["oil_consumers_total_sludge"] =  power_fuel[:oil_consumers_boiler_sludge]
+
+    # Calculate total power for Electrical Generators
+    total["generators_total_power"] = power_fuel[:generators_aux1_power].to_i + power_fuel[:generators_aux2_power].to_i + power_fuel[:generators_aux3_power].to_i + power_fuel[:generators_aux4_power].to_i
+
+    # Calculate total power for Electrical Consumers
+    total["electrical_consumers_total_power"] = power_fuel["electrical_consumers_reefers_power"].to_i + power_fuel["electrical_consumers_reefer_cargo_power"].to_i + power_fuel["electrical_consumers_aux_power"].to_i
+
+    @power_fuel.update_attributes(total)
 
     respond_to do |format|
       if @power_fuel

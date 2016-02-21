@@ -1,32 +1,35 @@
 
 <%= form_for(@power_fuels, url: power_fuels_path ,html: {method: "post"}) do |f| %>
-<div class="row" style="padding-left: 2%;">
+  <div class="row" style="padding-left: 2%;">
 
-  <!-- First division -->
-  <div class="col-md-6">
+    <!-- First division -->
+    <div class="col-md-6">
 
-    <!-- First row of first division(col-md-6)-->
-    <%= render 'power_fuels/first_table_of_first_division', :f => f %>
-    <br>
-    <!-- Second row of first division(col-md-6)-->
-    <%= render 'power_fuels/second_table_of_first_division', :f => f %>
-    <br>
+      <!-- First row of first division(col-md-6)-->
+      <%= render 'power_fuels/first_table_of_first_division', :f => f %>
+      <br>
+      <!-- Second row of first division(col-md-6)-->
+      <%= render 'power_fuels/second_table_of_first_division', :f => f %>
+      <br>
 
-    <!-- Third row of first division(col-md-6)-->
-    <%= render 'power_fuels/third_table_of_first_division', :f => f %>
-    <br><br>
+      <!-- Third row of first division(col-md-6)-->
+      <%= render 'power_fuels/third_table_of_first_division', :f => f %>
 
-  <!-- End of first division -->
-  </div> 
+      <br><br>
+   <!-- End of first division --> 
+    </div>
+ 
+    <!-- Second division -->
+    <div class="col-md-6">
 
-  <!-- Second division -->
-  <div class="col-md-6">
+      <%= render 'power_fuels/first_table_of_second_division', :f => f %>
+      <br><br>
+      <%= render 'power_fuels/second_table_of_second_division', :f => f %>
 
-    <%= render 'power_fuels/first_table_of_second_division', :f => f %>
-    <br><br>
-    <%= render 'power_fuels/second_table_of_second_division', :f => f %>
+    </div>
+
+  <!-- End of main Row -->
   </div>
+  <%= submit_tag 'Update Power Fuel' %>
 
-<!-- End of main Row -->
-</div>
 <% end %>
