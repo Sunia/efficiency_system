@@ -4,19 +4,44 @@ source /home/sunia/.rvm/scripts/rvm
 rvm use 1.9.3-p547@demo
 rails s
 
+================================================
+
+Now check  for conditions:
+
+1.  hr = 4 if hr < 4 && hr > 0
+
+ hr = 8 if hr < 8 && hr > 4
+
+ hr = 12 if hr < 12 && hr > 8
+
+ hr = 16 if hr < 16 && hr > 12
+
+ hr = 20 if hr < 20 && hr > 16
+
+ hr = 24 if hr < 24 && hr > 20
+
+=======================================================
+
+# Weather distance documentation.
+
+1. Last observation of the previous sea report + 4 hours will be the
+observation saved in the sea report record.
+
+# Validation for enter closing date -> Check                     done
+2. Close report error -> if weather record not exist             done
+3. Continue flow
 
 
 
 
 
-SeaPort:  Done + ship particulars
 
-=>  SeaPort  - taking user input for the smt time.
 
-SeaReport -> Closing date and time 
 
-Now work on index after closing.
 
-1. PassagePlan save, having relation with Sea Report.
-then show the index of Passage Plan.
+
+
+
+
+
 

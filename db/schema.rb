@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160217030415) do
+ActiveRecord::Schema.define(version: 20160222174729) do
 
   create_table "operating_conditions", force: :cascade do |t|
     t.float    "sea_report_id",              limit: 24
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 20160217030415) do
     t.string   "torsion_meter_status",       limit: 255
     t.date     "torsion_meter_date"
     t.float    "roll_angle",                 limit: 24
+    t.float    "dock_water_density",         limit: 24
   end
 
   create_table "passage_plans", force: :cascade do |t|
@@ -62,8 +63,60 @@ ActiveRecord::Schema.define(version: 20160217030415) do
   end
 
   create_table "power_fuels", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "sea_report_id",                            limit: 4
+    t.integer  "me_power",                                 limit: 4
+    t.float    "hours",                                    limit: 24
+    t.float    "me_rpm",                                   limit: 24
+    t.string   "tc_cut_out",                               limit: 255
+    t.integer  "me_load_mcr",                              limit: 4
+    t.float    "me_total_average",                         limit: 24
+    t.float    "me_sfoc",                                  limit: 24
+    t.float    "properties_lcv_hshfo",                     limit: 24
+    t.float    "properties_lcv_lshfo",                     limit: 24
+    t.float    "properties_lcv_hsmdo",                     limit: 24
+    t.float    "properties_lcv_lsmdo",                     limit: 24
+    t.float    "properties_sulphur_hshfo",                 limit: 24
+    t.float    "properties_sulphur_lshfo",                 limit: 24
+    t.float    "properties_sulphur_hsmdo",                 limit: 24
+    t.float    "properties_sulphur_lsmdo",                 limit: 24
+    t.float    "oil_consumers_me_hshfo",                   limit: 24
+    t.float    "oil_consumers_me_lshfo",                   limit: 24
+    t.float    "oil_consumers_me_hsmdo",                   limit: 24
+    t.float    "oil_consumers_me_lsmdo",                   limit: 24
+    t.float    "oil_consumers_aux_hshfo",                  limit: 24
+    t.float    "oil_consumers_aux_lshfo",                  limit: 24
+    t.float    "oil_consumers_aux_hsmdo",                  limit: 24
+    t.float    "oil_consumers_aux_lsmdo",                  limit: 24
+    t.float    "oil_consumers_boiler_hshfo",               limit: 24
+    t.float    "oil_consumers_boiler_lshfo",               limit: 24
+    t.float    "oil_consumers_boiler_hsmdo",               limit: 24
+    t.float    "oil_consumers_boiler_lsmdo",               limit: 24
+    t.float    "oil_consumers_boiler_sludge",              limit: 24
+    t.float    "oil_consumers_total_hshfo",                limit: 24
+    t.float    "oil_consumers_total_lshfo",                limit: 24
+    t.float    "oil_consumers_total_hsmdo",                limit: 24
+    t.float    "oil_consumers_total_lsmdo",                limit: 24
+    t.float    "oil_consumers_total_sludge",               limit: 24
+    t.integer  "generators_aux1_power",                    limit: 4
+    t.float    "generators_aux1_hours",                    limit: 24
+    t.integer  "generators_aux2_power",                    limit: 4
+    t.float    "generators_aux2_hours",                    limit: 24
+    t.integer  "generators_aux3_power",                    limit: 4
+    t.float    "generators_aux3_hours",                    limit: 24
+    t.integer  "generators_aux4_power",                    limit: 4
+    t.float    "generators_aux4_hours",                    limit: 24
+    t.float    "generators_total_power",                   limit: 24
+    t.integer  "electrical_consumers_reefers_power",       limit: 4
+    t.integer  "electrical_consumers_reefers_number",      limit: 4
+    t.integer  "electrical_consumers_reefer_cargo_power",  limit: 4
+    t.integer  "electrical_consumers_reefer_cargo_number", limit: 4
+    t.integer  "electrical_consumers_aux_power",           limit: 4
+    t.integer  "electrical_consumers_total_power",         limit: 4
+    t.float    "electrical_consumers_ae_sfoc",             limit: 24
+    t.integer  "electrical_consumers_basic_load",          limit: 4
+    t.integer  "electrical_consumers_reference",           limit: 4
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
   end
 
   create_table "sea_ports", force: :cascade do |t|
