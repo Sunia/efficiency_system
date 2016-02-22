@@ -116,8 +116,6 @@ class CreatePowerFuels < ActiveRecord::Migration
       t.float :electrical_consumers_ae_sfoc
       #Basic Load at 20°C(kW)
       t.integer :electrical_consumers_basic_load
-      #Reference, class average(kW)
-      t.integer :electrical_consumers_reference
 
       t.timestamps null: false
     end

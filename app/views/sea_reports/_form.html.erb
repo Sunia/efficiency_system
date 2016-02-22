@@ -14,6 +14,8 @@ Report <%= @report_number %> from <%= @sea_port.starting_port_name %> to <%= @se
       <li id="port_details_li" class="active"><a data-toggle="tab" href="#port_details">Port Details</a></li>
       <li id="passage_plan_li"><a data-toggle="tab" href="#passage_plan">Passage Plan</a></li>
 
+      <li id="google_map_li"><a data-toggle="tab" href="#google_map"> Google Maps</a></li>
+
       <li id="operating_condition_li"><a data-toggle="tab" href="#operating_condition" onclick="check_overdue_for_speed_and_torsion();"> Operating condition </a></li>
       <li id="weather_distance_li"><a data-toggle="tab" href="#weather_distance">Weather &amp Distance</a></li>
       <li id="power_fuel_li"><a data-toggle="tab" href="#power_fuel">Power &amp Fuel</a></li>
@@ -44,6 +46,17 @@ Report <%= @report_number %> from <%= @sea_port.starting_port_name %> to <%= @se
       <div class="row">
         <div class="col-md-12">
           <%= render 'passage_plan' %>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div id="google_map" class="tab-pane fade">
+      <h4><b>Google map</b></h4>
+      <div class="row">
+        <div class="col-md-12">
+          
         </div>
       </div>
 

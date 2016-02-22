@@ -31,9 +31,15 @@
           <td>
             <%= f.number_field :me_rpm, :required => true, :step =>'0.01', :min=> '0.00', :max => '999.99', :style => 'width: 72px;' %>
           </td>
-          <td>
+<!--           <td>
             <%= f.number_field :tc_cut_out, :required => true, :step =>'0.01', :min=> '0.00', :max => '99.99', :style => 'width: 72px;' %>
+          </td> -->
+
+        
+          <td>
+           <%= f.select :tc_cut_out, options_for_select(["1-TC cut-out", "2-TC cut-out" , "None"]), class: "form-control", required: true, width: "100%",  style: "width: 72px; font-size: 11px;" %>
           </td>
+
 
         </tr>
 

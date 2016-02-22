@@ -121,6 +121,24 @@
     </table>
 
     <br>
+
+    <!-- Dock water Density -->
+	<div class="col-sm-12" style="padding-left: 1px;">
+
+        <div class="col-sm-5" style="padding-left: 1px;">
+            <br>
+			<b>Departure Port Dock water Density </b>
+		</div>
+
+        <div class="col-sm-4 s">
+           	<%= f.number_field :dock_water_density, class: "form-control", required: true, placeholder: "Dock water Density", style: "margin-bottom:10px", :step =>'0.001', :min=> '0.000', :max => '9.999'%>
+		</div> 
+		<div class="col-sm-1">
+		    <br>
+			<b>Tons/m3</b>
+		</div>
+	</div>
+
     <!-- Metacentric Height -->
 	<div class="col-sm-12" style="padding-left: 1px;">
 
