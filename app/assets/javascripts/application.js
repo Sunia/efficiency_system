@@ -10,7 +10,8 @@
 //= require dataTables/extras/TableTools
 //= require dataTables/extras/ZeroClipboard.js
 //= require_tree .
-
+//= require underscore
+//= require gmaps/google
 
 $(document).ready(function(){
 

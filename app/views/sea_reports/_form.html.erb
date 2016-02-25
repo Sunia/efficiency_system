@@ -20,7 +20,7 @@ Report <%= @report_number %> from <%= @sea_port.starting_port_name %> to <%= @se
       <li id="weather_distance_li"><a data-toggle="tab" href="#weather_distance">Weather &amp Distance</a></li>
       <li id="power_fuel_li"><a data-toggle="tab" href="#power_fuel">Power &amp Fuel</a></li>
       <li id="close_report_li"><a data-toggle="tab" href="#close_report">Close the Report</a></li>
-      <li><a data-toggle="tab" href="#help">Help</a></li>
+      
   </ul>
   <br>
   <br>
@@ -56,7 +56,7 @@ Report <%= @report_number %> from <%= @sea_port.starting_port_name %> to <%= @se
       <h4><b>Google map</b></h4>
       <div class="row">
         <div class="col-md-12">
-          
+          <%= render 'google_map' %>          
         </div>
       </div>
 
